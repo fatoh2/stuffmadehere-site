@@ -2,3 +2,5 @@ node_modules
 dist
 .superpowers
 .taste-skill/inspect
+
+.vercel
