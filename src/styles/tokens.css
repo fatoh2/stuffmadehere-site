@@ -1,0 +1,50 @@
+/* Tokens. Direction "Type and nothing else" (seed 486620262). The colours are his own: the black type
+   on pale grey of the Stuff Made Here mark, and the thumbnail blue, red and basketball orange that
+   run through the channel. The page is light shop grey; whole chapters change field. */
+:root {
+  color-scheme: light;
+
+  --paper: #e8e9e6;
+  --bg: var(--paper);
+  --surface: #dadcd8;
+  --ink: #15161a;
+  --muted: #474a51;
+  --accent: #d9281e;         /* the thumbnail red: the action */
+  --accent-ink: #ffffff;
+
+  --blue: #1d6fc4;           /* the thumbnail blue: hero and footer fields */
+  --blue-ink: #ffffff;
+  --red: #d9281e;            /* the method field and the WATCH band */
+  --red-ink: #ffffff;
+  --dark: #15161a;           /* the video chapter */
+  --dark-ink: #e8e9e6;
+  --ball: #ff5a1f;           /* basketballs and the rim, nothing else */
+
+  /* machine drawing tones */
+  --steel: #d4d4ce;
+  --steel-dark: #8b8b85;
+  --recess: #0d0e10;
+
+  --font-display: "Chivo", "Helvetica Neue", Arial, sans-serif;
+  --font-text: "Chivo", "Helvetica Neue", Arial, sans-serif;
+  --font-cut: "Saira Stencil One", "Chivo", "Helvetica Neue", Arial, sans-serif;
+
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2.5rem, 1.2rem + 5vw, 5.5rem);
+  --step-display: clamp(4.5rem, 19.6vw, 19rem);
+
+  --margin: clamp(1rem, 2.2vw, 2rem);
+  --gutter: clamp(0.75rem, 1.4vw, 1.5rem);
+  --section: clamp(6rem, 14vw, 14rem);
+  --radius: 0px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+  --t-ui: 240ms;
+  --t-reveal: 800ms;
+}

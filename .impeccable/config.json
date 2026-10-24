@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-24T14:58:38.379Z",
+        "reason": "Claude, from the dealt art direction (.taste-skill/direction.json, seed 486620262): display type at leading 0.88 and the large two-column statement at 1.18 are the blueprint's settings; body text stays at 1.4-1.5"
+      },
+      {
+        "rule": "organic-clip-path",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-24T14:58:38.712Z",
+        "reason": "Claude: the clip-path is the regular zigzag cut on the receipt slip that the dealt 'itinerary on a slip' blueprint specifies; it is geometry, not an organic contour"
+      }
+    ]
+  }
+}

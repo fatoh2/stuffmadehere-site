@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stuff Made Here, a fan’s site</title>
+  <meta name="description" content="A fan-made site for Stuff Made Here, Shane Wighton’s channel of machines that won’t let you miss. All 41 videos, on mechanisms you can drive.">
+  <meta name="theme-color" content="#1d6fc4">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%231d6fc4%27/%3E%3Ccircle cx=%2732%27 cy=%2736%27 r=%2714%27 fill=%27%23ff5a1f%27/%3E%3Crect x=%278%27 y=%2712%27 width=%2748%27 height=%276%27 fill=%27%23ffffff%27/%3E%3C/svg%3E">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/page.css">
+</head>
+<body>
+
+  <nav class="lock" id="lock" aria-label="Sections">
+    <svg class="lock__cyl" viewBox="0 0 200 44" aria-hidden="true" focusable="false">
+      <rect x="0" y="0" width="200" height="44" rx="3" fill="var(--surface)"/>
+      <rect x="0" y="23" width="200" height="21" fill="var(--steel-dark)"/>
+      <rect x="6" y="27" width="26" height="12" fill="var(--recess)"/>
+      <g id="lockKey"><rect x="-70" y="30" width="80" height="6" fill="var(--steel)"/></g>
+      <g id="lockPins"></g>
+    </svg>
+    <div class="lock__pins" id="lockPinButtons"></div>
+    <button class="lock__menu" id="lockMenu" type="button" aria-expanded="false" aria-controls="lockList">Menu</button>
+    <div class="lock__list" id="lockList">
+      <button class="lock__close" id="lockClose" type="button">Close</button>
+      <a href="#miss">Won’t let you miss</a>
+    <a href="#now">Building now</a>
+      <a href="#all">All 41</a>
+      <a href="#method">How a build goes</a>
+      <a href="#numbers">The numbers</a>
+      <a href="#about">About Shane</a>
+      <a href="#watch">Watch</a>
+      <a href="/about.html">The About page</a>
+    </div>
+  </nav>
+
+<header class="hero" id="top">
+  <div class="hero__top">
+    <p class="wordmark">A fan’s site <span>not the official one</span></p>
+  </div>
+
+  <h1 class="hero__mark cnc" id="heroMark">
+    <span class="cnc__text"><span class="hero__line">Stuff Made</span><span class="hero__line hero__line--right">Here</span></span>
+  </h1>
+
+  <div class="hero__bottom">
+    <p class="hero__lead" data-rise style="--i:2">Shane Wighton builds machines that do the hard part for you. Every section of this site is a machine too, six of them from his videos and six he has not built yet.</p>
+    <a class="button" id="heroWatch" href="#now" data-rise style="--i:3">Watch the latest video</a>
+  </div>
+  <button class="replay" id="replayHero" type="button" hidden>Cut it again</button>
+</header>
+
+<!-- ============ WON'T LET YOU MISS ============ -->
+<section class="miss" id="miss" aria-labelledby="miss-h">
+  <canvas class="miss__rig" id="rig" aria-hidden="true"></canvas>
+  <p class="miss__score" id="score" aria-live="polite"></p>
+  <div class="rack" id="rack" aria-hidden="true"></div>
+  <div class="miss__bottom">
+    <div class="miss__head">
+      <h2 class="head cnc" id="miss-h"><span class="cnc__text"><span class="hero__line">Won’t let</span><span class="hero__line">you miss</span></span></h2>
+      <p>Throw anything. The rig works out where it will come down and gets there first, the way his hoop does. When nobody throws, the pitching machine does.</p>
+    </div>
+    <div class="miss__fire">
+      <p class="miss__hint">Or hold the button to chamber a round and let go. The ball it fires goes in, and the latest video opens.</p>
+      <a class="button cartridge" id="fire" href="https://www.youtube.com/watch?v=RpslsMqPFWA"><span class="cartridge__face">Fire</span><span class="cartridge__gauge" aria-hidden="true"></span></a>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <!-- ============ BUILDING NOW ============ -->
+  <section class="now wrap" id="now" aria-labelledby="now-h">
+    <div class="now__text">
+      <h2 class="now__stack" id="now-h">
+        <span class="line part" data-part>An apple</span>
+        <span class="line part" data-part>peels itself</span>
+      </h2>
+      <div class="now__facts">
+        <p class="part" data-part>The latest video, 5 August 2026, 29 minutes long. An apple peeler that works on its own. About 3.7 million people have watched it so far.</p>
+        <p class="part" data-part>Every section of this site is assembled, cut, fed or thrown by a machine of its own. Six come from his videos. Six he has not built yet.</p>
+        <a class="button part" data-part href="https://www.youtube.com/watch?v=RpslsMqPFWA">Watch on YouTube</a>
+      </div>
+      <button class="replay" id="replayNow" type="button" hidden>Assemble it again</button>
+    </div>
+
+    <figure class="now__object part" data-part>
+      <div class="gimbal" id="gimbal">
+        <img class="gimbal__ring" src="/parts/gimbal.png" alt="" width="954" height="700" aria-hidden="true">
+        <div class="gimbal__frame" id="gimbalFrame">
+          <img src="https://i.ytimg.com/vi/RpslsMqPFWA/maxresdefault.jpg" width="1280" height="720" alt="Still from the video “I made an apple peel itself”">
+          <button class="gimbal__play" id="playLatest" type="button" aria-label="Play “I made an apple peel itself”">
+            <svg viewBox="0 0 88 88" aria-hidden="true" focusable="false"><path d="M30 20v48l40-24z"/></svg>
+          </button>
+        </div>
+        <button class="gimbal__tilt" id="gimbalTilt" type="button">Use tilt</button>
+      </div>
+    </figure>
+
+    <div class="gantry" aria-hidden="true">
+      <div class="gantry__rail"></div>
+      <div class="gantry__head" id="gantryHead"></div>
+      <div class="gantry__arm" id="gantryArm"></div>
+      <div class="gantry__cup" id="gantryCup"></div>
+    </div>
+  </section>
+
+  <!-- ============ ALL 41 ============ -->
+  <section class="all section wrap" id="all" aria-labelledby="all-h">
+    <div class="all__inner">
+      <h2 class="all__head" id="all-h">All 41 videos, in order</h2>
+      <p class="all__note">Turn the shaft to move through them. Each lobe is one video; the taller the lobe, the more it has been watched.</p>
+      <div class="ledger" id="ledger" data-own-wheel>
+        <div class="camshaft" id="camshaft" aria-hidden="true"><canvas></canvas></div>
+        <div class="ledger__roll" id="ledgerRoll">
+        <p class="ledger__year nums">2020</p>
+        <a class="row" href="https://www.youtube.com/watch?v=WuY2-OrT9ig" data-id="WuY2-OrT9ig" data-views="1400000"><span class="row__title">Bending Steel With Plastic Tools</span><span class="row__kind">Shop</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/WuY2-OrT9ig/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=BuC1IiZBY_o" data-id="BuC1IiZBY_o" data-views="2400000"><span class="row__title">Making a particle filter that doesn’t wear out for my plasma cutter</span><span class="row__kind">Shop</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/BuC1IiZBY_o/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=c3LhK2SAusk" data-id="c3LhK2SAusk" data-views="2600000"><span class="row__title">This marker will change the way you work with sheet metal</span><span class="row__kind">Shop</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/c3LhK2SAusk/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=8cNeAOpR-Ws" data-id="8cNeAOpR-Ws" data-views="4099999"><span class="row__title">3D Printed Sheet Metal Forming (Part 2)</span><span class="row__kind">Shop</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/8cNeAOpR-Ws/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=1de6fO-9ZDU" data-id="1de6fO-9ZDU" data-views="3400000"><span class="row__title">Fixing a little mess with a big mess</span><span class="row__kind">Shop</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/1de6fO-9ZDU/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=lPMg0dk1hFI" data-id="lPMg0dk1hFI" data-views="2100000"><span class="row__title">This machine changes everything</span><span class="row__kind">Shop</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/lPMg0dk1hFI/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=vtN4tkvcBMA" data-id="vtN4tkvcBMA" data-views="9100000"><span class="row__title">My curved basketball hoop always goes in</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/vtN4tkvcBMA/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=IcjgrB9vTec" data-id="IcjgrB9vTec" data-views="9300000"><span class="row__title">How I made steel toe crocs with wood</span><span class="row__kind">Shop</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/IcjgrB9vTec/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=FycDx69px8U" data-id="FycDx69px8U" data-views="8900000"><span class="row__title">The automatic hoop always goes in</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/FycDx69px8U/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=o5Cv9fvajrc" data-id="o5Cv9fvajrc" data-views="5900000"><span class="row__title">My self correcting golf club makes me a better golfer</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/o5Cv9fvajrc/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=8Au47gnXs0w" data-id="8Au47gnXs0w" data-views="6100000"><span class="row__title">See in complete darkness with touch</span><span class="row__kind">Shop</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/8Au47gnXs0w/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=7zBrbdU_y0s" data-id="7zBrbdU_y0s" data-views="8000000"><span class="row__title">I made a hair cutting machine</span><span class="row__kind">Robot arm</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/7zBrbdU_y0s/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=B3CsOx5U9Gs" data-id="B3CsOx5U9Gs" data-views="8300000"><span class="row__title">World’s most powerful bat goes boom. Made on my new Tormach 24r</span><span class="row__kind">Explosive</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/B3CsOx5U9Gs/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=myO8fxhDRW0" data-id="myO8fxhDRW0" data-views="28000000"><span class="row__title">Moving hoop won’t let you miss</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/myO8fxhDRW0/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=Puo6Vgcbxps" data-id="Puo6Vgcbxps" data-views="18000000"><span class="row__title">Explosive Bat: crushing MLB records. Ft: Smarter Every Day</span><span class="row__kind">Explosive</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/Puo6Vgcbxps/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=X9zXcnSXNF0" data-id="X9zXcnSXNF0" data-views="9700000"><span class="row__title">Making a robot to carve photos into pumpkins</span><span class="row__kind">Robot arm</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/X9zXcnSXNF0/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=_7vPNcnYWQ4" data-id="_7vPNcnYWQ4" data-views="18000000"><span class="row__title">Making an unpickable lock. Calling locksmiths</span><span class="row__kind">Lock</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/_7vPNcnYWQ4/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=WQ8Xgp8ALFo" data-id="WQ8Xgp8ALFo" data-views="5400000"><span class="row__title">Sometimes you have to test robots on yourself</span><span class="row__kind">Robot arm</span><span class="row__year nums">2020</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/WQ8Xgp8ALFo/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <p class="ledger__year nums">2021</p>
+        <a class="row" href="https://www.youtube.com/watch?v=vsTTXYxydOE" data-id="vsTTXYxydOE" data-views="23000000"><span class="row__title">Automatic pool stick vs. strangers</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2021</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/vsTTXYxydOE/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=ix68oRfI5Gw" data-id="ix68oRfI5Gw" data-views="7600000"><span class="row__title">Chainsaw + robotic arm = art?</span><span class="row__kind">Robot arm</span><span class="row__year nums">2021</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/ix68oRfI5Gw/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=2A2NY29iQdI" data-id="2A2NY29iQdI" data-views="14000000"><span class="row__title">TWO Unpickable (?) Locks for Lock Picking Lawyer!</span><span class="row__kind">Lock</span><span class="row__year nums">2021</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/2A2NY29iQdI/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=SjJulcvTA7Y" data-id="SjJulcvTA7Y" data-views="12000000"><span class="row__title">This is why I have 17,342 pounds of tools</span><span class="row__kind">Shop</span><span class="row__year nums">2021</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/SjJulcvTA7Y/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=1MkrNVic7pw" data-id="1MkrNVic7pw" data-views="15000000"><span class="row__title">Auto-aiming bow vs. FLYING targets</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2021</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/1MkrNVic7pw/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=osUTMnDFV30" data-id="osUTMnDFV30" data-views="7800000"><span class="row__title">My GIANT wall painting robot</span><span class="row__kind">Robot arm</span><span class="row__year nums">2021</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/osUTMnDFV30/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=Q1RaC7YJ7sk" data-id="Q1RaC7YJ7sk" data-views="10000000"><span class="row__title">Explosive powered nut cracker vs. metal nuts</span><span class="row__kind">Explosive</span><span class="row__year nums">2021</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/Q1RaC7YJ7sk/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <p class="ledger__year nums">2022</p>
+        <a class="row" href="https://www.youtube.com/watch?v=gnwIiw3Rz3I" data-id="gnwIiw3Rz3I" data-views="9800000"><span class="row__title">Wrist rocket: worlds fastest disc launcher</span><span class="row__kind">Explosive</span><span class="row__year nums">2022</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/gnwIiw3Rz3I/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=xHWXZyfhQas" data-id="xHWXZyfhQas" data-views="13000000"><span class="row__title">I made a ball seeking hoop</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2022</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/xHWXZyfhQas/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=Gu_1S77XkiM" data-id="Gu_1S77XkiM" data-views="7100000"><span class="row__title">A simple human task that’s insanely hard for a robot</span><span class="row__kind">Robot arm</span><span class="row__year nums">2022</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/Gu_1S77XkiM/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=WsPHBD5NsS0" data-id="WsPHBD5NsS0" data-views="7500000"><span class="row__title">Worlds hardest jigsaw vs. puzzle machine (all white)</span><span class="row__kind">Assembly</span><span class="row__year nums">2022</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/WsPHBD5NsS0/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <p class="ledger__year nums">2023</p>
+        <a class="row" href="https://www.youtube.com/watch?v=cQO2XTP7QDw" data-id="cQO2XTP7QDw" data-views="11000000"><span class="row__title">I sent robot forgeries to a handwriting expert</span><span class="row__kind">Robot arm</span><span class="row__year nums">2023</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/cQO2XTP7QDw/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=wh8ij9NnLIQ" data-id="wh8ij9NnLIQ" data-views="13000000"><span class="row__title">Six questionably legal pencil sharpeners</span><span class="row__kind">Shop</span><span class="row__year nums">2023</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/wh8ij9NnLIQ/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <p class="ledger__year nums">2024</p>
+        <a class="row" href="https://www.youtube.com/watch?v=9SRFbFreCkE" data-id="9SRFbFreCkE" data-views="3900000"><span class="row__title">I made these to do a ridiculously high dunk</span><span class="row__kind">Explosive</span><span class="row__year nums">2024</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/9SRFbFreCkE/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=t9rClZrbnrQ" data-id="t9rClZrbnrQ" data-views="5000000"><span class="row__title">Precision guided launcher turns noobs into pros</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2024</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/t9rClZrbnrQ/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=YqywL9PkM2s" data-id="YqywL9PkM2s" data-views="4099999"><span class="row__title">After 100+ parts and 45 hours of practice, I did it</span><span class="row__kind">Shop</span><span class="row__year nums">2024</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/YqywL9PkM2s/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=aXfTgCCsRSg" data-id="aXfTgCCsRSg" data-views="5900000"><span class="row__title">What if we made a camera that sees in reverse?</span><span class="row__kind">Shop</span><span class="row__year nums">2024</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/aXfTgCCsRSg/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <p class="ledger__year nums">2025</p>
+        <a class="row" href="https://www.youtube.com/watch?v=BO_YGcSzJdA" data-id="BO_YGcSzJdA" data-views="3500000"><span class="row__title">I really thought this would fly well</span><span class="row__kind">Shop</span><span class="row__year nums">2025</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/BO_YGcSzJdA/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=dXIkUkwzTQU" data-id="dXIkUkwzTQU" data-views="7800000"><span class="row__title">Baking brownies from the inside out</span><span class="row__kind">Shop</span><span class="row__year nums">2025</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/dXIkUkwzTQU/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=vJ43DjwLPGA" data-id="vJ43DjwLPGA" data-views="3200000"><span class="row__title">Why is this task so difficult for machines?</span><span class="row__kind">Shop</span><span class="row__year nums">2025</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/vJ43DjwLPGA/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <p class="ledger__year nums">2026</p>
+        <a class="row" href="https://www.youtube.com/watch?v=JQB8aNKyeao" data-id="JQB8aNKyeao" data-views="2300000"><span class="row__title">Making an autocorrect mini golf club (part 1)</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2026</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/JQB8aNKyeao/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=2OfjZ3ORJfc" data-id="2OfjZ3ORJfc" data-views="5400000"><span class="row__title">Robot golf vs holes that keep getting harder</span><span class="row__kind">Can’t miss</span><span class="row__year nums">2026</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/2OfjZ3ORJfc/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        <a class="row" href="https://www.youtube.com/watch?v=RpslsMqPFWA" data-id="RpslsMqPFWA" data-views="3700000"><span class="row__title">I made an apple peel itself</span><span class="row__kind">Robot arm</span><span class="row__year nums">2026</span></a>
+        <figure class="row__inline"><img loading="lazy" src="https://i.ytimg.com/vi/RpslsMqPFWA/mqdefault.jpg" width="320" height="180" alt=""></figure>
+        </div>
+      </div>
+      <figure class="card" id="card" aria-hidden="true"><img src="https://i.ytimg.com/vi/myO8fxhDRW0/mqdefault.jpg" alt="" width="320" height="180"></figure>
+    </div>
+    <aside class="all__side">
+      <figure class="all__preview" id="preview" aria-hidden="true">
+        <img src="https://i.ytimg.com/vi/myO8fxhDRW0/mqdefault.jpg" alt="" width="320" height="180">
+        <figcaption></figcaption>
+      </figure>
+      <figure class="all__landing" id="landing"><a href="https://www.youtube.com/@stuffmadehere/videos"><img src="https://i.ytimg.com/vi/myO8fxhDRW0/mqdefault.jpg" alt="" width="320" height="180"></a><figcaption></figcaption></figure>
+      <div class="launcher">
+        <canvas id="launcherCanvas" aria-hidden="true"></canvas>
+        <div>
+          <button class="button" id="fireRandom" type="button">Fire a random one</button>
+          <p>The launcher solves its own aim. You only choose when.</p>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ============ HOW A BUILD GOES ============ -->
+  <section class="method section wrap" id="method" aria-labelledby="method-h">
+    <div class="method__text">
+      <h2 class="head cnc" id="method-h"><span class="cnc__text">How a build goes</span></h2>
+      <p>Every video is the same fight: a problem nobody has solved, a machine that does not work yet, and the weeks it takes until it does. The slip prints one stage per turn of the drive.</p>
+      <button class="replay" id="replayMethod" type="button" hidden>Feed it again</button>
+    </div>
+    <div class="method__machine">
+      <div class="printer" id="printer"><canvas aria-hidden="true"></canvas></div>
+      <div class="slip" id="slip">
+        <p class="slip__group">Idea</p>
+        <div class="slip__row" data-note="UNSOLVED"><span>Pick a problem nobody has solved</span><span class="dots" aria-hidden="true"></span><span class="val">one problem</span></div>
+        <div class="slip__row" data-note="SKEPTIC"><span>Run it past the skeptic</span><span class="dots" aria-hidden="true"></span><span class="val">usually his wife</span></div>
+        <p class="slip__group">Build</p>
+        <div class="slip__row" data-note="CAD"><span>CAD until it looks possible</span><span class="dots" aria-hidden="true"></span><span class="val">days</span></div>
+        <div class="slip__row" data-note="TORMACH"><span>Machine it on the Tormach</span><span class="dots" aria-hidden="true"></span><span class="val">chips everywhere</span></div>
+        <div class="slip__row" data-note="PRINT"><span>Print what can’t be machined</span><span class="dots" aria-hidden="true"></span><span class="val">overnight</span></div>
+        <p class="slip__group">Test</p>
+        <div class="slip__row" data-note="FAIL"><span>First test</span><span class="dots" aria-hidden="true"></span><span class="val">fails</span></div>
+        <div class="slip__row" data-note="WHY"><span>Find out why</span><span class="dots" aria-hidden="true"></span><span class="val">100+ parts, 45 hours</span></div>
+        <div class="slip__row" data-note="AGAIN"><span>Try again</span><span class="dots" aria-hidden="true"></span><span class="val">413 eggs</span></div>
+        <div class="slip__total" data-note="SHIP IT"><span>One video</span><span>41 so far</span></div>
+        <canvas class="slip__notes" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE NUMBERS ============ -->
+  <section class="numbers section" id="numbers" aria-labelledby="numbers-h">
+    <h2 class="sr-only" id="numbers-h">The numbers</h2>
+    <ul class="tiles">
+      <li class="tile tile--a" data-reveal style="--i:0"><p class="tile__fig">41</p><p class="tile__cap">videos since March 2020</p></li>
+      <li class="tile tile--b" data-reveal style="--i:1"><p class="tile__fig">352<small>M</small></p><p class="tile__cap">views, all together</p></li>
+      <li class="tile" data-reveal style="--i:2"><img src="https://i.ytimg.com/vi/myO8fxhDRW0/hqdefault.jpg" width="480" height="360" alt="Still from “Moving hoop won’t let you miss”" loading="lazy"></li>
+      <li class="tile tile--c" data-reveal style="--i:3"><p class="tile__fig">4.8<small>M</small></p><p class="tile__cap">subscribers</p></li>
+      <li class="tile tile--accent" data-reveal style="--i:4"><p class="tile__fig">28<small>M</small></p><p class="tile__cap">views for the moving hoop, his most watched</p></li>
+      <li class="tile tile--a" data-reveal style="--i:5"><p class="tile__fig tile__fig--long">17,342</p><p class="tile__cap">pounds of tools in the shop</p></li>
+      <li class="tile" data-reveal style="--i:6"><img src="https://i.ytimg.com/vi/1MkrNVic7pw/hqdefault.jpg" width="480" height="360" alt="Still from “Auto-aiming bow vs. flying targets”" loading="lazy"></li>
+      <li class="tile tile--b" data-reveal style="--i:7"><p class="tile__fig">0.6<small>s</small></p><p class="tile__cap">for the hoop to move into place</p></li>
+      <li class="tile tile--c" data-reveal style="--i:8"><p class="tile__fig">8</p><p class="tile__cap">motion-capture cameras aim the bow</p></li>
+      <li class="tile tile--a" data-reveal style="--i:9"><p class="tile__fig">5</p><p class="tile__cap">patents, 13 more pending</p></li>
+      <li class="tile" data-reveal style="--i:10"><img src="https://i.ytimg.com/vi/cQO2XTP7QDw/hqdefault.jpg" width="480" height="360" alt="Still from “I sent robot forgeries to a handwriting expert”" loading="lazy"></li>
+      <li class="tile tile--b" data-reveal style="--i:11"><p class="tile__fig">2020</p><p class="tile__cap">first video, bending steel with plastic</p></li>
+    </ul>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about" aria-labelledby="about-h">
+    <h2 class="sr-only" id="about-h">About Shane</h2>
+    <p class="about__text" id="aboutText"><span class="name">Shane Wighton</span> is an engineer who used to lead an engineering team at <span class="hl hl--a">Formlabs</span>, the 3D‑printer company, and now builds things in his own shop for a camera. He has a degree in <span class="hl hl--b">mechanical engineering</span>, a master’s in computer science, <span class="hl hl--c">five patents</span> and 17,342 pounds of tools. The channel started in <span class="hl hl--a">March 2020</span> with a video about bending steel with plastic. Since then the machines have aimed bows, swung bats, cut hair, carved pumpkins, picked locks, peeled apples and, more than anything, refused to let anyone miss a shot. <span class="hl hl--b">His wife</span> tests most of them and is not easily impressed. This site is made by a fan and is not his; every title and picture here belongs to him. <a class="hl hl--go" href="https://www.youtube.com/@stuffmadehere">Watch the channel.</a></p>
+    <canvas class="about__peel" id="peel" aria-hidden="true"></canvas>
+    <button class="replay about__replay" id="replayAbout" type="button" hidden>Peel it again</button>
+  </section>
+
+  <!-- ============ WATCH ============ -->
+  <a class="watch" id="watch" href="https://www.youtube.com/@stuffmadehere">
+    <p class="watch__note">Opens the channel on YouTube, where all 41 videos live.</p>
+    <svg class="watch__arrow" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M12 36 36 12M16 12h20v20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square"/></svg>
+    <p class="watch__word" aria-hidden="true">Watch</p>
+    <span class="sr-only">Watch Stuff Made Here on YouTube</span>
+  </a>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot" id="foot">
+  <div class="foot__cols">
+    <div><b>Channel</b><a href="https://www.youtube.com/@stuffmadehere">Stuff Made Here on YouTube</a><a href="https://www.youtube.com/watch?v=RpslsMqPFWA">The latest video</a></div>
+    <div><b>Community</b><a href="https://www.reddit.com/r/StuffMadeHere/">r/StuffMadeHere</a></div>
+    <div><b>This site</b><a href="/about.html">About Shane and the shop</a><span>Made by a fan, 2026</span><span>Built as a concept, not an official site</span></div>
+    <div><b>Mechanisms</b><span>Six from the videos, six that are not built yet</span></div>
+  </div>
+  <p class="foot__legal">Stuff Made Here, a fan’s site. Not affiliated with the channel. Video titles and pictures belong to Shane Wighton.</p>
+</footer>
+
+<div class="servo-panel" id="servoPanel">
+  <div class="servo-panel__body" id="servoBody">
+    <label>P <input type="range" id="kp" min="0" max="400" value="90"><output id="kpo">90</output></label>
+    <label>I <input type="range" id="ki" min="0" max="200" value="0"><output id="kio">0</output></label>
+    <label>D <input type="range" id="kd" min="0" max="40" value="19"><output id="kdo">19</output></label>
+    <button class="link-plain" id="servoTuned" type="button">Back to tuned</button>
+  </div>
+  <button class="servo-panel__toggle" id="servoToggle" type="button" aria-expanded="false" aria-controls="servoBody">Servo scroll</button>
+</div>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
