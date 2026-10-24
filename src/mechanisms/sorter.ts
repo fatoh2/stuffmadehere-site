@@ -50,6 +50,7 @@ export function mountSorter(root: HTMLElement, cv: HTMLCanvasElement, cardEls: H
     const bin = Math.max(0, families.indexOf(family));
     return { el, family, bin, state: 'wait', x: -100, y: 0, vx: 0, vy: 0, rot: 0, at: 0 };
   });
+  const DROP_VY = 60;
   const piles = binEls.map(() => 0);
   const binW = binEls.map(() => 200);
   const landed = binEls.map(() => 0);
@@ -157,14 +158,19 @@ export function mountSorter(root: HTMLElement, cv: HTMLCanvasElement, cardEls: H
         const g = gates[c.bin];
         if (c.x > g.x - 70) g.open = true; // the gate for this card's bin swings down ahead of it
         if (c.x >= g.x - 4) {
+          // off the belt: the fall time to the pile is known, so the sideways speed is set to land
+          // exactly on the card's place in the fan, with no correction at the bottom
           c.state = 'fall';
-          c.vx = BELT * 0.35;
-          c.vy = 60;
+          c.vy = DROP_VY;
+          const n = landed[c.bin] + cards.filter((o) => o !== c && o.bin === c.bin && o.state === 'fall').length;
+          const floor = restY(c.bin, n) + Math.min(28, n * 3);
+          const dist = Math.max(1, floor - c.y);
+          const tf = (-DROP_VY + Math.sqrt(DROP_VY * DROP_VY + 2 * G * dist)) / G;
+          c.vx = (restX(c.bin, n) - c.x) / Math.max(0.05, tf);
         }
       } else if (c.state === 'fall') {
         active = true;
         c.vy += G * dt;
-        c.vx *= 1 - Math.min(1, dt * 3);
         c.x += c.vx * dt;
         c.y += c.vy * dt;
         c.rot += dt * 40;

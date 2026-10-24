@@ -134,6 +134,53 @@ export function mountCamshaft(o: CamshaftOptions): void {
   };
   o.shaftEl.addEventListener('pointerup', endDrag);
   o.shaftEl.addEventListener('pointercancel', endDrag);
+  // a finger on the list itself turns the drum too (the shaft is a narrow target on a phone); the page
+  // does not scroll under it, and a tap that does not move still opens the row
+  let touchStart: { x: number; y: number; id: number } | null = null;
+  let swiped = false;
+  o.ledger.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'mouse' || drag) return;
+    touchStart = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    swiped = false;
+  });
+  o.ledger.addEventListener('pointermove', (e) => {
+    if (!touchStart || e.pointerId !== touchStart.id) return;
+    if (!drag) {
+      if (Math.hypot(e.clientX - touchStart.x, e.clientY - touchStart.y) < 8) return;
+      swiped = true;
+      capture(o.ledger, e);
+      drag = { y: e.clientY, t: performance.now(), v: 0 };
+      omega = 0;
+      idle = false;
+      return;
+    }
+    const now = performance.now();
+    const dy = e.clientY - drag.y;
+    const dt = Math.max(1, now - drag.t) / 1000;
+    const d = dy * 0.012;
+    theta += d;
+    drag.v = drag.v * 0.5 + (d / dt) * 0.5;
+    drag.y = e.clientY;
+    drag.t = now;
+    lastTouch = now;
+  });
+  const endTouch = (): void => {
+    touchStart = null;
+    endDrag();
+  };
+  o.ledger.addEventListener('pointerup', endTouch);
+  o.ledger.addEventListener('pointercancel', endTouch);
+  o.ledger.addEventListener(
+    'click',
+    (e) => {
+      if (swiped) {
+        e.preventDefault();
+        e.stopPropagation();
+        swiped = false;
+      }
+    },
+    true,
+  );
   o.ledger.addEventListener(
     'wheel',
     (e) => {

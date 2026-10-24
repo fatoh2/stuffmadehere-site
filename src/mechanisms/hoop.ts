@@ -93,6 +93,14 @@ export function mountHoop(o: HoopOptions): HoopHandle {
     g.pitchX = W - m - (phone ? 44 : 60);
     g.pitchY = Math.min(H * 0.52, g.ymax - 30);
     if (o.rack) {
+      // on a phone the rack sits just above the text block (its first visible child, since the block
+      // itself is stretched by the grid), never behind the title
+      const first = o.bottom?.firstElementChild;
+      if (phone && first) {
+        const fr = first.getBoundingClientRect();
+        const cr0 = cv.getBoundingClientRect();
+        o.rack.style.bottom = `${Math.max(0, cr0.bottom - fr.top + 14)}px`;
+      } else o.rack.style.bottom = '';
       const rr = o.rack.getBoundingClientRect();
       const cr = cv.getBoundingClientRect();
       g.rackX = rr.left - cr.left + rr.width / 2;
@@ -106,6 +114,11 @@ export function mountHoop(o: HoopOptions): HoopHandle {
   }
   resize();
   new ResizeObserver(resize).observe(cv);
+  if (o.bottom) {
+    const ro = new ResizeObserver(resize);
+    ro.observe(o.bottom);
+    Array.from(o.bottom.children).forEach((c) => ro.observe(c));
+  }
   onVisible(cv, (v) => (visible = v), 0.2);
 
   /* ---------- throwing ---------- */

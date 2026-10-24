@@ -29,8 +29,12 @@ export function mountCartridge(el: HTMLAnchorElement, hoop: HoopHandle, hero: HT
     if (navigator.vibrate) navigator.vibrate(Math.round(15 + c * 45));
   }
 
+  // a long press on a phone must chamber a round, not open the link's context menu or drag it
+  el.addEventListener('contextmenu', (e) => e.preventDefault());
+  el.addEventListener('dragstart', (e) => e.preventDefault());
   el.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;
+    if (e.pointerType === 'touch') e.preventDefault();
     capture(el, e);
     holding = true;
     t0 = performance.now();

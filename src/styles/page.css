@@ -34,6 +34,7 @@ p { max-width: 62ch; text-wrap: pretty; }
 p + p { margin-top: 0.9em; }
 .nums { font-variant-numeric: tabular-nums; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.only-narrow { display: none; }
 .only-wide { display: none; }
 @media (min-width: 48em) { .only-wide { display: inline; } }
 
@@ -125,7 +126,7 @@ p + p { margin-top: 0.9em; }
 }
 
 /* cartridge button */
-.cartridge { position: relative; overflow: hidden; isolation: isolate; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
+.cartridge { position: relative; overflow: hidden; isolation: isolate; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; touch-action: manipulation; }
 .cartridge__face { position: relative; z-index: 1; display: inline-block; transition: transform 420ms cubic-bezier(.17, 1.4, .45, 1); }
 .cartridge__gauge { position: absolute; left: 0; bottom: 0; height: 4px; width: 100%; background: var(--ball); transform-origin: left; transform: scaleX(0); z-index: 2; }
 .cartridge.is-holding .cartridge__face { transition: transform 1200ms linear; transform: translateX(-10px); }
@@ -382,5 +383,63 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
 @media (max-height: 520px) and (orientation: landscape) {
   .miss { min-height: 640px; }
   .hero { min-height: 100svh; }
+}
+
+/* portrait phones: the name runs three lines deep, STUFF / MADE / HERE, at nearly the full width */
+@media (max-width: 47.99em) and (orientation: portrait) {
+  .hero__mark { font-size: min(22.5vw, 12svh); white-space: normal; line-height: 0.92; margin-top: 8svh; }
+  .hero__line, .hero__line--right { text-align: left; margin-left: -0.04em; margin-right: 0; }
+}
+
+/* ---------- phones: every section fits one screen ---------- */
+@media (hover: none) and (pointer: coarse) {
+  .ledger { touch-action: none; }
+}
+@media (max-width: 47.99em) {
+  .now { padding-block: 4svh; row-gap: 1rem; --objw: min(58vw, 240px); }
+  .now__facts { font-size: 17px; gap: 0.75rem; }
+  .now__object { margin: 0; justify-self: center; }
+  .all { padding-block: 4svh; }
+  .all__head { margin-bottom: 1rem; }
+  .all__note { margin: -0.5rem 0 1rem; }
+  .ledger { height: min(300px, 30svh); }
+  .all__side { margin-top: 1.25rem; gap: 1rem; }
+  .launcher { grid-template-columns: 110px 1fr; align-items: center; gap: 1rem; }
+  .launcher canvas { width: 110px; height: 104px; }
+  .launcher p { margin-top: 0.4rem; }
+  .all__landing { max-width: 220px; }
+  .method { padding-block: 4svh; }
+  .method__text p { margin-top: 0.75rem; font-size: 16px; max-width: none; }
+  .method .replay { margin-top: 0.5rem; }
+  .method__machine { margin-top: 1.25rem; }
+  .printer { height: 56px; }
+  .slip { padding: 0.6rem 0.75rem 1.3rem; font-size: 13px; }
+  .slip__row { padding: 12px 0 2px; }
+  .slip__group { padding-top: 12px; }
+  .slip__total { min-height: 34px; margin-top: 0.75rem; }
+  .numbers { padding-block: 4svh; }
+  .numbers .tiles { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .numbers .tile { aspect-ratio: auto; height: clamp(92px, 17svh, 160px); }
+  .tile__fig { font-size: clamp(24px, 8.5vw, 40px); }
+  .tile__fig--long { font-size: clamp(18px, 6vw, 30px); }
+  .tile__cap { font-size: 11px; bottom: 8px; padding: 0 4px; line-height: 1.2; }
+}
+
+/* ---------- short phones: the method and the peel give up a little more ---------- */
+@media (max-width: 47.99em) {
+  .only-narrow { display: inline; }
+  .only-wide { display: none; }
+  .method .head { font-size: 9vw; }
+  .about { padding: 4svh var(--margin); }
+  .about__text { font-size: 18px; line-height: 1.2; }
+  .about__replay { margin-top: 1.25rem; }
+}
+@media (max-width: 47.99em) and (max-height: 780px) {
+  .method__text p { font-size: 15px; }
+  .method .replay { display: none; }
+  .printer { height: 48px; }
+  .slip { font-size: 12px; }
+  .slip__row { padding: 9px 0 2px; }
+  .slip__group { padding-top: 9px; }
 }
 
