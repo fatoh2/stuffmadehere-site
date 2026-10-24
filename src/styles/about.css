@@ -70,7 +70,8 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .ahero__portrait { width: min(100%, 340px); }
   .work__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .work__cols p { font-size: var(--step-body); }
-  .work .tiles { grid-template-columns: repeat(5, 1fr); }
+  .work .tiles { grid-template-columns: repeat(3, 1fr); }
+  .work .tile { min-height: 150px; }
 }
 
 /* ---------- phones ---------- */
