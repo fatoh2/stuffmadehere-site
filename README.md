@@ -15,7 +15,7 @@ npm run build      # type-check + static build into dist/
 npm run preview    # serve dist/
 ```
 
-No framework, no animation library. Vite + TypeScript, Canvas 2D and plain DOM. The whole site is static: deploy `dist/` anywhere. It is on Vercel (`vercel.json` turns on clean URLs); `vercel deploy --prod` from this folder publishes the current files. To deploy on every push instead, connect the GitHub repository to the Vercel project once in the Vercel dashboard (Project › Settings › Git); the CLI could not make that link.
+No framework, no animation library. Vite + TypeScript, Canvas 2D and plain DOM. The whole site is static: deploy `dist/` anywhere. It is on Vercel (`vercel.json` turns on clean URLs); The GitHub repository is connected to the Vercel project, so every push to `main` deploys to production; `vercel deploy --prod` from this folder publishes the working copy directly when needed.
 
 ## Look
 
