@@ -422,7 +422,7 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
   .numbers .tile { aspect-ratio: auto; height: clamp(92px, 17svh, 160px); }
   .tile__fig { font-size: clamp(24px, 8.5vw, 40px); }
   .tile__fig--long { font-size: clamp(18px, 6vw, 30px); }
-  .tile__cap { font-size: 11px; bottom: 8px; padding: 0 4px; line-height: 1.2; }
+  .tile__cap { font-size: 12px; bottom: 8px; padding: 0 4px; line-height: 1.2; }
 }
 
 /* ---------- short phones: the method and the peel give up a little more ---------- */
