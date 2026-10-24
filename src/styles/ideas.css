@@ -32,7 +32,7 @@
 .idea__log .is-hit { color: var(--ink); font-weight: 700; }
 .idea__rel { margin: 1.25rem 0 0; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 1rem; align-items: center; max-width: 46ch; }
 .idea__rel img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.idea__rel figcaption { font-size: 15px; line-height: 1.35; color: var(--muted); }
+.idea__rel figcaption { font-size: 0.9375rem; line-height: 1.35; color: var(--muted); }
 .idea--sign .idea__rel figcaption, .idea--since .idea__rel figcaption { color: inherit; }
 .idea--sign .idea__rel .link, .idea--since .idea__rel .link { color: inherit; }
 
@@ -59,21 +59,11 @@
 .idea--vote { background: var(--surface); grid-template-columns: 1fr; align-content: center; row-gap: 1.5rem; }
 .vote__head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2rem, 4vw, 4rem); align-items: start; }
 .vote__head .idea__pitch { margin-top: 0.4rem; max-width: 50ch; }
-.vote__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
-.tally { display: grid; grid-template-columns: 72px 1fr; gap: 0.75rem; align-items: center; width: 100%; padding: 1rem; background: var(--paper); color: var(--ink); border: 0; border-radius: var(--radius); font: inherit; text-align: left; cursor: pointer; transition: transform var(--t-press) var(--ease-out), background-color var(--t-hover) ease; }
-.tally:active { transform: scale(0.97); }
-.tally canvas { width: 72px; height: 72px; display: block; }
-.tally__text { display: grid; gap: 0.2rem; }
-.tally__n { font-family: var(--font-display); font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
-.tally__name { font-weight: 700; font-size: 15px; line-height: 1.25; }
-@media (hover: hover) and (pointer: fine) {
-  .tally:hover { background: var(--blue); color: var(--blue-ink); }
-}
 
 /* ---------- short laptops ---------- */
 @media (min-width: 64em) and (max-height: 820px) {
   .idea { padding-top: max(5svh, 80px); }
-  .idea__pitch { font-size: 19px; }
+  .idea__pitch { font-size: 1.1875rem; }
   .idea__rel { grid-template-columns: 150px minmax(0, 1fr); margin-top: 0.75rem; }
   .idea__log li:nth-child(n + 5) { display: none; }
   .idea__machine canvas { height: clamp(280px, 56svh, 600px); }
@@ -89,7 +79,6 @@
   .idea__machine canvas { height: clamp(260px, 46svh, 520px); }
   .idea__machine--clock canvas { height: clamp(240px, 36svh, 420px); }
   .idea__text--row, .vote__head { grid-template-columns: 1fr; row-gap: 0.75rem; }
-  .vote__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 /* ---------- phones: every section fits one screen ---------- */
@@ -97,25 +86,53 @@
   .ihero { padding-block: 0.75rem; }
   .ihero__body { padding-block: 1svh 3.5rem; }
   .ihero__mark { font-size: clamp(2rem, 10.5vw, 3.2rem); }
-  .ihero__lead { font-size: 17px; margin-top: 1rem; }
+  .ihero__lead { font-size: 1.0625rem; margin-top: 1rem; }
   .ihero__actions { margin-top: 1.25rem; }
   .idea { padding: 4rem var(--margin) 4svh; row-gap: 1rem; align-content: center; }
   .idea__text .head { font-size: clamp(1.8rem, 9vw, 2.4rem); }
-  .idea__pitch { font-size: 17px; margin-top: 0.5rem; }
-  .idea__why { font-size: 14px; margin-top: 0.5rem; }
+  .idea__pitch { font-size: 1.0625rem; margin-top: 0.5rem; }
+  .idea__why { font-size: 0.875rem; margin-top: 0.5rem; }
   .idea__controls { margin-top: 0.75rem; gap: 0.75rem; }
   .idea__machine canvas { height: clamp(220px, 38svh, 360px); }
   .idea__machine--wide canvas { height: clamp(220px, 36svh, 340px); }
   .idea__machine--clock canvas { height: clamp(160px, 24svh, 240px); }
-  .idea__log { margin-top: 0.75rem; gap: 0.15rem; font-size: 13px; }
+  .idea__log { margin-top: 0.75rem; gap: 0.15rem; font-size: 0.8125rem; }
   .idea__log li:nth-child(n + 4) { display: none; }
   .idea__rel { display: none; }
   .idea--learn .idea__machine canvas { height: clamp(200px, 32svh, 320px); }
   .since__num { font-size: clamp(4rem, 24vw, 6rem); }
-  .since__clock { font-size: 16px; }
-  .vote__list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .tally { grid-template-columns: 52px 1fr; gap: 0.5rem; padding: 0.6rem; }
-  .tally canvas { width: 52px; height: 52px; }
-  .tally__n { font-size: 28px; }
-  .tally__name { font-size: 13px; }
+  .since__clock { font-size: 1rem; }
 }
+
+/* ---------- the vote as a control panel on a riveted plate ---------- */
+.panel { display: grid; gap: 0.35rem; padding-block: clamp(1.25rem, 3vw, 2rem); }
+.panel__row { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr) 3.5rem 4.6rem; align-items: center; gap: 1rem; width: 100%; padding: 0.55rem 0.5rem; background: none; border: 0; border-radius: 4px; font: inherit; color: inherit; text-align: left; cursor: pointer; transition: background-color var(--t-hover) ease; }
+.panel__btn { width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--accent); border: 5px solid var(--recess); transition: transform var(--t-press) var(--ease-out); }
+.panel__row:active .panel__btn { transform: scale(0.86); }
+.panel__name { font-weight: 700; font-size: 1.0625rem; }
+.panel__row canvas { width: 3.5rem; height: 3.5rem; display: block; }
+.panel__win { display: grid; place-items: center; min-height: 2.6rem; background: var(--recess); color: var(--paper); border-radius: 4px; font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+@media (hover: hover) and (pointer: fine) {
+  .panel__row:hover { background: rgba(255, 255, 255, 0.35); }
+}
+.idea--vote .idea__controls { justify-content: flex-end; }
+
+/* the trebuchet's log is a printed tape */
+.idea__log { background: var(--paper); color: var(--muted); padding: 0.75rem 1rem 1.1rem; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 96.43% 100%, 92.86% calc(100% - 8px), 89.29% 100%, 85.71% calc(100% - 8px), 82.14% 100%, 78.57% calc(100% - 8px), 75.00% 100%, 71.43% calc(100% - 8px), 67.86% 100%, 64.29% calc(100% - 8px), 60.71% 100%, 57.14% calc(100% - 8px), 53.57% 100%, 50.00% calc(100% - 8px), 46.43% 100%, 42.86% calc(100% - 8px), 39.29% 100%, 35.71% calc(100% - 8px), 32.14% 100%, 28.57% calc(100% - 8px), 25.00% 100%, 21.43% calc(100% - 8px), 17.86% 100%, 14.29% calc(100% - 8px), 10.71% 100%, 7.14% calc(100% - 8px), 3.57% 100%, -0.00% calc(100% - 8px)); max-width: 44ch; }
+.idea--learn .idea__log { background: var(--surface); }
+@media (max-width: 47.99em) {
+  .panel { gap: 0.15rem; padding-block: 0.75rem; }
+  .panel__row { grid-template-columns: 1.8rem minmax(0, 1fr) 2.6rem 3.4rem; gap: 0.6rem; padding: 0.35rem 0.3rem; }
+  .panel__btn { width: 1.6rem; height: 1.6rem; border-width: 4px; }
+  .panel__name { font-size: 0.875rem; }
+  .panel__row canvas { width: 2.6rem; height: 2.6rem; }
+  .panel__win { min-height: 2.1rem; font-size: 1.25rem; }
+}
+
+@media (min-width: 64em) and (max-height: 820px) {
+  .idea--vote { padding-top: max(5svh, 80px); padding-bottom: 4svh; }
+  .panel { padding-block: 1rem; gap: 0.15rem; }
+  .panel__row { padding: 0.3rem 0.5rem; }
+  .vote__head .idea__pitch { font-size: 1.125rem; }
+}
+

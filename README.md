@@ -59,6 +59,9 @@ docs/superpowers/specs/    the approved design document
 | How a build goes | Pen plotter writes each stage’s note in single-stroke lettering with pen lifts | Handwriting forgeries (2023) |
 | About | Apple-peel reveal: a blade peels the skin off the text in one continuous strip | Self-peeling apple (2026) |
 | Headings | The same cut, from a solid bar of ink, on the hoop and method headings when they first come into view | Pumpkin carver, chainsaw robot, the Tormach |
+| The numbers | A riveted machine nameplate; every figure is a set of odometer drums that roll up from zero when the plate comes into view | Every machine in his shop has one |
+
+Nothing on the site is a stock block. The numbers are a nameplate with odometer drums, not a tile grid; "How he works" on the About page is an engineering drawing sheet with numbered notes, detail views and a title block, not three columns; the vote on the prototypes page is a control panel with push buttons and counter windows, not a card grid; entrances index into place in four stepper-motor steps rather than fading up; and the trebuchet's log is a printed tape. Type sizes are set in rem throughout, so the whole site scales with the device's font setting.
 
 ## The About page's three machines
 

@@ -14,9 +14,6 @@
 .ahero__mark { font-size: clamp(3.6rem, 1rem + 9.4vw, 11rem); line-height: 0.9; letter-spacing: -0.01em; text-transform: uppercase; display: block; }
 .ahero__mark .cnc__text { display: block; }
 .ahero__text .lead { margin-top: 1.5rem; max-width: 44ch; }
-.ahero__facts { margin: 2rem 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 40rem; }
-.ahero__facts li { font-size: 16px; line-height: 1.3; }
-.ahero__facts b { display: block; font-size: 28px; font-weight: 900; letter-spacing: -0.02em; line-height: 1; margin-bottom: 0.35rem; }
 .ahero__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; align-items: center; }
 .ahero .replay { position: absolute; left: var(--margin); bottom: var(--margin); }
 
@@ -28,8 +25,8 @@
 .shop__floor canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .shop__tools { list-style: none; margin: 0; padding: 0; }
 .shop__tools li { position: absolute; left: var(--x); top: var(--y); transform: translate(-50%, -50%); width: max-content; max-width: 15rem; text-align: center; }
-.shop__tools b { display: inline-block; font-size: 20px; font-weight: 900; letter-spacing: -0.01em; padding: 0.15em 0.4em; background: var(--dark); transition: background-color var(--t-hover) ease, color var(--t-hover) ease; }
-.shop__tools span { display: block; margin-top: 0.4rem; font-size: 16px; color: var(--steel); line-height: 1.3; }
+.shop__tools b { display: inline-block; font-size: 1.25rem; font-weight: 900; letter-spacing: -0.01em; padding: 0.15em 0.4em; background: var(--dark); transition: background-color var(--t-hover) ease, color var(--t-hover) ease; }
+.shop__tools span { display: block; margin-top: 0.4rem; font-size: 1rem; color: var(--steel); line-height: 1.3; }
 .shop__tools li.is-tracked b { background: var(--accent); color: var(--accent-ink); }
 .shop__note { margin-top: 1rem; font-size: var(--step-body); color: var(--steel); max-width: 60ch; }
 
@@ -44,8 +41,8 @@
 .sort__card img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .sort__bins { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
 .sort__bin { background: var(--surface); min-height: 150px; padding: 10px 12px; display: flex; flex-direction: column; justify-content: flex-end; }
-.sort__bin b { font-size: 16px; font-weight: 900; }
-.sort__count { font-size: 15px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sort__bin b { font-size: 1rem; font-weight: 900; }
+.sort__count { font-size: 0.9375rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .builds__actions { margin-top: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
 .builds__actions p { font-size: var(--step-body); max-width: 52ch; }
 html:not(.js) .sorter { height: auto; min-height: 0; }
@@ -55,23 +52,11 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
 
 /* ---------- how he works ---------- */
 .work { background: var(--red); color: var(--red-ink); }
-.work__cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 2rem; margin-top: 2rem; }
-.work__cols p { font-size: var(--step-lead); line-height: 1.3; }
-.work__fig { margin: 1.5rem 0 0; }
-.work__fig img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
-.work__fig figcaption { margin-top: 0.5rem; font-size: 16px; }
-.work .tiles { margin-top: 1.5rem; grid-template-columns: repeat(5, 1fr); }
-.work .tile { aspect-ratio: auto; min-height: 108px; }
-.work .tile__fig { font-size: clamp(36px, 4vw, 72px); }
 
 /* ---------- tablets and landscape phones: the hero side by side, the work in three columns ---------- */
 @media (min-width: 48em) and (max-width: 63.99em) {
   .ahero__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: 2rem; }
   .ahero__portrait { width: min(100%, 340px); }
-  .work__cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .work__cols p { font-size: var(--step-body); }
-  .work .tiles { grid-template-columns: repeat(3, 1fr); }
-  .work .tile { min-height: 150px; }
 }
 
 /* ---------- phones ---------- */
@@ -80,30 +65,23 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .shop__tools li { left: var(--px, var(--x)); top: var(--py, var(--y)); }
   .ahero__portrait { width: min(100%, 320px); }
   .ahero__mark { font-size: clamp(3rem, 14vw, 5rem); }
-  .ahero__facts { grid-template-columns: 1fr; gap: 0.75rem; }
-  .ahero__facts li { display: grid; grid-template-columns: 5.5rem 1fr; align-items: baseline; column-gap: 0.75rem; }
-  .ahero__facts b { font-size: 22px; margin: 0; }
   .shop__head, .builds__head { grid-template-columns: 1fr; row-gap: 1rem; }
   .shop__floor { height: 64svh; }
   .shop__tools li { max-width: 10rem; }
-  .shop__tools b { font-size: 15px; }
-  .shop__tools span { font-size: 13px; }
+  .shop__tools b { font-size: 0.9375rem; }
+  .shop__tools span { font-size: 0.8125rem; }
   .sorter { height: 66svh; }
   .sort__card { width: 48px; height: 27px; }
   .sort__bins { gap: 4px; }
   .sort__bin { padding: 6px; min-height: 120px; }
-  .sort__bin b { font-size: 13px; overflow-wrap: anywhere; line-height: 1.1; }
-  .sort__count { font-size: 13px; }
-  .work .tile { min-height: 150px; }
-  .work .tile__fig { font-size: 40px; }
+  .sort__bin b { font-size: 0.8125rem; overflow-wrap: anywhere; line-height: 1.1; }
+  .sort__count { font-size: 0.8125rem; }
 }
 
 /* ---------- narrow phones only ---------- */
 @media (max-width: 47.99em) {
   .ahero__grid { grid-template-columns: 1fr; }
   .ahero__text { order: -1; }
-  .work__cols { grid-template-columns: 1fr; }
-  .work .tiles { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ---------- phones: every section fits one screen ---------- */
@@ -111,26 +89,17 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .ahero { padding-block: 0.75rem; }
   .ahero__grid { row-gap: 1rem; padding-block: 1svh 3.5rem; }
   .ahero__portrait { width: min(100%, 60vw); }
-  .ahero__portrait figcaption { font-size: 12px; margin-top: 0.5rem; }
-  .ahero__text .lead { margin-top: 0.75rem; font-size: 17px; }
-  .ahero__facts { margin-top: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
-  .ahero__facts li { display: block; font-size: 12px; line-height: 1.25; }
-  .ahero__facts b { font-size: 20px; margin: 0 0 0.2rem; }
+  .ahero__portrait figcaption { font-size: 0.75rem; margin-top: 0.5rem; }
+  .ahero__text .lead { margin-top: 0.75rem; font-size: 1.0625rem; }
   .ahero__actions { margin-top: 1rem; gap: 0.75rem; }
   .shop, .builds { padding-top: 4.5rem; padding-bottom: 4svh; }
-  .shop__lead, .builds__lead { font-size: 17px; }
+  .shop__lead, .builds__lead { font-size: 1.0625rem; }
   .shop__floor { height: 44svh; min-height: 300px; margin-top: 1rem; }
-  .shop__note { font-size: 13px; margin-top: 0.75rem; }
+  .shop__note { font-size: 0.8125rem; margin-top: 0.75rem; }
   .sorter { height: 40svh; min-height: 300px; margin-top: 1rem; }
   .builds__actions { margin-top: 1rem; }
   .builds__actions p { display: none; }
   .work { padding-block: 4svh; }
-  .work .tiles { grid-template-columns: repeat(3, 1fr); margin-top: 1rem; gap: 6px; }
-  .work .tile { min-height: 0; height: clamp(80px, 13svh, 120px); }
-  .work .tile__fig { font-size: 30px; }
-  .work__cols { margin-top: 1.25rem; row-gap: 1rem; }
-  .work__cols p { font-size: 16px; }
-  .work__fig { display: none; }
 }
 
 /* ---------- phones: the hero in one screen, the bins legible ---------- */
@@ -140,14 +109,14 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .ahero__actions .link { display: none; }
   .sort__bins { gap: 4px; }
   .sort__bin { padding: 6px 3px; min-height: 112px; }
-  .sort__bin b { font-size: 10.5px; overflow-wrap: normal; hyphens: auto; line-height: 1.1; }
-  .sort__count { font-size: 10px; }
+  .sort__bin b { font-size: 0.6562rem; overflow-wrap: normal; hyphens: auto; line-height: 1.1; }
+  .sort__count { font-size: 0.625rem; }
 }
 @media (max-width: 47.99em) and (max-height: 780px) {
   .ahero__mark { font-size: 12vw; }
-  .ahero__text .lead { font-size: 16px; }
+  .ahero__text .lead { font-size: 1rem; }
   .ahero__portrait { width: min(100%, 42vw); }
-  .ahero__portrait figcaption { font-size: 11px; }
+  .ahero__portrait figcaption { font-size: 0.6875rem; }
 }
 
 /* ---------- phones: the last few pixels of the hero ---------- */
@@ -156,10 +125,67 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .ahero__grid { padding-block: 0 2.25rem; row-gap: 0.75rem; }
   .ahero__portrait figcaption { margin-top: 0.25rem; }
   .ahero__text .lead { margin-top: 0.5rem; }
-  .ahero__facts { margin-top: 0.75rem; }
   .ahero__actions { margin-top: 0.75rem; }
 }
 @media (max-width: 47.99em) and (max-height: 780px) {
   .ahero__mark { font-size: 11vw; }
+}
+
+/* ---------- how he works: an engineering drawing sheet ---------- */
+.work { background: var(--red); color: var(--red-ink); }
+.sheet { background: var(--paper); color: var(--ink); border: 5px solid var(--ink); padding: clamp(1rem, 2.5vw, 2rem); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: auto auto; column-gap: clamp(1.5rem, 3vw, 3rem); row-gap: 1.5rem; }
+.sheet__notes { grid-row: 1 / 3; }
+.sheet__title { font-size: clamp(2rem, 1rem + 3vw, 3.6rem); }
+.sheet__list { margin: 1.25rem 0 0; padding-left: 1.6rem; display: grid; gap: 0.9rem; font-size: var(--step-body); line-height: 1.4; max-width: 46ch; }
+.sheet__list li::marker { font-weight: 900; }
+.sheet__details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; align-self: start; }
+.sheet__detail--main { margin-top: 1rem; max-width: 34ch; }
+.sheet__list { gap: 0.7rem; }
+.sheet__detail { margin: 0; }
+.sheet__detail img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.sheet__detail figcaption { margin-top: 0.4rem; font-size: 0.8125rem; line-height: 1.3; color: var(--muted); }
+.sheet__detail b { color: var(--ink); margin-right: 0.3em; }
+.sheet__block { margin: 0; align-self: end; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 3px solid var(--ink); }
+.sheet__cell { padding: 0.45rem 0.6rem 0.5rem; border: 3px solid var(--ink); margin: -1.5px; }
+.sheet__cell--wide { grid-column: span 2; }
+.sheet__cell dt { font-size: 0.8125rem; font-weight: 400; color: var(--muted); }
+.sheet__cell dd { margin: 0.1rem 0 0; font-weight: 700; font-size: 1rem; line-height: 1.2; }
+@media (max-width: 63.99em) {
+  .sheet { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .sheet__notes { grid-row: auto; }
+  .sheet__block { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 47.99em) {
+  .sheet { padding: 0.75rem; row-gap: 0.9rem; border-width: 4px; }
+  .sheet__title { font-size: clamp(1.8rem, 9vw, 2.4rem); }
+  .sheet__list { margin-top: 0.6rem; gap: 0.4rem; font-size: 1rem; line-height: 1.3; padding-left: 1.2rem; }
+  .sheet__details { gap: 0.4rem; }
+  .sheet__detail figcaption { display: none; }
+  .sheet__block { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sheet__cell { padding: 0.3rem 0.45rem; }
+  .sheet__cell--wide { grid-column: span 1; }
+  .sheet__cell dt { font-size: 0.8125rem; }
+  .sheet__cell dd { font-size: 0.875rem; }
+  .sheet__cell:nth-child(n + 7) { display: none; }
+  .sheet__details { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sheet__detail--main { display: none; }
+}
+
+/* ---------- short laptops ---------- */
+@media (min-width: 64em) and (max-height: 820px) {
+  .sheet__detail--main { max-width: 24ch; margin-top: 0.6rem; }
+  .sheet__list { gap: 0.45rem; font-size: 0.9375rem; }
+  .sheet { padding: 1rem 1.25rem; }
+  .shop, .builds { padding-top: max(5svh, 80px); }
+  .shop__floor { height: 40svh; }
+  .sorter { height: 44svh; }
+}
+@media (max-width: 47.99em) {
+  .shop__tools span { font-size: 0.8125rem; }
+  .shop__note { font-size: 0.875rem; }
+}
+@media (max-width: 47.99em) and (max-height: 780px) {
+  .sheet__list { font-size: 0.9375rem; gap: 0.3rem; }
+  .sheet__cell:nth-child(n + 5) { display: none; }
 }
 

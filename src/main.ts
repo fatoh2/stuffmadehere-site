@@ -8,6 +8,7 @@ import { mountCamshaft } from './mechanisms/camshaft';
 import { mountGeneva } from './mechanisms/geneva';
 import { mountPeel } from './mechanisms/peel';
 import { mountCnc } from './mechanisms/cnc';
+import { mountOdometers } from './mechanisms/odometer';
 import { latest } from './data/videos';
 import { reducedMotion } from './lib/visible';
 
@@ -108,6 +109,7 @@ const feed = mountGeneva({ section: $('#method'), printer: $('#printer'), slip: 
 const peel = mountPeel($('#about'), $('#aboutText'), $('#peel'));
 
 /* ---------- machined headings and the footer wordmark ---------- */
+mountOdometers($('#nameplate'));
 const heroCut = mountCnc($('#heroMark'), { seconds: 5, textureUrl: '/parts/milled.jpg', textureScale: 0.55 });
 mountCnc($('#miss-h'), { seconds: 2.2 });
 mountCnc($('#method-h'), { seconds: 2.4 });

@@ -216,3 +216,15 @@ A third page, `ideas.html` ("Not built yet"), carries six more machines, all new
 
 Every section is one screen on phones, laptops and desktops; the servo detents and the lock run on this page too. Related-video thumbnails sit beside each pitch on wide screens and are hidden on phones to keep the one-screen rule.
 
+## 13. Seventh round: the stock parts out (2026-10-25)
+
+Asked to remove anything generic and polish across devices. The copy had no stock phrasing; the structure did. Four patterns were replaced with things from his world:
+
+- **The number tiles** (a grid of coloured squares with big figures, the commonest stat block) became a **machine nameplate**: a riveted plate of milled aluminium with ten engraved keys, every figure a set of odometer drums (canvas; the number stays as text without script and as the drums' label with it) that roll up from zero when the plate comes into view, the low drum turning most. The three thumbnails that padded the grid went; the home page has pictures enough.
+- **"How he works" on the About page** (three columns, each a paragraph with a captioned picture) became an **engineering drawing sheet**: a framed sheet with the three points as numbered notes, the pictures as Details A to D with callouts, and a title block holding the figures that used to sit as a facts row in the hero (degrees, patents, tools, videos, views, subscribers, scale 1:1, sheet 1 of 1). The hero facts row went with it.
+- **The vote** (five identical boxed cards) became a **control panel** on the same riveted plate: one row per prototype, a red push button, the ratchet, and a dark counter window.
+- **The fade-up entrances** became **indexing**: blocks step into place in four discrete steps, like a stepper motor, with the same stagger.
+- The trebuchet's log is a printed tape with a torn edge.
+
+Across the site every type size is now in rem, so the browser's font-size setting scales everything; the home page's launcher button wraps on phones instead of forcing the layout wider; and every section on all three pages is one screen at 1920×1080, 1440×900, 1366×768 and the four phone sizes. Inspector results after the round: the prototypes and About pages pass; the home page keeps two deliberate failures (the three-line hero mark on phones, and a video caption the meter reads as a kicker above the next heading).
+

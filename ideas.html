@@ -125,13 +125,14 @@
       <h2 class="head" id="vote-h">Which one first?</h2>
       <p class="idea__pitch" data-reveal>Each counter is a ratchet: a tap turns the wheel one tooth and the pawl drops behind it, so a vote cannot be taken back. The counts live in your browser; the real site would collect them.</p>
     </div>
-    <ul class="vote__list">
-      <li><button class="tally" type="button" data-idea="table"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The table that won’t let it fall</span></span></button></li>
-      <li><button class="tally" type="button" data-idea="sign"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The signature pantograph</span></span></button></li>
-      <li><button class="tally" type="button" data-idea="learn"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The trebuchet that learns</span></span></button></li>
-      <li><button class="tally" type="button" data-idea="since"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The escapement clock</span></span></button></li>
-      <li><button class="tally" type="button" data-idea="flap"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The split-flap board</span></span></button></li>
-    </ul>
+    <div class="panel plate" role="group" aria-label="Vote, one tap per press">
+      <span class="rivet rivet--tl" aria-hidden="true"></span><span class="rivet rivet--tr" aria-hidden="true"></span><span class="rivet rivet--bl" aria-hidden="true"></span><span class="rivet rivet--br" aria-hidden="true"></span>
+      <button class="panel__row tally" type="button" data-idea="table"><span class="panel__btn" aria-hidden="true"></span><span class="panel__name">The table that won’t let it fall</span><canvas width="56" height="56" aria-hidden="true"></canvas><span class="panel__win"><span class="tally__n">0</span></span></button>
+      <button class="panel__row tally" type="button" data-idea="sign"><span class="panel__btn" aria-hidden="true"></span><span class="panel__name">The signature pantograph</span><canvas width="56" height="56" aria-hidden="true"></canvas><span class="panel__win"><span class="tally__n">0</span></span></button>
+      <button class="panel__row tally" type="button" data-idea="learn"><span class="panel__btn" aria-hidden="true"></span><span class="panel__name">The trebuchet that learns</span><canvas width="56" height="56" aria-hidden="true"></canvas><span class="panel__win"><span class="tally__n">0</span></span></button>
+      <button class="panel__row tally" type="button" data-idea="since"><span class="panel__btn" aria-hidden="true"></span><span class="panel__name">The escapement clock</span><canvas width="56" height="56" aria-hidden="true"></canvas><span class="panel__win"><span class="tally__n">0</span></span></button>
+      <button class="panel__row tally" type="button" data-idea="flap"><span class="panel__btn" aria-hidden="true"></span><span class="panel__name">The split-flap board</span><canvas width="56" height="56" aria-hidden="true"></canvas><span class="panel__win"><span class="tally__n">0</span></span></button>
+    </div>
     <div class="idea__controls"><button class="replay" id="resetVotes" type="button">Reset my votes</button></div>
   </section>
 
