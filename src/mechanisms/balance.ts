@@ -10,6 +10,8 @@ import { onVisible, reducedMotion } from '../lib/visible';
 
 export interface BalanceHandle {
   shove(): void;
+  /** use the device's orientation as a second input; resolves false when it cannot */
+  tilt(): Promise<boolean>;
 }
 
 const G = 2000; // px/s² per radian of tilt, roughly
@@ -26,12 +28,14 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
   let R = 100;
   const tilt: { x: Axis; y: Axis } = { x: axis(0, 2.2, 16), y: axis(0, 2.2, 16) };
   const ball = { x: 0, y: 0, vx: 0, vy: 0, off: false, drop: 0, respawn: 0 };
+  let tilting = false;
   let saves = 0;
   let falls = 0;
   let disturbed = false;
   let lastShove = performance.now() + 1500;
   let visible = true;
   let drag: VelocityTracker | null = null;
+  const user = { x: 0, y: 0 }; // the visitor's own tilt, from the phone's orientation
 
   const layout = (): void => {
     const f = fit(cv);
@@ -120,8 +124,8 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
     const want = (p: number, v: number): number => Math.max(-0.45, Math.min(0.45, -(0.012 * p + 0.009 * v)));
     stepAxis(tilt.x, want(ball.x, ball.vx), dt);
     stepAxis(tilt.y, want(ball.y, ball.vy), dt);
-    ball.vx += G * tilt.x.p * dt;
-    ball.vy += G * tilt.y.p * dt;
+    ball.vx += G * (tilt.x.p + user.x) * dt;
+    ball.vy += G * (tilt.y.p + user.y) * dt;
     ball.vx *= 1 - 0.25 * dt; // rolling resistance
     ball.vy *= 1 - 0.25 * dt;
     ball.x += ball.vx * dt;
@@ -138,13 +142,13 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
       saves++;
       tell();
     }
-    if (!drag && now - lastShove > 4200 && !disturbed) shove();
+    if (!drag && now - lastShove > 4200 && !disturbed && !tilting) shove();
   }
 
   function draw(): void {
     ctx.clearRect(0, 0, W, H);
-    const tx = tilt.x.p;
-    const ty = tilt.y.p;
+    const tx = tilt.x.p + user.x;
+    const ty = tilt.y.p + user.y;
     // the stand and the two servos, one on each axis
     bar(ctx, cx - 10, cy + R * 0.2, 20, H - (cy + R * 0.2) - 10, M.steel, 3);
     bar(ctx, cx - 60, H - 14, 120, 10, M.anod, 2);
@@ -206,7 +210,7 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
 
   if (reducedMotion()) {
     draw();
-    return { shove() {} };
+    return { shove() {}, tilt: async () => false };
   }
   onVisible(cv, (v) => (visible = v), 0.15);
   addTicker((dt, now) => {
@@ -216,5 +220,31 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
     draw();
   });
   tell();
-  return { shove };
+  const onOrient = (e: DeviceOrientationEvent): void => {
+    // gamma: left/right, beta: front/back, in degrees; a few degrees is a lot of tilt for a ball
+    const gx = ((e.gamma ?? 0) / 90) * 0.35;
+    const gy = (((e.beta ?? 0) - 35) / 90) * 0.35; // held at a comfortable angle counts as level
+    user.x = Math.max(-0.35, Math.min(0.35, gx));
+    user.y = Math.max(-0.35, Math.min(0.35, gy));
+    disturbed = true;
+  };
+  return {
+    shove,
+    async tilt() {
+      if (tilting) return true;
+      const DOE = window.DeviceOrientationEvent as (typeof DeviceOrientationEvent & { requestPermission?: () => Promise<string> }) | undefined;
+      if (!DOE) return false;
+      try {
+        if (DOE.requestPermission) {
+          const r = await DOE.requestPermission();
+          if (r !== 'granted') return false;
+        }
+      } catch {
+        return false;
+      }
+      window.addEventListener('deviceorientation', onOrient);
+      tilting = true;
+      return true;
+    },
+  };
 }

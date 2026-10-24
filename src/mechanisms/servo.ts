@@ -17,7 +17,7 @@ export interface ServoHandle {
 }
 
 const TUNED = { kp: 90, ki: 0, kd: 19 };
-const STOPS = ['top', 'miss', 'now', 'all', 'method', 'numbers', 'about', 'watch'];
+const STOPS = ['top', 'miss', 'now', 'all', 'drawers', 'method', 'numbers', 'about', 'watch'];
 const RELEASE = 150; // px of deliberate wheel travel that frees a detent
 const SETTLE = 0.28; // s after catching during which a flick's tail is ignored
 const ARM_GAP = 120; // ms of quiet that marks a new trackpad gesture

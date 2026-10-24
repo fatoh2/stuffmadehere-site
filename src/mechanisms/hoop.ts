@@ -69,6 +69,13 @@ export function mountHoop(o: HoopOptions): HoopHandle {
   let visible = false;
   const still = reducedMotion();
   let drag: { tracker: VelocityTracker; x: number; y: number } | null = null;
+  // homing: on the first visit the rig runs each axis to its limit switch, clicks, then comes home
+  let homing = 0;
+  try {
+    if (!localStorage.getItem('smh-homed') && !reducedMotion()) homing = 1;
+  } catch {
+    homing = 0;
+  }
   const pitch = { kick: 0, spin: 0 };
   const startAt = performance.now() + (o.startDelay ?? 1400);
   let phone = narrow();
@@ -273,7 +280,23 @@ export function mountHoop(o: HoopOptions): HoopHandle {
       }
       if (!best || p.t < best.t) best = { x: p.x, t: p.t, plane };
     }
-    if (best) {
+    if (homing) {
+      // stage 1: the x limit at the left; stage 2: the y limit at the top; then home
+      const want = homing === 1 ? { x: g.xmin, y: rig.y.p } : { x: g.xmin, y: g.ymin };
+      tx = want.x;
+      ty = want.y;
+      if (Math.abs(rig.x.p - tx) < 1.5 && Math.abs(rig.y.p - ty) < 1.5) {
+        cue.index();
+        homing = homing === 1 ? 2 : 0;
+        if (!homing) {
+          try {
+            localStorage.setItem('smh-homed', '1');
+          } catch {
+            /* fine */
+          }
+        }
+      }
+    } else if (best) {
       tx = clamp(best.x, g.xmin, g.xmax);
       ty = best.plane;
       pred = { x: best.x, y: best.plane };
@@ -281,7 +304,7 @@ export function mountHoop(o: HoopOptions): HoopHandle {
       tx = g.homeX;
       ty = g.homeY;
     }
-    if (!still || best) {
+    if (!still || best || homing) {
       stepAxis(rig.x, tx, dt);
       stepAxis(rig.y, ty, dt);
     }

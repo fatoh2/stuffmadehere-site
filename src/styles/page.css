@@ -466,3 +466,50 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
 @keyframes rail-out { to { transform: translateX(-6%); opacity: 0; } }
 @keyframes rail-in { from { transform: translateX(6%); opacity: 0; } }
 
+/* =========================================================
+   PARTS DRAWERS: a steel cabinet, one drawer per family
+   ========================================================= */
+.drawers { background: var(--surface); }
+.drawers__head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2rem, 4vw, 4rem); align-items: end; margin-bottom: 1.5rem; }
+.drawers__lead { max-width: 48ch; }
+.cabinet { padding: clamp(0.75rem, 1.5vw, 1.25rem) clamp(0.75rem, 2vw, 1.5rem); display: grid; gap: 6px; }
+.drawer { position: relative; }
+.drawer__front { display: grid; grid-template-columns: 10rem minmax(0, 1fr) 3rem 2.5rem; align-items: center; gap: 1rem; width: 100%; min-height: 3.25rem; padding: 0.4rem 1rem 0.4rem 1.25rem; background: var(--paper); color: var(--ink); border: 0; border-radius: 3px; font: inherit; text-align: left; cursor: pointer; transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+.drawer__front:active { transform: translateY(1px); }
+.drawer__label { font-weight: 900; font-size: 1.0625rem; }
+.drawer__note { color: var(--muted); font-size: 0.9375rem; }
+.drawer__count { font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.drawer__handle { height: 10px; width: 2.5rem; background: var(--steel-dark); border-radius: 5px; justify-self: end; }
+.drawer.is-open .drawer__front { background: var(--ink); color: var(--paper); }
+.drawer.is-open .drawer__note { color: var(--steel); }
+.drawer.is-open .drawer__handle { background: var(--accent); }
+.drawer__slot { overflow: hidden; height: 0; }
+.drawer__bin { background: var(--recess); padding: 0.75rem; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.75rem; max-height: 42svh; overflow-y: auto; will-change: transform; }
+.drawer__part { display: grid; gap: 0.35rem; color: var(--paper); text-decoration: none; font-size: 0.8125rem; line-height: 1.25; }
+.drawer__part img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.drawer__title { font-weight: 700; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.drawer__year { color: var(--steel); }
+@media (hover: hover) and (pointer: fine) {
+  .drawer__front:hover { background: var(--blue); color: var(--blue-ink); }
+  .drawer__front:hover .drawer__note { color: var(--blue-ink); }
+  .drawer__part:hover .drawer__title { text-decoration: underline; }
+}
+@media (max-width: 63.99em) {
+  .drawers__head { grid-template-columns: 1fr; row-gap: 0.75rem; }
+  .drawer__front { grid-template-columns: minmax(0, 1fr) 2.5rem 2rem; }
+  .drawer__note { display: none; }
+  .drawer__bin { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 47.99em) {
+  .drawers { padding-block: 4svh; }
+  .drawers__head { margin-bottom: 0.75rem; }
+  .drawers__lead { font-size: 1rem; }
+  .cabinet { gap: 4px; padding: 0.6rem; }
+  .drawer__front { min-height: 2.75rem; padding: 0.3rem 0.75rem; gap: 0.6rem; }
+  .drawer__label { font-size: 0.9375rem; }
+  .drawer__bin { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; max-height: 38svh; padding: 0.5rem; }
+  .drawer__part { font-size: 0.75rem; }
+}
+.only-coarse { display: none; }
+@media (hover: none) and (pointer: coarse) { .only-coarse { display: inline-flex; } }
+

@@ -76,6 +76,7 @@
       <p class="idea__why" data-reveal style="--i:1">Flick the ball with your finger or mouse. The hard part is the lag: the servos cannot turn instantly, so the controller has to tilt before the ball gets there, not after. His hoop solves the same problem with a prediction instead of a feedback loop.</p>
       <div class="idea__controls" data-reveal style="--i:2">
         <button class="button" id="shoveBall" type="button">Shove it</button>
+        <button class="button only-coarse" id="tiltBall" type="button">Tilt your phone</button>
         <output class="idea__stat" id="balanceStat">0 caught, 0 dropped</output>
       </div>
       <figure class="idea__rel" data-reveal style="--i:3"><a href="https://www.youtube.com/watch?v=myO8fxhDRW0"><img loading="lazy" src="https://i.ytimg.com/vi/myO8fxhDRW0/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “Moving hoop won’t let you miss”"></a><figcaption>The same promise, made the other way round: <a class="link" href="https://www.youtube.com/watch?v=myO8fxhDRW0">Moving hoop won’t let you miss</a></figcaption></figure>
@@ -92,7 +93,7 @@
       <div>
         <p class="idea__pitch" data-reveal>A pantograph. Four bars in a parallelogram, one pivot bolted down, and whatever you trace on the small pad the pen cuts three times larger on the plate.</p>
         <p class="idea__why" data-reveal style="--i:1">Draw on the pad. The geometry is two hundred years old and still the cheapest way to scale a hand; the machine signs the channel’s name first, then it is yours.</p>
-        <form class="idea__controls idea__sign" data-reveal style="--i:2" id="signForm"><label class="sr-only" for="signText">A word for the pantograph to sign</label><input class="idea__input" id="signText" type="text" maxlength="18" placeholder="Your name" autocomplete="off"><button class="button" type="submit">Sign it</button><button class="replay" id="clearPlate" type="button">Clear the plate</button></form>
+        <form class="idea__controls idea__sign" data-reveal style="--i:2" id="signForm"><label class="sr-only" for="signText">A word for the pantograph to sign</label><input class="idea__input" id="signText" type="text" maxlength="18" placeholder="Your name" autocomplete="off"><button class="button" type="submit">Sign it</button><button class="replay" id="clearPlate" type="button">Clear the plate</button><button class="replay" id="keepPlate" type="button">Keep the plate</button></form>
       </div>
     </div>
     <figure class="idea__machine idea__machine--wide">

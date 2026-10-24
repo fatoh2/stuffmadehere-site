@@ -79,7 +79,24 @@ const control = (id: string, fn: () => void): void => {
 };
 control('replayFlap', () => board.run());
 control('shoveBall', () => table.shove());
+const tiltBtn = document.getElementById('tiltBall') as HTMLButtonElement | null;
+tiltBtn?.addEventListener('click', () => {
+  void table.tilt().then((ok) => {
+    tiltBtn.textContent = ok ? 'Tilting with you' : 'No tilt sensor here';
+    tiltBtn.disabled = true;
+  });
+});
 control('clearPlate', () => panto.clear());
+control('keepPlate', () => {
+  const url = panto.keep();
+  if (!url) return;
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'engraved-plate.png';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+});
 const signForm = document.getElementById('signForm') as HTMLFormElement | null;
 const signText = document.getElementById('signText') as HTMLInputElement | null;
 signForm?.addEventListener('submit', (e) => {

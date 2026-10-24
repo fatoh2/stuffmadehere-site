@@ -11,6 +11,8 @@ import { strokesFor, textWidth } from './strokefont';
 export interface PantographHandle {
   clear(): void;
   sign(text: string): void;
+  /** the engraved plate as a PNG data URL, with a small mark in the corner */
+  keep(): string;
 }
 
 export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
@@ -259,7 +261,7 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
     const demoDone = (): boolean => !demo || demo.done;
     for (let i = 0; i < 4000 && !demoDone(); i++) stepDemo(0.05);
     draw();
-    return { clear: () => undefined, sign: () => undefined };
+    return { clear: () => undefined, sign: () => undefined, keep: () => '' };
   }
   onVisible(cv, (v) => (visible = v), 0.15);
   let started = false;
@@ -279,6 +281,21 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
       last = null;
       demo = null;
       tracer.down = false;
+    },
+    keep() {
+      const out = document.createElement('canvas');
+      const scale = 2;
+      out.width = Math.round(plate.w * scale);
+      out.height = Math.round(plate.h * scale);
+      const oc = out.getContext('2d')!;
+      oc.fillStyle = '#f3f3f0';
+      oc.fillRect(0, 0, out.width, out.height);
+      oc.drawImage(ink, 0, 0, out.width, out.height);
+      oc.fillStyle = P.steelDark;
+      oc.font = `700 ${Math.round(12 * scale)}px Chivo, sans-serif`;
+      oc.textAlign = 'right';
+      oc.fillText('engraved on stuffmadehere.vercel.app', out.width - 12 * scale, out.height - 10 * scale);
+      return out.toDataURL('image/png');
     },
     sign(text) {
       ictx.clearRect(0, 0, plate.w, plate.h);

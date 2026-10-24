@@ -86,6 +86,15 @@ Every mechanism pauses off screen, has a reduced-motion state, and never hides c
 
 Every section is one screen tall on a laptop and a phone (the archive window and the tile wall are sized to the viewport). Note for reviewing: the Claude desktop app's browser pane runs no animation frames while it is hidden, so open the site in a normal browser to see the machines move.
 
+## Live parts
+
+Two serverless functions in `api/` make the site live once the deployment has what they need; without it, both fall back and the site is unchanged:
+
+- `api/channel.ts` reads the channel's statistics and latest upload from the YouTube Data API when `YOUTUBE_API_KEY` is set in the Vercel project's environment variables (cached an hour at the edge). The nameplate drums and the "days since the last video" escapement follow it.
+- `api/vote.ts` keeps the prototypes vote on a Vercel KV store (the Upstash REST variables `KV_REST_API_URL` and `KV_REST_API_TOKEN`), fifty taps a day per address. The panel shows the totals and stops offering a reset.
+
+Sound is off until the visitor switches it on (the lock menu on phones, the panel on the right on desktops); every cue is synthesised, there are no audio files. The share cards in `public/og/` are rendered from the site by `scripts/og.py`; rerun it when the first screens change.
+
 ## Updating the videos
 
 `src/data/videos.ts` was generated from the channel’s Videos tab on 2026-10-24. The ledger rows in `index.html` are generated from that file; when it changes, regenerate the rows (the block between the `ledger__year` markers) or re-run the generator in your tooling.

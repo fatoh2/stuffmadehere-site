@@ -9,6 +9,7 @@ import { mountGeneva } from './mechanisms/geneva';
 import { mountPeel } from './mechanisms/peel';
 import { mountCnc } from './mechanisms/cnc';
 import { mountOdometers } from './mechanisms/odometer';
+import { mountDrawers } from './mechanisms/drawers';
 import { fetchLive, millions } from './lib/live';
 import { latest } from './data/videos';
 import { reducedMotion } from './lib/visible';
@@ -53,6 +54,7 @@ mountLock(
     { id: 'miss', label: 'Won’t let you miss' },
     { id: 'now', label: 'Building now' },
     { id: 'all', label: 'All 41' },
+    { id: 'drawers', label: 'Parts drawers' },
     { id: 'method', label: 'How a build goes' },
     { id: 'numbers', label: 'The numbers' },
     { id: 'about', label: 'About Shane' },
@@ -111,6 +113,7 @@ const feed = mountGeneva({ section: $('#method'), printer: $('#printer'), slip: 
 const peel = mountPeel($('#about'), $('#aboutText'), $('#peel'));
 
 /* ---------- machined headings and the footer wordmark ---------- */
+mountDrawers($('#cabinet'));
 const plate = mountOdometers($('#nameplate'));
 void fetchLive().then((live) => {
   if (!live || !live.live) return;
