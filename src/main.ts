@@ -9,6 +9,7 @@ import { mountGeneva } from './mechanisms/geneva';
 import { mountPeel } from './mechanisms/peel';
 import { mountCnc } from './mechanisms/cnc';
 import { mountOdometers } from './mechanisms/odometer';
+import { fetchLive, millions } from './lib/live';
 import { latest } from './data/videos';
 import { reducedMotion } from './lib/visible';
 import { mountSoundToggle } from './lib/sound';
@@ -110,7 +111,15 @@ const feed = mountGeneva({ section: $('#method'), printer: $('#printer'), slip: 
 const peel = mountPeel($('#about'), $('#aboutText'), $('#peel'));
 
 /* ---------- machined headings and the footer wordmark ---------- */
-mountOdometers($('#nameplate'));
+const plate = mountOdometers($('#nameplate'));
+void fetchLive().then((live) => {
+  if (!live || !live.live) return;
+  plate.set('videos', String(live.videos));
+  plate.set('views', millions(live.views, 0));
+  plate.set('subscribers', millions(live.subscribers, 1));
+  const sub = document.getElementById('plateSub');
+  if (sub) sub.textContent = `Stuff Made Here · live from YouTube, ${live.asOf} · drums roll when the plate comes into view`;
+});
 const heroCut = mountCnc($('#heroMark'), { seconds: 5, textureUrl: '/parts/milled.jpg', textureScale: 0.55 });
 mountCnc($('#miss-h'), { seconds: 2.2 });
 mountCnc($('#method-h'), { seconds: 2.4 });

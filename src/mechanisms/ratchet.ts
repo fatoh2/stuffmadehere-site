@@ -22,7 +22,7 @@ interface Counter {
   h: number;
 }
 
-export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonElement | null): void {
+export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonElement | null, onLive?: (live: boolean) => void): void {
   const P = palette();
   const M = metals();
   const load = (): Record<string, number> => {
@@ -99,9 +99,36 @@ export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonEle
     ctx.fillRect(px - 2, py + 6, 4, 4);
   };
 
+  let live = false;
+  const applyTotals = (t: Record<string, number>): void => {
+    for (const c of counters) {
+      if (typeof t[c.key] === 'number') {
+        c.n = t[c.key];
+        c.out.textContent = String(c.n);
+      }
+    }
+  };
+  // the server's totals, if this deployment counts
+  void fetch('/api/vote', { headers: { Accept: 'application/json' } })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((j: { ok?: boolean; totals?: Record<string, number> } | null) => {
+      if (!j?.ok || !j.totals) return;
+      live = true;
+      applyTotals(j.totals);
+      onLive?.(true);
+    })
+    .catch(() => undefined);
   const vote = (c: Counter): void => {
     c.n++;
     cue.pawl();
+    if (live) {
+      void fetch('/api/vote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ idea: c.key }) })
+        .then((r) => r.json())
+        .then((j: { ok?: boolean; totals?: Record<string, number> }) => {
+          if (j?.totals) applyTotals(j.totals);
+        })
+        .catch(() => undefined);
+    }
     counts[c.key] = c.n;
     save(counts);
     c.out.textContent = String(c.n);
@@ -116,6 +143,7 @@ export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonEle
     draw(c);
   });
   resetBtn?.addEventListener('click', () => {
+    if (live) return; // the server's totals are not yours to reset
     counters.forEach((c) => {
       c.n = 0;
       c.out.textContent = '0';

@@ -10,6 +10,7 @@ import { mountReveal } from './lib/reveal';
 import { reducedMotion } from './lib/visible';
 import { mountSoundToggle } from './lib/sound';
 import { latest, watchUrl } from './data/videos';
+import { fetchLive } from './lib/live';
 
 const $ = <T extends HTMLElement>(sel: string): T => document.querySelector<T>(sel)!;
 const $$ = <T extends HTMLElement>(sel: string): T[] => Array.from(document.querySelectorAll<T>(sel));
@@ -52,8 +53,21 @@ if (sinceLink) {
   sinceLink.href = watchUrl(latest.id);
   sinceLink.textContent = latest.title;
 }
-mountEscapement($('#escapeCanvas'), new Date(`${latest.date}T12:00:00Z`), { days: document.getElementById('sinceDays'), clock: document.getElementById('sinceClock') });
-mountTally($$('button.tally'), document.getElementById('resetVotes') as HTMLButtonElement | null);
+const clock = mountEscapement($('#escapeCanvas'), new Date(`${latest.date}T12:00:00Z`), { days: document.getElementById('sinceDays'), clock: document.getElementById('sinceClock') });
+void fetchLive().then((live) => {
+  if (!live || !live.live) return;
+  clock.setSince(new Date(`${live.latest.date}T12:00:00Z`));
+  if (sinceLink) {
+    sinceLink.href = watchUrl(live.latest.id);
+    sinceLink.textContent = live.latest.title;
+  }
+});
+mountTally($$('button.tally'), document.getElementById('resetVotes') as HTMLButtonElement | null, (live) => {
+  const note = document.getElementById('voteNote');
+  const reset = document.getElementById('resetVotes');
+  if (live && note) note.textContent = 'The counts are everyone’s, kept on the server, fifty taps a day per address.';
+  if (live && reset) reset.hidden = true;
+});
 
 /* ---------- controls ---------- */
 const control = (id: string, fn: () => void): void => {

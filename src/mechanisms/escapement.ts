@@ -5,7 +5,18 @@ import { bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion } from '../lib/visible';
 
-export function mountEscapement(cv: HTMLCanvasElement, since: Date, out: { days: HTMLElement | null; clock: HTMLElement | null }): void {
+export interface EscapementHandle {
+  setSince(d: Date): void;
+}
+
+export function mountEscapement(cv: HTMLCanvasElement, since: Date, out: { days: HTMLElement | null; clock: HTMLElement | null }): EscapementHandle {
+  const handle: EscapementHandle = {
+    setSince(d) {
+      since = d;
+      shownSecond = -1;
+      tell(Date.now());
+    },
+  };
   const P = palette();
   const M = metals();
   let ctx = cv.getContext('2d')!;
@@ -115,7 +126,7 @@ export function mountEscapement(cv: HTMLCanvasElement, since: Date, out: { days:
     tell(Date.now());
     draw(Date.now());
     window.setInterval(() => tell(Date.now()), 1000);
-    return;
+    return handle;
   }
   onVisible(cv, (v) => (visible = v), 0.1);
   addTicker(() => {
@@ -123,4 +134,5 @@ export function mountEscapement(cv: HTMLCanvasElement, since: Date, out: { days:
     tell(now);
     if (visible) draw(now);
   });
+  return handle;
 }

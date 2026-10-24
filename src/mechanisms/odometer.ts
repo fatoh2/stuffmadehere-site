@@ -14,6 +14,7 @@ interface Drum {
 }
 
 interface Counter {
+  key: string;
   cv: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   w: number;
@@ -25,7 +26,12 @@ interface Counter {
   dirty: boolean;
 }
 
-export function mountOdometers(root: HTMLElement): void {
+export interface OdometerHandle {
+  /** roll a counter (by the key in data-key) to a new figure */
+  set(key: string, text: string): void;
+}
+
+export function mountOdometers(root: HTMLElement): OdometerHandle {
   const P = palette();
   const still = reducedMotion();
   const counters: Counter[] = [];
@@ -70,7 +76,7 @@ export function mountOdometers(root: HTMLElement): void {
     el.textContent = '';
     el.appendChild(cv);
     el.classList.add('odo');
-    const c: Counter = { cv, ctx, w, h, em, font, drums, seps, dirty: true };
+    const c: Counter = { key: el.dataset.key ?? '', cv, ctx, w, h, em, font, drums, seps, dirty: true };
     if (still) for (const d of drums) d.pos.p = d.target;
     counters.push(c);
     draw(c);
@@ -109,8 +115,27 @@ export function mountOdometers(root: HTMLElement): void {
     for (const s of seps) ctx.fillText(s.ch, s.x, cy + em * 0.04);
   }
 
-  if (still || !counters.length) return;
   let rolling = false;
+  const handle: OdometerHandle = {
+    set(key, text) {
+      const c = counters.find((x) => x.key === key);
+      if (!c) return;
+      const digits = text.replace(/\D/g, '');
+      if (digits.length !== c.drums.length) return; // a different shape of number: leave the plate as built
+      let k = 0;
+      for (const ch of text) {
+        if (!/\d/.test(ch)) continue;
+        const d = c.drums[k++];
+        const cur = ((d.pos.p % 10) + 10) % 10;
+        const want = Number(ch);
+        // roll forward to the new digit, at least one full turn so the change is seen
+        d.target = d.pos.p - cur + want + (want >= cur ? 10 : 20);
+      }
+      c.cv.setAttribute('aria-label', text);
+      rolling = true;
+    },
+  };
+  if (still || !counters.length) return handle;
   onceInView(root, () => (rolling = true), 0.25);
   addTicker((dt) => {
     if (!rolling) return;
@@ -129,4 +154,5 @@ export function mountOdometers(root: HTMLElement): void {
     }
     if (!busy) rolling = false;
   });
+  return handle;
 }
