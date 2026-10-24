@@ -203,3 +203,16 @@ Fourth round, same day:
 - **About page** (`about.html`, about Shane and the channel, not the site's maker). All twelve prototyped mechanisms were already in use, so three new ones were built for it, each carrying content: the painting robot (his portrait as a 2,449-dot halftone from the bow video's thumbnail, three colour passes), eight motion-capture pan heads watching the shop (they follow the pointer or tour the six listed tools), and a sorting line that drops the 41 videos into their six bins. Facts on the page come from the research inventory: ran the R&D lab at Formlabs; mechanical engineering degree and a master's in computer science; five patents, thirteen pending; channel since 2020-03-04; 17,342 lb of tools; Tormach 24R; eight OptiTrack cameras; the wife as tester. The university is left out as unverified. The portrait uses his thumbnail and is credited; a public launch needs his OK for that too.
 - **Servo.** The detent list is now a parameter, so each page names its own notches.
 
+## 12. Sixth round: the prototypes page (2026-10-25)
+
+A third page, `ideas.html` ("Not built yet"), carries six more machines, all new, each a working prototype of something he has not built and each carrying its own pitch, the thumbnail of the video it grew out of, and a vote:
+
+- **Split-flap board** for the title: every letter on its own flap wheel, stepping until the right flap drops.
+- **The table that won't let it fall**: a plate on two servos with speed and acceleration limits; a position-and-velocity controller tilts it against the ball. Flick the ball or press "Shove it"; it catches, counts catches and drops, and shoves the ball itself when left alone. The hoop's promise with a feedback loop instead of a prediction.
+- **The signature pantograph**: a parallelogram linkage with the fixed pivot on the extension of one bar and the pen on the extension of the other (ratio 3 on desktop, 2 on phones, where O, tracer and pen stay colinear). The visitor draws on the pad and the pen engraves it on the plate; the machine signs the channel's name first.
+- **The trebuchet that learns**: fires, measures, corrects the counterweight by the ratio and then by the secant through the last two shots, and fires again until it is in; the release has a few percent of scatter; the bucket can be dragged; the shot log is printed.
+- **The escapement clock**: a pendulum-driven anchor over a thirty-tooth escape wheel, one tooth per second; the count of days, hours, minutes and seconds since the latest video is true to the second.
+- **Ratchet tally counters** for the vote: a tooth per tap, the pawl drops behind it; counts persist in localStorage only, stated plainly on the page.
+
+Every section is one screen on phones, laptops and desktops; the servo detents and the lock run on this page too. Related-video thumbnails sit beside each pitch on wide screens and are hidden on phones to keep the one-screen rule.
+

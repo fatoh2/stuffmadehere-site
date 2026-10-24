@@ -4,7 +4,7 @@ A fan-made concept site for [Stuff Made Here](https://www.youtube.com/@stuffmade
 
 Not affiliated with Stuff Made Here. Video titles and thumbnails belong to Shane Wighton; thumbnails load from YouTube’s own image URLs. A public launch should have his OK for that use.
 
-Live: https://stuffmadehere.vercel.app (the About page is at /about). Source: https://github.com/fatoh2/stuffmadehere-site.
+Live: https://stuffmadehere.vercel.app (the About page is at /about, the prototypes page at /ideas). Source: https://github.com/fatoh2/stuffmadehere-site.
 
 ## Run it
 
@@ -28,8 +28,10 @@ The machine parts are photoreal renders (`public/parts/*.png`, generated with Hi
 ```
 index.html                 the home page, readable with script off
 about.html                 the About page: Shane, the shop, what he builds, how he works
+ideas.html                 Not built yet: six prototypes of machines he has not made, and a vote
 src/main.ts                mounts the home page's mechanisms
 src/about.ts               mounts the About page's
+src/ideas.ts               mounts the prototypes page's
 src/data/portrait.ts       the halftone dots the painting robot sprays (from a thumbnail of his)
 src/data/videos.ts         the 41 videos (id, title, date, views, family); regenerate when he uploads
 src/mechanisms/            one module per mechanism, each `mount(...)`
@@ -65,6 +67,17 @@ docs/superpowers/specs/    the approved design document
 | Portrait | The painting robot: a carriage on a rail sweeps row by row and sprays his portrait as a halftone, one colour per pass (blue, red, black), 2,449 dots | Wall-painting robot (2021), pumpkin halftones |
 | The shop | Eight motion-capture pan heads on the walls follow your pointer, or tour the tools when nobody moves; each head is on its own speed- and acceleration-limited motor, and when all eight agree the point locks and the nearest tool lights up | The eight OptiTrack cameras that aimed the bow |
 | What he builds | The sorting line: the 41 videos ride a belt in upload order and diverter gates drop each into its bin (can't miss, toolpaths, explosive, locks, assembly, the rest); every card stays a link | New |
+
+## The prototypes page's six machines ("Not built yet")
+
+| Where | Mechanism | From |
+| --- | --- | --- |
+| Title | A split-flap board: each letter is a wheel of flaps on its own stepper, stepping through the alphabet until the right flap drops | New |
+| Won't let it fall | A table on two speed- and acceleration-limited servos that reads the ball's position and speed and tilts to roll it back; flick the ball or let it shove the ball itself | New, the hoop's promise the other way round |
+| Sign small, engrave big | A pantograph (four bars in a parallelogram, one pivot fixed) that engraves whatever you draw on the pad three times larger on the plate; it signs the channel's name first in single-stroke letters | New, after the handwriting plotter |
+| A trebuchet that learns | Fires, measures the landing, moves its own counterweight by the secant through its last two shots, and fires again until the ball drops into the bucket you can drag; the release scatters, so it keeps a log | New |
+| Days since the last video | An anchor escapement over a thirty-tooth wheel, driven by the pendulum, that lets one tooth past per second; the count is true to the second from the latest upload | New |
+| Vote | Ratchet-and-pawl tally counters, one per prototype; a tap turns the wheel a tooth and the pawl drops behind it; counts live in the browser only | New |
 
 Every mechanism pauses off screen, has a reduced-motion state, and never hides content when script is off. Each one can be run again from its section: Cut it again, Assemble it again, Feed it again, Peel it again.
 

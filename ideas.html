@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Not built yet: six machines for Stuff Made Here</title>
+  <meta name="description" content="Six working prototypes of machines Shane Wighton has not built: a table that will not let the ball fall, a pantograph that engraves your signature, a trebuchet that learns, and more. Try them, then vote.">
+  <meta name="theme-color" content="#15161a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%231d6fc4%27/%3E%3Ccircle cx=%2732%27 cy=%2736%27 r=%2714%27 fill=%27%23ff5a1f%27/%3E%3Crect x=%278%27 y=%2712%27 width=%2748%27 height=%276%27 fill=%27%23ffffff%27/%3E%3C/svg%3E">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/page.css">
+  <link rel="stylesheet" href="/src/styles/ideas.css">
+</head>
+<body>
+
+  <nav class="lock" id="lock" aria-label="Sections">
+    <svg class="lock__cyl" viewBox="0 0 200 44" aria-hidden="true" focusable="false">
+      <rect x="0" y="0" width="200" height="44" rx="3" fill="var(--surface)"/>
+      <rect x="0" y="23" width="200" height="21" fill="var(--steel-dark)"/>
+      <rect x="6" y="27" width="26" height="12" fill="var(--recess)"/>
+      <g id="lockKey"><rect x="-70" y="30" width="80" height="6" fill="var(--steel)"/></g>
+      <g id="lockPins"></g>
+    </svg>
+    <div class="lock__pins" id="lockPinButtons"></div>
+    <button class="lock__menu" id="lockMenu" type="button" aria-expanded="false" aria-controls="lockList">Menu</button>
+    <div class="lock__list" id="lockList">
+      <button class="lock__close" id="lockClose" type="button">Close</button>
+      <a href="#table">Won’t let it fall</a>
+      <a href="#sign">Sign small</a>
+      <a href="#learn">A trebuchet that learns</a>
+      <a href="#since">Days since</a>
+      <a href="#vote">Vote</a>
+      <a href="/">The machines</a>
+      <a href="/about.html">About Shane</a>
+    </div>
+  </nav>
+
+<header class="ihero" id="top">
+  <div class="hero__top">
+    <p class="wordmark"><a class="link" href="/">Stuff Made Here</a> <span>a fan’s site, six machines he has not built</span></p>
+  </div>
+  <div class="ihero__body">
+    <h1 class="ihero__mark" id="ideasMark">Not built yet</h1>
+    <p class="ihero__lead" data-rise style="--i:1">Six machines Shane has not made, each one a working prototype on this page. The table catches the ball, the pantograph engraves your signature, the trebuchet finds the range by itself. Try them, then vote for the one he should build first.</p>
+    <div class="ihero__actions" data-rise style="--i:2">
+      <a class="button" href="#vote">Vote for one</a>
+      <a class="link only-wide" href="/">The twelve on the home page</a>
+    </div>
+  </div>
+  <button class="replay" id="replayFlap" type="button" hidden>Flip it again</button>
+</header>
+
+<main>
+
+  <!-- ============ THE TABLE ============ -->
+  <section class="idea idea--table" id="table" aria-labelledby="table-h">
+    <figure class="idea__machine">
+      <canvas id="balanceCanvas" aria-label="A round table on two servos balancing an orange ball"></canvas>
+    </figure>
+    <div class="idea__text">
+      <h2 class="head" id="table-h">Won’t let it fall</h2>
+      <p class="idea__pitch" data-reveal>A table that will not let the ball roll off. Two servos tilt the plate; a controller reads where the ball is and how fast it is going and leans the table against it.</p>
+      <p class="idea__why" data-reveal style="--i:1">Flick the ball with your finger or mouse. The hard part is the lag: the servos cannot turn instantly, so the controller has to tilt before the ball gets there, not after. His hoop solves the same problem with a prediction instead of a feedback loop.</p>
+      <div class="idea__controls" data-reveal style="--i:2">
+        <button class="button" id="shoveBall" type="button">Shove it</button>
+        <output class="idea__stat" id="balanceStat">0 caught, 0 dropped</output>
+      </div>
+      <figure class="idea__rel" data-reveal style="--i:3"><a href="https://www.youtube.com/watch?v=myO8fxhDRW0"><img loading="lazy" src="https://i.ytimg.com/vi/myO8fxhDRW0/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “Moving hoop won’t let you miss”"></a><figcaption>The same promise, made the other way round: <a class="link" href="https://www.youtube.com/watch?v=myO8fxhDRW0">Moving hoop won’t let you miss</a></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ============ THE PANTOGRAPH ============ -->
+  <section class="idea idea--sign" id="sign" aria-labelledby="sign-h">
+    <div class="idea__text idea__text--row">
+      <div>
+        <h2 class="head" id="sign-h">Sign small, engrave big</h2>
+        <figure class="idea__rel" data-reveal style="--i:3"><a href="https://www.youtube.com/watch?v=cQO2XTP7QDw"><img loading="lazy" src="https://i.ytimg.com/vi/cQO2XTP7QDw/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “I sent robot forgeries to a handwriting expert”"></a><figcaption>His plotter copied a hand with motors; this copies it with bars: <a class="link" href="https://www.youtube.com/watch?v=cQO2XTP7QDw">I sent robot forgeries to a handwriting expert</a></figcaption></figure>
+      </div>
+      <div>
+        <p class="idea__pitch" data-reveal>A pantograph. Four bars in a parallelogram, one pivot bolted down, and whatever you trace on the small pad the pen cuts three times larger on the plate.</p>
+        <p class="idea__why" data-reveal style="--i:1">Draw on the pad. The geometry is two hundred years old and still the cheapest way to scale a hand; the machine signs the channel’s name first, then it is yours.</p>
+        <div class="idea__controls" data-reveal style="--i:2"><button class="button" id="clearPlate" type="button">Clear the plate</button></div>
+      </div>
+    </div>
+    <figure class="idea__machine idea__machine--wide">
+      <canvas id="pantoCanvas" aria-label="A pantograph linkage copying a drawing from a small pad onto a large plate"></canvas>
+    </figure>
+  </section>
+
+  <!-- ============ THE TREBUCHET ============ -->
+  <section class="idea idea--learn idea--flip" id="learn" aria-labelledby="learn-h">
+    <div class="idea__text">
+      <h2 class="head" id="learn-h">A trebuchet that learns</h2>
+      <p class="idea__pitch" data-reveal>It fires, sees where the shot lands, moves its own counterweight and fires again, until the ball drops into the bucket.</p>
+      <p class="idea__why" data-reveal style="--i:1">Drag the bucket and it starts over. The release scatters a little, as a real sling does, so one correction is never enough. Every build misses first; this one keeps the log.</p>
+      <div class="idea__controls" data-reveal style="--i:2"><button class="button" id="fireAgain" type="button">From the first guess</button></div>
+      <ol class="idea__log" id="shotLog" aria-live="polite"></ol>
+      <figure class="idea__rel" data-reveal style="--i:3"><a href="https://www.youtube.com/watch?v=1MkrNVic7pw"><img loading="lazy" src="https://i.ytimg.com/vi/1MkrNVic7pw/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “Auto-aiming bow vs. FLYING targets”"></a><figcaption>The bow aimed with cameras; this one aims with its misses: <a class="link" href="https://www.youtube.com/watch?v=1MkrNVic7pw">Auto-aiming bow vs. FLYING targets</a></figcaption></figure>
+    </div>
+    <figure class="idea__machine">
+      <canvas id="trebCanvas" aria-label="A trebuchet firing a ball toward a bucket"></canvas>
+    </figure>
+  </section>
+
+  <!-- ============ THE ESCAPEMENT ============ -->
+  <section class="idea idea--since" id="since" aria-labelledby="since-h">
+    <figure class="idea__machine idea__machine--clock">
+      <canvas id="escapeCanvas" aria-label="A pendulum and anchor escapement over a toothed wheel"></canvas>
+    </figure>
+    <div class="idea__text">
+      <h2 class="head" id="since-h">Days since the last video</h2>
+      <p class="since__num nums" id="sinceDays">0</p>
+      <p class="since__clock nums"><output id="sinceClock">00:00:00</output> and counting, since <a class="link" id="sinceLink" href="https://www.youtube.com/@stuffmadehere">the last upload</a></p>
+      <p class="idea__why" data-reveal>An escapement keeps the count: the pendulum rocks the anchor, the anchor lets one tooth of the wheel past each second, and nothing on this page is allowed to tick without it. The wheel turns once every thirty seconds.</p>
+      <figure class="idea__rel" data-reveal style="--i:3"><a href="https://www.youtube.com/watch?v=RpslsMqPFWA"><img loading="lazy" src="https://i.ytimg.com/vi/RpslsMqPFWA/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “I made an apple peel itself”"></a><figcaption>The video the count started from: <a class="link" href="https://www.youtube.com/watch?v=RpslsMqPFWA">I made an apple peel itself</a></figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ============ THE VOTE ============ -->
+  <section class="idea idea--vote" id="vote" aria-labelledby="vote-h">
+    <div class="vote__head">
+      <h2 class="head" id="vote-h">Which one first?</h2>
+      <p class="idea__pitch" data-reveal>Each counter is a ratchet: a tap turns the wheel one tooth and the pawl drops behind it, so a vote cannot be taken back. The counts live in your browser; the real site would collect them.</p>
+    </div>
+    <ul class="vote__list">
+      <li><button class="tally" type="button" data-idea="table"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The table that won’t let it fall</span></span></button></li>
+      <li><button class="tally" type="button" data-idea="sign"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The signature pantograph</span></span></button></li>
+      <li><button class="tally" type="button" data-idea="learn"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The trebuchet that learns</span></span></button></li>
+      <li><button class="tally" type="button" data-idea="since"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The escapement clock</span></span></button></li>
+      <li><button class="tally" type="button" data-idea="flap"><canvas width="72" height="72" aria-hidden="true"></canvas><span class="tally__text"><span class="tally__n">0</span><span class="tally__name">The split-flap board</span></span></button></li>
+    </ul>
+    <div class="idea__controls"><button class="replay" id="resetVotes" type="button">Reset my votes</button></div>
+  </section>
+
+  <a class="watch" id="watch" href="https://www.youtube.com/@stuffmadehere">
+    <p class="watch__note">Opens the channel on YouTube, where all 41 videos live.</p>
+    <svg class="watch__arrow" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M12 36 36 12M16 12h20v20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square"/></svg>
+    <p class="watch__word" aria-hidden="true">Watch</p>
+  </a>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot" id="foot">
+  <div class="foot__cols">
+    <div><b>Channel</b><a href="https://www.youtube.com/@stuffmadehere">Stuff Made Here on YouTube</a><a href="https://www.youtube.com/watch?v=RpslsMqPFWA">The latest video</a></div>
+    <div><b>Community</b><a href="https://www.reddit.com/r/StuffMadeHere/">r/StuffMadeHere</a></div>
+    <div><b>This site</b><a href="/">The machines</a><a href="/about.html">About Shane and the shop</a><span>Made by a fan, 2026</span></div>
+    <div><b>This page</b><span>Six prototypes of machines he has not built: table, pantograph, trebuchet, escapement, ratchets, split-flap</span></div>
+  </div>
+  <p class="foot__legal">Stuff Made Here, a fan’s site. Not affiliated with the channel. Video titles and pictures belong to Shane Wighton.</p>
+</footer>
+
+<div class="servo-panel" id="servoPanel">
+  <div class="servo-panel__body" id="servoBody">
+    <label>P <input type="range" id="kp" min="0" max="400" value="90"><output id="kpo">90</output></label>
+    <label>I <input type="range" id="ki" min="0" max="200" value="0"><output id="kio">0</output></label>
+    <label>D <input type="range" id="kd" min="0" max="40" value="19"><output id="kdo">19</output></label>
+    <button class="link-plain" id="servoTuned" type="button">Back to tuned</button>
+  </div>
+  <button class="servo-panel__toggle" id="servoToggle" type="button" aria-expanded="false" aria-controls="servoBody">Servo scroll</button>
+</div>
+
+<script type="module" src="/src/ideas.ts"></script>
+</body>
+</html>
