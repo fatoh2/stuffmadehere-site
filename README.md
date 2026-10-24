@@ -4,6 +4,8 @@ A fan-made concept site for [Stuff Made Here](https://www.youtube.com/@stuffmade
 
 Not affiliated with Stuff Made Here. Video titles and thumbnails belong to Shane Wighton; thumbnails load from YouTube’s own image URLs. A public launch should have his OK for that use.
 
+Live: https://stuffmadehere.vercel.app (the About page is at /about). Source: https://github.com/fatoh2/stuffmadehere-site.
+
 ## Run it
 
 ```bash
@@ -13,7 +15,7 @@ npm run build      # type-check + static build into dist/
 npm run preview    # serve dist/
 ```
 
-No framework, no animation library. Vite + TypeScript, Canvas 2D and plain DOM. The whole site is static: deploy `dist/` anywhere.
+No framework, no animation library. Vite + TypeScript, Canvas 2D and plain DOM. The whole site is static: deploy `dist/` anywhere. It is on Vercel (`vercel.json` turns on clean URLs); `vercel deploy --prod` from this folder publishes the current files, and the GitHub repository is connected so a push to `main` deploys too.
 
 ## Look
 
