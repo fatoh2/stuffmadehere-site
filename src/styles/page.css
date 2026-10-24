@@ -376,3 +376,11 @@ p + p { margin-top: 0.9em; }
 html:not(.js) .lock__cyl, html:not(.js) .lock__pins, html:not(.js) .lock__menu, html:not(.js) .lock__close { display: none; }
 html:not(.js) .lock__list { position: static; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 0.25rem 1rem; padding: 0; background: none; max-width: 60vw; }
 html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--font-text); font-weight: 700; text-transform: none; letter-spacing: 0; line-height: 1.5; color: inherit; }
+
+/* landscape phones: the hoop rig needs more height than the screen gives, so the section runs taller
+   and scrolls; the text keeps clear of the pitching machine */
+@media (max-height: 520px) and (orientation: landscape) {
+  .miss { min-height: 640px; }
+  .hero { min-height: 100svh; }
+}
+
