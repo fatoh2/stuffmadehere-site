@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Not built yet: six machines for Stuff Made Here</title>
   <meta name="description" content="Six working prototypes of machines Shane Wighton has not built: a table that will not let the ball fall, a pantograph that engraves your signature, a trebuchet that learns, and more. Try them, then vote.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stuffmadehere.vercel.app/ideas">
+  <meta property="og:title" content="Not built yet: six machines for Stuff Made Here">
+  <meta property="og:description" content="Six working prototypes of machines he has not built. Try them, then vote.">
+  <meta property="og:image" content="https://stuffmadehere.vercel.app/og/ideas.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://stuffmadehere.vercel.app/og/ideas.jpg">
   <meta name="theme-color" content="#15161a">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%231d6fc4%27/%3E%3Ccircle cx=%2732%27 cy=%2736%27 r=%2714%27 fill=%27%23ff5a1f%27/%3E%3Crect x=%278%27 y=%2712%27 width=%2748%27 height=%276%27 fill=%27%23ffffff%27/%3E%3C/svg%3E">
   <script>document.documentElement.classList.add('js')</script>
@@ -35,6 +44,7 @@
       <a href="#vote">Vote</a>
       <a href="/">The machines</a>
       <a href="/about.html">About Shane</a>
+      <button class="lock__sound" id="soundToggle" data-sound-toggle type="button" aria-pressed="false">Sound off</button>
     </div>
   </nav>
 
@@ -82,7 +92,7 @@
       <div>
         <p class="idea__pitch" data-reveal>A pantograph. Four bars in a parallelogram, one pivot bolted down, and whatever you trace on the small pad the pen cuts three times larger on the plate.</p>
         <p class="idea__why" data-reveal style="--i:1">Draw on the pad. The geometry is two hundred years old and still the cheapest way to scale a hand; the machine signs the channel’s name first, then it is yours.</p>
-        <div class="idea__controls" data-reveal style="--i:2"><button class="button" id="clearPlate" type="button">Clear the plate</button></div>
+        <form class="idea__controls idea__sign" data-reveal style="--i:2" id="signForm"><label class="sr-only" for="signText">A word for the pantograph to sign</label><input class="idea__input" id="signText" type="text" maxlength="18" placeholder="Your name" autocomplete="off"><button class="button" type="submit">Sign it</button><button class="replay" id="clearPlate" type="button">Clear the plate</button></form>
       </div>
     </div>
     <figure class="idea__machine idea__machine--wide">
@@ -163,6 +173,7 @@
     <button class="link-plain" id="servoTuned" type="button">Back to tuned</button>
   </div>
   <button class="servo-panel__toggle" id="servoToggle" type="button" aria-expanded="false" aria-controls="servoBody">Servo scroll</button>
+  <button class="servo-panel__toggle servo-panel__sound" data-sound-toggle type="button" aria-pressed="false">Sound off</button>
 </div>
 
 <script type="module" src="/src/ideas.ts"></script>

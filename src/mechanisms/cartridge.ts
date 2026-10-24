@@ -1,5 +1,6 @@
 /** Mechanism 6: the blank-cartridge button. Hold to chamber, release to fire; a plain tap fires at
  *  a default charge so it is never slower than a click. From the explosive bat, axe and nut cracker. */
+import { cue } from '../lib/sound';
 import { clamp } from '../lib/motor';
 import { capture } from '../lib/pointer';
 import type { HoopHandle } from './hoop';
@@ -19,6 +20,7 @@ export function mountCartridge(el: HTMLAnchorElement, hoop: HoopHandle, hero: HT
   }
 
   function launch(c: number): void {
+    cue.bang(c);
     const r = el.getBoundingClientRect();
     const hr = hero.getBoundingClientRect();
     hoop.fire(r.left - hr.left + 18, r.top - hr.top + r.height / 2, c);

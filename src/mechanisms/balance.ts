@@ -61,6 +61,16 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
     kick(Math.cos(a) * s, Math.sin(a) * s);
   };
 
+  // keyboard: space or enter shoves the ball
+  cv.tabIndex = 0;
+  cv.setAttribute('aria-label', 'A table balancing a ball. Press space to shove the ball; the table catches it.');
+  cv.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      shove();
+    }
+  });
+
   // flick: press anywhere on the table, move, release; the ball takes the release velocity
   cv.addEventListener('pointerdown', (e) => {
     capture(cv, e);

@@ -1,6 +1,7 @@
 /** Mechanism E, the Geneva drive, and mechanism D, the pen plotter. A four-slot Geneva wheel feeds
  *  the slip out of the printer one stage per index, with the real dwell between steps; after each
  *  row lands, a plotter arm writes its note in a single-stroke lettering with pen lifts. */
+import { cue } from '../lib/sound';
 import { fit, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion } from '../lib/visible';
@@ -233,7 +234,10 @@ export function mountGeneva(o: GenevaOptions): GenevaHandle {
     if (n !== fedCount) {
       for (let i = 0; i < rows.length; i++) {
         const f = i < n;
-        if (f && !fed[i]) queue.push(i);
+        if (f && !fed[i]) {
+          queue.push(i);
+          cue.index();
+        }
         if (!f && fed[i]) {
           done[i] = [];
           const qi = queue.indexOf(i);

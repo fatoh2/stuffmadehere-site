@@ -28,6 +28,9 @@
 .idea__why { margin-top: 1rem; max-width: 46ch; color: var(--muted); }
 .idea__controls { margin-top: 1.5rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
 .idea__stat { font-weight: 700; font-variant-numeric: tabular-nums; }
+.idea__input { min-height: 3.25rem; padding: 0 1rem; font: inherit; font-weight: 700; color: var(--ink); background: var(--paper); border: 0; border-radius: var(--radius); width: 12rem; max-width: 100%; }
+.idea__input::placeholder { color: var(--muted); font-weight: 400; }
+.idea__sign .replay { color: var(--blue-ink); }
 .idea__log { margin: 1.25rem 0 0; padding: 0 0 0 1.25rem; font-variant-numeric: tabular-nums; max-width: 46ch; display: grid; gap: 0.3rem; font-size: var(--step-small); color: var(--muted); }
 .idea__log .is-hit { color: var(--ink); font-weight: 700; }
 .idea__rel { margin: 1.25rem 0 0; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 1rem; align-items: center; max-width: 46ch; }

@@ -8,6 +8,7 @@ import { mountEscapement } from './mechanisms/escapement';
 import { mountTally } from './mechanisms/ratchet';
 import { mountReveal } from './lib/reveal';
 import { reducedMotion } from './lib/visible';
+import { mountSoundToggle } from './lib/sound';
 import { latest, watchUrl } from './data/videos';
 
 const $ = <T extends HTMLElement>(sel: string): T => document.querySelector<T>(sel)!;
@@ -65,4 +66,13 @@ const control = (id: string, fn: () => void): void => {
 control('replayFlap', () => board.run());
 control('shoveBall', () => table.shove());
 control('clearPlate', () => panto.clear());
+const signForm = document.getElementById('signForm') as HTMLFormElement | null;
+const signText = document.getElementById('signText') as HTMLInputElement | null;
+signForm?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (signText?.value.trim()) panto.sign(signText.value);
+});
 control('fireAgain', () => treb.reset());
+
+/* ---------- sound, off until switched on ---------- */
+mountSoundToggle(Array.from(document.querySelectorAll<HTMLButtonElement>('[data-sound-toggle]')));

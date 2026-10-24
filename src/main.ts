@@ -11,6 +11,7 @@ import { mountCnc } from './mechanisms/cnc';
 import { mountOdometers } from './mechanisms/odometer';
 import { latest } from './data/videos';
 import { reducedMotion } from './lib/visible';
+import { mountSoundToggle } from './lib/sound';
 
 const $ = <T extends HTMLElement>(sel: string): T => document.querySelector<T>(sel)!;
 
@@ -125,3 +126,6 @@ replay('replayHero', () => heroCut.run());
 replay('replayNow', () => assembly.start());
 replay('replayMethod', () => feed.reset());
 replay('replayAbout', () => peel.reset());
+
+/* ---------- sound, off until switched on ---------- */
+mountSoundToggle(Array.from(document.querySelectorAll<HTMLButtonElement>('[data-sound-toggle]')));

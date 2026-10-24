@@ -10,6 +10,7 @@ import { strokesFor, textWidth } from './strokefont';
 
 export interface PantographHandle {
   clear(): void;
+  sign(text: string): void;
 }
 
 export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
@@ -132,10 +133,11 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
   cv.addEventListener('pointerup', up);
   cv.addEventListener('pointercancel', up);
 
-  function startDemo(): void {
-    const text = narrow() ? 'SMH' : 'STUFF MADE HERE';
-    const size = Math.min(pad.h * 0.3, (pad.w * 0.9) / Math.max(1, textWidth(text, 1)));
-    const lines = narrow() ? [text] : ['STUFF', 'MADE', 'HERE'];
+  function startDemo(custom?: string): void {
+    const text = custom ?? (narrow() ? 'SMH' : 'STUFF MADE HERE');
+    const lines = custom ? custom.split(' ').filter(Boolean).slice(0, 3) : narrow() ? [text] : ['STUFF', 'MADE', 'HERE'];
+    const longest = lines.reduce((m, l) => Math.max(m, textWidth(l, 1)), 1);
+    const size = Math.min(pad.h / (lines.length * 1.5 + 0.4), (pad.w * 0.9) / longest);
     const strokes: number[][][] = [];
     const lineH = size * 1.5;
     lines.forEach((ln, i) => {
@@ -257,7 +259,7 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
     const demoDone = (): boolean => !demo || demo.done;
     for (let i = 0; i < 4000 && !demoDone(); i++) stepDemo(0.05);
     draw();
-    return { clear: () => undefined };
+    return { clear: () => undefined, sign: () => undefined };
   }
   onVisible(cv, (v) => (visible = v), 0.15);
   let started = false;
@@ -277,6 +279,14 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
       last = null;
       demo = null;
       tracer.down = false;
+    },
+    sign(text) {
+      ictx.clearRect(0, 0, plate.w, plate.h);
+      last = null;
+      tracer.down = false;
+      userDrawing = false;
+      lastUser = -1e9;
+      startDemo(text.toUpperCase().replace(/[^A-Z0-9 .,!?'’-]/g, '').trim() || 'SMH');
     },
   };
 }

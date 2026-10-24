@@ -1,0 +1,16 @@
+/* The 404: the pick-and-place lays out the three pages it does have */
+.missing { min-height: 100svh; display: grid; align-content: center; padding: var(--margin); background: var(--dark); color: var(--dark-ink); position: relative; overflow: hidden; }
+.missing__inner { max-width: 60ch; position: relative; z-index: 2; }
+.missing .wordmark span { color: var(--steel); }
+.missing__head { margin-top: 3rem; font-family: var(--font-cut); font-weight: 400; font-size: clamp(3rem, 1rem + 9vw, 9rem); line-height: 0.95; text-transform: uppercase; letter-spacing: 0.02em; }
+.missing__lead { margin-top: 1.5rem; font-size: var(--step-lead); line-height: 1.35; color: var(--steel); max-width: 46ch; }
+.missing__path { font-family: var(--font-text); font-weight: 700; color: var(--dark-ink); background: var(--recess); padding: 0.1em 0.4em; border-radius: 3px; overflow-wrap: anywhere; }
+.missing__parts { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; }
+.missing .button { background: var(--paper); color: var(--ink); }
+.missing__note { margin-top: 2rem; font-size: var(--step-small); color: var(--steel); }
+.missing.is-live .gantry { display: block; }
+@media (max-width: 47.99em) {
+  .missing__head { margin-top: 2rem; }
+  .missing__parts { flex-direction: column; }
+  .missing .button { width: 100%; }
+}

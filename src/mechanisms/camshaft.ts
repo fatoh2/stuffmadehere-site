@@ -269,6 +269,21 @@ export function mountCamshaft(o: CamshaftOptions): void {
   fitLauncher();
   new ResizeObserver(fitLauncher).observe(lcv);
 
+  // keyboard: the list takes focus; arrows turn the shaft a row at a time, Enter opens the lifted video
+  o.ledger.tabIndex = 0;
+  o.ledger.setAttribute('aria-label', 'All 41 videos on the camshaft. Arrow keys turn the shaft, Enter opens the lifted video.');
+  o.ledger.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      theta += (e.key === 'ArrowDown' ? 1 : -1) * 0.53;
+      omega = 0;
+      idle = false;
+      lastTouch = performance.now();
+    } else if (e.key === 'Enter' && onRow >= 0 && cams[onRow]) {
+      cams[onRow].row.click();
+    }
+  });
+
   // the landed card is the one thumbnail on a phone until the visitor turns the shaft again
   const clearLanding = (): void => o.ledger.classList.remove('is-landing');
   o.ledger.addEventListener('pointerdown', clearLanding, { passive: true });

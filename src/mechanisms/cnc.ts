@@ -8,6 +8,7 @@
  *  From the pumpkin carver, the chainsaw robot and the Tormach. */
 import { DPR, palette } from '../lib/canvas';
 import { drawSprite, sprite } from '../lib/sprites';
+import { spindle } from '../lib/sound';
 import { addTicker } from '../lib/loop';
 import { onceInView, reducedMotion } from '../lib/visible';
 
@@ -90,7 +91,10 @@ export function mountCnc(host: HTMLElement, opts: CncOptions = {}): CncHandle {
     if (cv) teardown(true);
   });
 
+  let sp: ReturnType<typeof spindle> | null = null;
   function teardown(showText: boolean): void {
+    sp?.stop();
+    sp = null;
     stop?.();
     stop = null;
     cv?.remove();
@@ -275,6 +279,8 @@ export function mountCnc(host: HTMLElement, opts: CncOptions = {}): CncHandle {
     let polishFrom = polishX; // where the wheel touched down on this bar: it rolls from here without slipping
     let polished = bars.length === 0;
     sprite('buff');
+    sp = spindle();
+    let spindleOff = false;
     const sparks: Chip[] = [];
     const bandOf = (i: number): [number, number] => {
       const top = i === 0 ? 0 : (bars[i - 1].y + bars[i - 1].h + bars[i].y) / 2;
@@ -356,6 +362,11 @@ export function mountCnc(host: HTMLElement, opts: CncOptions = {}): CncHandle {
         c.y += c.vy * dt;
         c.life -= dt;
         if (c.life <= 0) chips.splice(i, 1);
+      }
+      if (!done && dwell <= 0) sp?.set(!lifted);
+      else if (done && !spindleOff) {
+        spindleOff = true;
+        sp?.stop();
       }
       if (done && !polished) {
         const b = bars[polishBar];

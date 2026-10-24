@@ -6,6 +6,7 @@ import { mountMocap } from './mechanisms/mocap';
 import { mountSorter } from './mechanisms/sorter';
 import { mountReveal } from './lib/reveal';
 import { reducedMotion } from './lib/visible';
+import { mountSoundToggle } from './lib/sound';
 
 const $ = <T extends HTMLElement>(sel: string): T => document.querySelector<T>(sel)!;
 const $$ = <T extends HTMLElement>(sel: string): T[] => Array.from(document.querySelectorAll<T>(sel));
@@ -54,3 +55,6 @@ const replay = (id: string, fn: () => void): void => {
 replay('replayName', () => nameCut.run());
 replay('replayPaint', () => painter.run());
 replay('sortAgain', () => line.run());
+
+/* ---------- sound, off until switched on ---------- */
+mountSoundToggle(Array.from(document.querySelectorAll<HTMLButtonElement>('[data-sound-toggle]')));

@@ -2,6 +2,9 @@
  *  wheel steps through the alphabet until the right flap drops, so a title arrives the way a departures
  *  board does, each letter settling in its own time. New. */
 import { reducedMotion } from '../lib/visible';
+import { cue } from '../lib/sound';
+
+let lastFlap = 0;
 
 export interface FlapHandle {
   run(): void;
@@ -46,6 +49,11 @@ export function mountSplitFlap(host: HTMLElement): FlapHandle {
       const period = 62 + (i % 5) * 6;
       wheel.timer = window.setInterval(() => {
         wheel.at = (wheel.at + 1) % ALPHABET.length;
+        const now = performance.now();
+        if (now - lastFlap > 45) {
+          lastFlap = now;
+          cue.flap();
+        }
         show(wheel);
         wheel.el.classList.remove('is-step');
         void wheel.el.offsetWidth;

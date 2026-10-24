@@ -135,6 +135,22 @@ export function mountTrebuchet(cv: HTMLCanvasElement, log: HTMLElement | null): 
     }
   }
 
+  // keyboard: arrows move the bucket; the machine starts learning again when the key is released
+  cv.tabIndex = 0;
+  cv.setAttribute('aria-label', 'A trebuchet learning the range to a bucket. Left and right arrow keys move the bucket.');
+  let keyTimer = 0;
+  cv.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    e.preventDefault();
+    targetX = Math.max(base.x + 160, Math.min(W - 36, targetX + (e.key === 'ArrowRight' ? 24 : -24)));
+    dragging = true;
+    window.clearTimeout(keyTimer);
+    keyTimer = window.setTimeout(() => {
+      dragging = false;
+      restart('Bucket moved. Learning again.');
+    }, 450);
+  });
+
   // drag the bucket and the machine starts learning again
   cv.addEventListener('pointerdown', (e) => {
     const p = localPoint(cv, e, W, H);

@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stuff Made Here, a fan’s site</title>
   <meta name="description" content="A fan-made site for Stuff Made Here, Shane Wighton’s channel of machines that won’t let you miss. All 41 videos, on mechanisms you can drive.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stuffmadehere.vercel.app/">
+  <meta property="og:title" content="Stuff Made Here, a fan’s site">
+  <meta property="og:description" content="Every section is a machine: a hoop that won’t let you miss, a camshaft of all 41 videos, titles machined out of aluminium.">
+  <meta property="og:image" content="https://stuffmadehere.vercel.app/og/home.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://stuffmadehere.vercel.app/og/home.jpg">
   <meta name="theme-color" content="#1d6fc4">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%231d6fc4%27/%3E%3Ccircle cx=%2732%27 cy=%2736%27 r=%2714%27 fill=%27%23ff5a1f%27/%3E%3Crect x=%278%27 y=%2712%27 width=%2748%27 height=%276%27 fill=%27%23ffffff%27/%3E%3C/svg%3E">
   <script>document.documentElement.classList.add('js')</script>
@@ -36,6 +45,7 @@
       <a href="#watch">Watch</a>
       <a href="/about.html">The About page</a>
       <a href="/ideas.html">Not built yet</a>
+      <button class="lock__sound" id="soundToggle" data-sound-toggle type="button" aria-pressed="false">Sound off</button>
     </div>
   </nav>
 
@@ -314,6 +324,7 @@
     <button class="link-plain" id="servoTuned" type="button">Back to tuned</button>
   </div>
   <button class="servo-panel__toggle" id="servoToggle" type="button" aria-expanded="false" aria-controls="servoBody">Servo scroll</button>
+  <button class="servo-panel__toggle servo-panel__sound" data-sound-toggle type="button" aria-pressed="false">Sound off</button>
 </div>
 
 <script type="module" src="/src/main.ts"></script>

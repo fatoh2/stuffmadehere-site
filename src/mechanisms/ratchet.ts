@@ -5,6 +5,7 @@ import { axis, stepAxis, type Axis } from '../lib/motor';
 import { bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { reducedMotion } from '../lib/visible';
+import { cue } from '../lib/sound';
 
 const KEY = 'smh-votes';
 const TEETH = 12;
@@ -100,9 +101,11 @@ export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonEle
 
   const vote = (c: Counter): void => {
     c.n++;
+    cue.pawl();
     counts[c.key] = c.n;
     save(counts);
     c.out.textContent = String(c.n);
+    c.cv.closest('button')?.setAttribute('aria-label', `${c.cv.closest('button')?.querySelector('.panel__name, .tally__name')?.textContent ?? 'Vote'}: ${c.n} ${c.n === 1 ? 'vote' : 'votes'}`);
     c.wheel.p -= (Math.PI * 2) / TEETH; // the wheel turns one tooth (and the pawl lets it, one way only)
     c.pawl = 1;
     if (navigator.vibrate) navigator.vibrate(8);

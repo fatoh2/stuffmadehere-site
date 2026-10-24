@@ -2,6 +2,7 @@
  *  A two-axis rig on a rail predicts where a thrown ball will come down and drives there under
  *  motor limits (speed and acceleration per axis, no overshoot). From "Moving hoop won't let you
  *  miss" (2020) and "I made a ball seeking hoop" (2022). */
+import { cue } from '../lib/sound';
 import { axis, stepAxis, clamp } from '../lib/motor';
 import { fit, palette, metals, bar, tslot, disc, bolt } from '../lib/canvas';
 import { sprite, drawSprite } from '../lib/sprites';
@@ -176,6 +177,15 @@ export function mountHoop(o: HoopOptions): HoopHandle {
   window.addEventListener('pointerup', endDrag);
   window.addEventListener('pointercancel', () => (drag = null));
 
+  cv.tabIndex = 0;
+  cv.setAttribute('aria-label', 'A hoop on a two-axis rig that moves to catch whatever is thrown. Press space and the pitching machine throws.');
+  cv.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      autoThrow();
+    }
+  });
+
   function autoThrow(): void {
     // a real pitching machine is aimed: pick a landing point the rig can reach and solve the throw
     const x = g.pitchX - (phone ? 50 : 70);
@@ -311,6 +321,7 @@ export function mountHoop(o: HoopOptions): HoopHandle {
         if (Math.abs(b.x - rig.x.p) < 38) {
           b.state = 'made';
           made++;
+          cue.swish();
           flash = 1;
           updateScore();
           if (b.fired && o.onCatch) o.onCatch(b);
