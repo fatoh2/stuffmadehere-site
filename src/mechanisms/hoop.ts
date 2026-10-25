@@ -158,6 +158,7 @@ export function mountHoop(o: HoopOptions): HoopHandle {
     throwBall(x, y, vx * k, vy * k, false);
   }
   function throwBall(x: number, y: number, vx: number, vy: number, fired: boolean): void {
+    homing = 0; // a throw interrupts homing: the rig must answer it
     // a throw is capped so that even a wild flick stays inside the section, where the walls return it
     const speed = Math.hypot(vx, vy);
     const cap = 2400;
@@ -366,7 +367,7 @@ export function mountHoop(o: HoopOptions): HoopHandle {
     muzzle = Math.max(0, muzzle - dt * 4);
     pitch.kick = Math.max(0, pitch.kick - dt * 2.5);
     pitch.spin += dt * (6 + pitch.kick * 50);
-    if (!still && visible && !drag && now > startAt && now - lastThrow > 4200 && !balls.some((b) => b.state === 'fly')) autoThrow();
+    if (!still && visible && !drag && !homing && now > startAt && now - lastThrow > 4200 && !balls.some((b) => b.state === 'fly')) autoThrow();
     draw();
   });
 

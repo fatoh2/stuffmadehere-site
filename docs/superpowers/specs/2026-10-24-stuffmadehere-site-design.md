@@ -228,3 +228,22 @@ Asked to remove anything generic and polish across devices. The copy had no stoc
 
 Across the site every type size is now in rem, so the browser's font-size setting scales everything; the home page's launcher button wraps on phones instead of forcing the layout wider; and every section on all three pages is one screen at 1920×1080, 1440×900, 1366×768 and the four phone sizes. Inspector results after the round: the prototypes and About pages pass; the home page keeps two deliberate failures (the three-line hero mark on phones, and a video caption the meter reads as a kicker above the next heading).
 
+## 14. Eighth round: the draft built (2026-10-25, overnight)
+
+Twelve of the thirteen proposals in `2026-10-25-next-round-draft.md` were built and deployed in five batches; the thirteenth (his own words) needs him, not code.
+
+- **A 404 page that is a machine**: the pick-and-place lays out the three pages it does have, with the missing path named.
+- **Share cards**: one per page, rendered from the site by `scripts/og.py` after each machine has settled, as JPEG in `public/og/`.
+- **Page changes as part changes**: cross-document view transitions slide the old page out along its rail and the next in, 300 ms, none under reduced motion.
+- **Sound, off by default**: every cue synthesised (the Geneva's index click, the pawl, the cartridge's bang, the flap, the spindle's whine following the cutter, the ball through the net); the switch is in the lock menu on phones and beside the servo panel on desktops, remembered per browser.
+- **Keyboard**: arrows turn the drum and move the bucket, space shoves the ball and has the pitching machine throw, the pantograph signs a typed word, the tally counters announce their count, focus rings on every canvas.
+- **Live numbers**: `api/channel.ts` reads the channel's statistics and latest upload with a YouTube API key (cached an hour at the edge) and falls back to the built-in figures; the nameplate drums roll on to the live figures and the escapement counts from the real last upload.
+- **The real vote**: `api/vote.ts` keeps totals on a KV store when one is attached, fifty taps a day per address; the panel shows them and stops offering a reset. Without a store it says so and the page keeps its local counts.
+- **Tilt the table yourself**: the balancing table takes the phone's orientation as a second input, opt-in, with the iOS permission prompt.
+- **Keep the plate**: the pantograph's engraving downloads as a PNG with a small mark.
+- **Homing on first load**: the hoop rig runs each axis to its limit switch, clicks, and comes home, once per browser.
+- **Parts drawers**: a new home-page section, six drawers in a steel cabinet, one per family, on their slides with a soft close; a drawer opens only as far as keeps the section on one screen and its bin scrolls.
+- **Build log**: a fourth page, `log.html`, sixteen frames of the site's own build on a hand-cranked projector with a Geneva intermittent, plus an index of the frames.
+
+Every page passes the design inspector except the home page's two deliberate failures (the three-line hero mark on phones and a video caption read as a kicker). Deployed through the Git connection; the production functions answer as designed without their keys.
+

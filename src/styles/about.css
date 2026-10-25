@@ -189,3 +189,13 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .sheet__cell:nth-child(n + 5) { display: none; }
 }
 
+/* ---------- portrait tablets ---------- */
+@media (min-width: 48em) and (max-width: 63.99em) {
+  .shop__floor { height: 42svh; min-height: 320px; }
+  .sorter { height: 40svh; min-height: 320px; }
+  .shop, .builds { padding-top: max(5svh, 80px); }
+  .sheet__detail--main { display: none; }
+  .sheet__list { font-size: var(--step-body); gap: 0.6rem; }
+  .sheet__block { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+

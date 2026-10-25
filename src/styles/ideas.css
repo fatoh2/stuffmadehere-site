@@ -139,3 +139,18 @@
   .vote__head .idea__pitch { font-size: 1.125rem; }
 }
 
+/* ---------- portrait tablets: one screen per section there too ---------- */
+@media (min-width: 48em) and (max-width: 63.99em) {
+  .idea__machine canvas { height: clamp(260px, 40svh, 460px); }
+  .idea__machine--wide canvas { height: clamp(240px, 36svh, 420px); }
+  .idea__machine--clock canvas { height: clamp(220px, 30svh, 360px); }
+  .idea__rel { display: none; }
+  .idea__log li:nth-child(n + 4) { display: none; }
+}
+/* the shortest phones: the table and the pantograph give up a little canvas */
+@media (max-width: 47.99em) and (max-height: 780px) {
+  .idea__machine canvas { height: clamp(200px, 33svh, 320px); }
+  .idea__machine--wide canvas { height: clamp(200px, 32svh, 300px); }
+  .idea__controls { gap: 0.5rem; margin-top: 0.5rem; }
+}
+

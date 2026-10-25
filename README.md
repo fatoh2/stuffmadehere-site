@@ -4,7 +4,7 @@ A fan-made concept site for [Stuff Made Here](https://www.youtube.com/@stuffmade
 
 Not affiliated with Stuff Made Here. Video titles and thumbnails belong to Shane Wighton; thumbnails load from YouTube’s own image URLs. A public launch should have his OK for that use.
 
-Live: https://stuffmadehere.vercel.app (the About page is at /about, the prototypes page at /ideas). Source: https://github.com/fatoh2/stuffmadehere-site.
+Live: https://stuffmadehere.vercel.app (the About page at /about, the prototypes at /ideas, the build log at /log). Source: https://github.com/fatoh2/stuffmadehere-site.
 
 ## Run it
 
@@ -29,9 +29,15 @@ The machine parts are photoreal renders (`public/parts/*.png`, generated with Hi
 index.html                 the home page, readable with script off
 about.html                 the About page: Shane, the shop, what he builds, how he works
 ideas.html                 Not built yet: six prototypes of machines he has not made, and a vote
+log.html                   Build log: the making of this site on a hand-cranked projector
+404.html                   No such part: the pick-and-place lays out the pages it does have
+api/                       serverless functions: live channel figures, the counted vote
+scripts/og.py              renders the share cards into public/og/
 src/main.ts                mounts the home page's mechanisms
 src/about.ts               mounts the About page's
 src/ideas.ts               mounts the prototypes page's
+src/log.ts                 mounts the projector
+src/lib/sound.ts           the synthesised sound cues and the switch
 src/data/portrait.ts       the halftone dots the painting robot sprays (from a thumbnail of his)
 src/data/videos.ts         the 41 videos (id, title, date, views, family); regenerate when he uploads
 src/mechanisms/            one module per mechanism, each `mount(...)`
@@ -60,6 +66,8 @@ docs/superpowers/specs/    the approved design document
 | About | Apple-peel reveal: a blade peels the skin off the text in one continuous strip | Self-peeling apple (2026) |
 | Headings | The same cut, from a solid bar of ink, on the hoop and method headings when they first come into view | Pumpkin carver, chainsaw robot, the Tormach |
 | The numbers | A riveted machine nameplate; every figure is a set of odometer drums that roll up from zero when the plate comes into view | Every machine in his shop has one |
+| Parts drawers | Six drawers in a steel cabinet, one per family of machine, that run out on their slides with a soft close, one at a time, the thumbnails inside as parts in bins | New |
+| First visit | The hoop rig homes: each axis runs to its limit switch, clicks, and comes home, once per browser | Every machine powers up this way |
 
 Nothing on the site is a stock block. The numbers are a nameplate with odometer drums, not a tile grid; "How he works" on the About page is an engineering drawing sheet with numbered notes, detail views and a title block, not three columns; the vote on the prototypes page is a control panel with push buttons and counter windows, not a card grid; entrances index into place in four stepper-motor steps rather than fading up; and the trebuchet's log is a printed tape. Type sizes are set in rem throughout, so the whole site scales with the device's font setting.
 
@@ -80,7 +88,15 @@ Nothing on the site is a stock block. The numbers are a nameplate with odometer 
 | Sign small, engrave big | A pantograph (four bars in a parallelogram, one pivot fixed) that engraves whatever you draw on the pad three times larger on the plate; it signs the channel's name first in single-stroke letters | New, after the handwriting plotter |
 | A trebuchet that learns | Fires, measures the landing, moves its own counterweight by the secant through its last two shots, and fires again until the ball drops into the bucket you can drag; the release scatters, so it keeps a log | New |
 | Days since the last video | An anchor escapement over a thirty-tooth wheel, driven by the pendulum, that lets one tooth past per second; the count is true to the second from the latest upload | New |
-| Vote | Ratchet-and-pawl tally counters, one per prototype; a tap turns the wheel a tooth and the pawl drops behind it; counts live in the browser only | New |
+| Vote | Ratchet-and-pawl tally counters, one per prototype; a tap turns the wheel a tooth and the pawl drops behind it; counts live in the browser, or on the server when a store is attached | New |
+
+## The build log's machine
+
+| Where | Mechanism | From |
+| --- | --- | --- |
+| Build log | A hand-cranked film projector: the crank turns a Geneva driver, the four-slot wheel pulls the film one frame per turn with the real dwell, the shutter covers the gate while the film moves; sixteen frames tell the site's own build, cranked by the handle, the film, the wheel, the keys or the buttons | The Geneva from the method section |
+
+Every machine also works from the keyboard: arrows turn the drum and move the trebuchet's bucket, space shoves the ball or has the pitching machine throw, the pantograph signs a typed word, the counters announce their count.
 
 Every mechanism pauses off screen, has a reduced-motion state, and never hides content when script is off. Each one can be run again from its section: Cut it again, Assemble it again, Feed it again, Peel it again.
 
