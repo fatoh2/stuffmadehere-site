@@ -1,7 +1,7 @@
 /* =========================================================
    BUILD LOG: a hand-cranked projector
    ========================================================= */
-.lhero { position: relative; min-height: 70svh; display: grid; grid-template-rows: auto 1fr; padding: var(--margin); background: var(--dark); color: var(--dark-ink); }
+.lhero { position: relative; min-height: 100svh; display: grid; grid-template-rows: auto 1fr; padding: var(--margin); background: var(--dark); color: var(--dark-ink); }
 .lhero__body { align-self: center; padding-block: 4svh 3rem; max-width: 60ch; }
 .lhero__head { font-size: clamp(3rem, 1rem + 9vw, 9rem); }
 .lhero__lead { margin-top: 1.5rem; font-size: var(--step-lead); line-height: 1.35; color: var(--steel); max-width: 48ch; }
@@ -42,7 +42,7 @@
   .reel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 47.99em) {
-  .lhero { min-height: 0; padding-bottom: 2rem; }
+  .lhero { padding-bottom: 2rem; }
   .lhero__lead { font-size: 1.0625rem; }
   .projector { padding-top: 4rem; padding-bottom: 4svh; }
   .projector__machine canvas { height: clamp(280px, 46svh, 420px); }
