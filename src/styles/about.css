@@ -197,5 +197,7 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .sheet__detail--main { display: none; }
   .sheet__list { font-size: var(--step-body); gap: 0.6rem; }
   .sheet__block { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .sheet__detail figcaption { display: none; }
+  .sheet { row-gap: 1rem; }
 }
 
