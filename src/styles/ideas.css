@@ -173,3 +173,6 @@ ol.idea__log { background: var(--paper); color: var(--muted); padding: 0.75rem 1
   ol.idea__log li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
 
+.idea__tag { left: 1rem; bottom: 1rem; }
+.idea__tag--pad { left: 1rem; top: 1rem; bottom: auto; }
+.idea--learn .idea__tag { left: auto; right: 1rem; }

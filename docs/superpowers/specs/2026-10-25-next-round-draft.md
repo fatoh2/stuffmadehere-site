@@ -129,3 +129,9 @@ drawing sheet a voice that is his. Needs him, not code.
 
 1, 2, 3 and 5 first (they make the concept presentable as a real link), then 6 as the next page, then
 7 and 8 as quick wins on the prototypes page. 4 only after listening.
+
+## Added 2026-10-25, from the owner's list of video machines
+
+- **The self-correcting putter** (home, after the hoop). Status: built, putter head rendered.
+- **The egg cracker** on the method heading. Status: built, egg rendered.
+- **The apple peeler**: already on the About section since round five.

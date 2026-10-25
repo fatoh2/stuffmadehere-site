@@ -2,6 +2,8 @@ import { mountServo } from './mechanisms/servo';
 import { mountLock } from './mechanisms/lock';
 import { mountHoop } from './mechanisms/hoop';
 import { mountCartridge } from './mechanisms/cartridge';
+import { mountPutter } from './mechanisms/putter';
+import { mountEgg } from './mechanisms/egg';
 import { mountPickPlace } from './mechanisms/pickplace';
 import { mountGimbal } from './mechanisms/gimbal';
 import { mountCamshaft } from './mechanisms/camshaft';
@@ -52,6 +54,7 @@ mountLock(
   $('#lock'),
   [
     { id: 'miss', label: 'Won’t let you miss' },
+    { id: 'putt', label: 'Bad aim, good putt' },
     { id: 'now', label: 'Building now' },
     { id: 'all', label: 'All 41' },
     { id: 'drawers', label: 'Parts drawers' },
@@ -91,6 +94,10 @@ $('#heroWatch').addEventListener('click', (e) => {
   window.setTimeout(() => gimbal.play(), 700);
 });
 
+/* ---------- bad aim, good putt: the self-correcting club ---------- */
+const putter = mountPutter($('#green'), $('#puttRead'), $('#puttStat'));
+$('#puttBad').addEventListener('click', () => putter.putt());
+
 /* ---------- building now: assembled by the gantry ---------- */
 const assembly = mountPickPlace($('#now'));
 
@@ -125,7 +132,7 @@ void fetchLive().then((live) => {
 });
 const heroCut = mountCnc($('#heroMark'), { seconds: 5, textureUrl: '/parts/milled.jpg', textureScale: 0.55 });
 mountCnc($('#miss-h'), { seconds: 2.2 });
-mountCnc($('#method-h'), { seconds: 2.4 });
+const egg = mountEgg($('#method-h'));
 
 /* ---------- replay controls: every machine can be run again on demand ---------- */
 const replay = (id: string, fn: () => void): void => {
@@ -136,7 +143,10 @@ const replay = (id: string, fn: () => void): void => {
 };
 replay('replayHero', () => heroCut.run());
 replay('replayNow', () => assembly.start());
-replay('replayMethod', () => feed.reset());
+replay('replayMethod', () => {
+  feed.reset();
+  egg.reset();
+});
 replay('replayAbout', () => peel.reset());
 
 /* ---------- sound, off until switched on ---------- */

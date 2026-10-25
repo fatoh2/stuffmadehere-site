@@ -5,6 +5,7 @@
 import { axis, stepAxis, type Axis } from '../lib/motor';
 import { bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
+import { startGhost, stepGhost, drawGhost, type GhostState } from '../lib/ghost';
 import { VelocityTracker, capture, localPoint } from '../lib/pointer';
 import { onVisible, reducedMotion } from '../lib/visible';
 import { drawSprite, sprite, texture } from '../lib/sprites';
@@ -36,6 +37,11 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
   let lastShove = performance.now() + 1500;
   let visible = true;
   let drag: VelocityTracker | null = null;
+  // a ghost hand flicks the ball once or twice until the visitor does it themselves
+  let ghost: GhostState | null = null;
+  let interacted = false;
+  let demos = 0;
+  let demoAt = 0;
   let plateFill: CanvasPattern | null = null;
   sprite('servo');
   texture('milled');
@@ -81,6 +87,8 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
 
   // flick: press anywhere on the table, move, release; the ball takes the release velocity
   cv.addEventListener('pointerdown', (e) => {
+    interacted = true;
+    ghost = null;
     capture(cv, e);
     drag = new VelocityTracker(110);
     const p = localPoint(cv, e, W, H);
@@ -240,6 +248,7 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
     ctx.stroke();
     ctx.restore();
     bolt(ctx, cx, cy + R * 0.2 + 6, 4, M.steel);
+    if (ghost) drawGhost(ctx, ghost, P.ink);
   }
 
   if (reducedMotion()) {
@@ -249,6 +258,23 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
   onVisible(cv, (v) => (visible = v), 0.15);
   addTicker((dt, now) => {
     if (!visible) return;
+    if (!demoAt) demoAt = now + 1500;
+    if (ghost) {
+      stepGhost(ghost, dt);
+      if (ghost.done) ghost = null;
+    } else if (!interacted && demos < 2 && !drag && !ball.off && !tilting && now > demoAt) {
+      demos++;
+      demoAt = now + 16000;
+      lastShove = now + 3000;
+      const a = Math.random() * Math.PI * 2;
+      const x0 = cx + ball.x;
+      const y0 = cy + ball.y;
+      ghost = startGhost(x0, y0, x0 + Math.cos(a) * 70, y0 + Math.sin(a) * 70, 0.22, (gh) => {
+        const sp = Math.hypot(gh.vx, gh.vy);
+        const k = sp > 620 ? 620 / sp : 1;
+        kick(gh.vx * k, gh.vy * k);
+      });
+    }
     const n = 2;
     for (let i = 0; i < n; i++) step(dt / n, now);
     draw();

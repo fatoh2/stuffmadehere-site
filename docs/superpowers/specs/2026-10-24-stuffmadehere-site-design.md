@@ -257,3 +257,59 @@ The phone menu (2026-10-25): the plain "Menu" box was the one piece of chrome th
 
 The owner found the machines built overnight still looked like simple shapes, which they were: the home page's parts were renders from round two, but the six on the prototypes page, the three on the About page and the projector's crank were canvas primitives. Thirteen parts were rendered with GPT Image 2 (0.5 credit each) and cut out (1 credit each), about 20 credits, approved in advance: a hobby servo, a socket-head pivot, a cast counterweight, a steel bucket, a brass escape wheel, a steel anchor with ruby pallets, a brass pendulum bob, a twelve-tooth ratchet wheel, a hooked pawl, a spray head, a motion-capture camera on its bracket, an aluminium diverter paddle, and a cast crank with a wooden grip. Where a part already existed it was reused: the plotter's nine-sliced arm link is now the pantograph's four bars and the trebuchet's beam and legs, the plotter's pen is the pantograph's stylus and engraver, the hoop's rail carriage carries the painting head, and the milled-aluminium photograph fills the balancing plate and the engraving plate. The balancing table's servos moved to the base with pushrods to the plate's rim, which is how a real ball-and-plate rig is built and keeps the whole machine inside its canvas. Each pivot point was measured from the cut-out's own hole (the pawl at 0.18 across, the crank hub at 0.12 across and 0.79 down, the anchor's at the top centre), so every part turns about the right spot. The drawn versions remain as fallbacks until the renders load.
 
+## 16. Round ten (2026-10-25): two more machines from the videos
+
+The owner: "there are more ideas for mechanical interactive animations from videos such as the golf
+club, the apple peeler, and also the egg breaker that maybe breaks to show a sentence or title". The
+apple peeler already runs on the About section (the text peels). The other two were built:
+
+- **Bad aim, good putt** (`#putt`, `src/mechanisms/putter.ts`), a new one-screen section after the
+  hoop. A putting green from above. The visitor drags back from the ball; the club swings along that
+  line and, during the downswing, its face motor (7 rad/s, 140 rad/s²) turns the head toward the hole
+  by up to 40° each way while a governor sets the pace from the distance (rolling deceleration 230
+  px/s²). The readout prints the aim error, then the face angle and pace factor, or "the face only
+  turns 40°" on an honest miss. Every drop re-tees further from a new hole; a miss resets the streak.
+  Idle, it putts badly by itself every five to seven seconds. Space or the "Putt badly" button does
+  the same; the canvas takes touch drags. Parts scale with the green (a unit of min(W, H)/30).
+- **The egg cracker** (`src/mechanisms/egg.ts`) replaces the CNC cut on the method heading. The
+  title's letters are wrapped per word (letters are inline blocks, so words stay whole) and hidden;
+  a canvas above the heading holds an egg in two gripper fingers (servo renders and nine-sliced arm
+  links). A blade on a motor axis comes down, the egg jiggles on a spring, a jagged crack runs round
+  the waist, the halves part on a spring and the letters leave the gap one every 48 ms, each on a
+  ballistic path solved to land exactly on its slot, bouncing once; the yolk lands after the last
+  letter as the full stop. Out of view or after seven seconds the title is simply shown, so nothing
+  can stay hidden. "Run it again" re-feeds the slip and cracks another egg.
+- Servo stops, the lock's pin stacks and the phone door gained the putt section; the hero lead now
+  counts eight machines from the videos.
+
+Measured in headless Chrome: no page errors; both sequences complete on desktop and phone; every home
+section exactly one screen at 375×667, 390×844, 430×932, 768×1024, 1366×768 and 1440×900; no
+horizontal overflow; lint clean. The putter head (top-down, milled aluminium with a dark face plate, anchored at the head's own
+centre, 0.36 of its height, measured from the cut-out) and the egg (side view, light brown) were
+rendered on the owner's yes: two renders plus background removal, about 3 credits.
+
+### 16a. Telling the visitor what can be worked
+
+The owner: "some sections are not clear for the viewer, for example in the basketball section there's a
+ball that we can control but the user doesn't know that the ball can be controlled." An audit found the
+instructions lived in body text, easy to skip and hidden on phones for the putter, and nothing sat on
+the control itself. Two devices, both from the shop:
+
+- **Placards.** Every control that can be worked carries a small riveted aluminium tag with the
+  instruction in the machine's own words, placed on the control: "Drag anywhere and let go to throw"
+  on the hoop canvas (on phones "Hold the ball, flick it" above the rack), "Drag back from the ball,
+  let go" on the green, "Scroll or swipe the list" on the ledger, "Pull a drawer" on the cabinet, "Move
+  across the floor" on the shop, "Flick the ball", "Draw on the pad", "Drag the bucket" on the
+  prototypes, "Turn the crank, or wind the film" on the projector. One `.tag` style, milled texture and
+  two rivets, sentence case at 0.8125rem.
+- **Ghost hands** (`src/lib/ghost.ts`). The hoop, the putter and the balancing table each show their
+  own gesture once the section has been in view for about 1.5 s and the visitor has not touched it: a
+  fingertip ring appears, drags along the real path with a dotted trail (on a phone the hoop's hand picks
+  the ball off the rack), lets go, and the machine does the real thing with the ring's velocity. It
+  repeats once after 16 s if still untouched, never after the visitor's first press, and never under
+  reduced motion.
+
+Checked in headless Chrome at desktop and phone: the hoop catches the ghost's throw, the putter sinks
+the ghost's putt, the table saves the ghost's flick; no page errors; every section still one screen on
+four pages at four sizes; lint clean.
+

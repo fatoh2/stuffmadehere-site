@@ -49,6 +49,7 @@
     <div class="lock__list" id="lockList">
       <a href="#top">Home</a>
       <a href="#miss">Won’t let you miss</a>
+      <a href="#putt">Bad aim, good putt</a>
     <a href="#now">Building now</a>
       <a href="#all">All 41</a>
       <a href="#drawers">Parts drawers</a>
@@ -73,7 +74,7 @@
   </h1>
 
   <div class="hero__bottom">
-    <p class="hero__lead" data-rise style="--i:2">Shane Wighton builds machines that do the hard part for you. Every section of this site is a machine too, six of them from his videos and six he has not built yet.</p>
+    <p class="hero__lead" data-rise style="--i:2">Shane Wighton builds machines that do the hard part for you. Every section of this site is a machine too, eight of them from his videos and six he has not built yet.</p>
     <a class="button" id="heroWatch" href="#now" data-rise style="--i:3">Watch the latest video</a>
   </div>
   <button class="replay" id="replayHero" type="button" hidden>Cut it again</button>
@@ -83,7 +84,8 @@
 <section class="miss" id="miss" aria-labelledby="miss-h">
   <canvas class="miss__rig" id="rig" aria-hidden="true"></canvas>
   <p class="miss__score" id="score" aria-live="polite"></p>
-  <div class="rack" id="rack" aria-hidden="true"></div>
+  <p class="tag miss__tag">Drag anywhere and let go to throw</p>
+  <div class="rack" id="rack" aria-hidden="true"><span class="tag rack__tag">Hold the ball, flick it</span></div>
   <div class="miss__bottom">
     <div class="miss__head">
       <h2 class="head cnc" id="miss-h"><span class="cnc__text"><span class="hero__line">Won’t let</span><span class="hero__line">you miss</span></span></h2>
@@ -97,6 +99,25 @@
 </section>
 
 <main>
+
+  <!-- ============ BAD AIM, GOOD PUTT ============ -->
+  <section class="putt section wrap" id="putt" aria-labelledby="putt-h">
+    <div class="putt__text">
+      <h2 class="head" id="putt-h">Bad aim, good putt</h2>
+      <p class="putt__pitch">His golf club reads the swing and turns its face in the last few milliseconds, so the ball goes where the hole is, not where the golfer aimed.</p>
+      <p class="putt__why">Drag back from the ball and let go. Aim as badly as you like: the face turns up to 40 degrees and a governor sets the pace. Past that, even this club misses. Every ball that drops moves the hole further away.</p>
+      <div class="putt__controls">
+        <button class="button" id="puttBad" type="button">Putt badly</button>
+        <output class="putt__stat" id="puttStat">0 of 0 dropped</output>
+      </div>
+      <figure class="putt__rel"><a href="https://www.youtube.com/watch?v=2OfjZ3ORJfc"><img loading="lazy" src="https://i.ytimg.com/vi/2OfjZ3ORJfc/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “Robot golf vs holes that keep getting harder”"></a><figcaption>From <a class="link" href="https://www.youtube.com/watch?v=o5Cv9fvajrc">My self correcting golf club</a> (2020) and <a class="link" href="https://www.youtube.com/watch?v=2OfjZ3ORJfc">Robot golf vs holes that keep getting harder</a> (2026).</figcaption></figure>
+    </div>
+    <figure class="putt__green">
+      <canvas id="green" aria-label="A putting green seen from above. Drag back from the ball and let go; the club corrects its face and the ball drops. Space putts with a bad aim."></canvas>
+      <output class="putt__read" id="puttRead" aria-live="polite"></output>
+      <p class="tag putt__tag">Drag back from the ball, let go</p>
+    </figure>
+  </section>
 
   <!-- ============ BUILDING NOW ============ -->
   <section class="now wrap" id="now" aria-labelledby="now-h">
@@ -140,6 +161,7 @@
       <h2 class="all__head" id="all-h">All 41 videos, in order</h2>
       <p class="all__note">Turn the shaft to move through them. Each lobe is one video; the taller the lobe, the more it has been watched.</p>
       <div class="ledger" id="ledger" data-own-wheel>
+        <p class="tag ledger__tag">Scroll or swipe the list</p>
         <div class="camshaft" id="camshaft" aria-hidden="true"><canvas></canvas></div>
         <div class="ledger__roll" id="ledgerRoll">
         <p class="ledger__year nums">2020</p>
@@ -258,6 +280,7 @@
       <p class="lead drawers__lead" data-reveal>The same 41, sorted into six drawers by what the machine does. Pull one; it runs out on its slides and closes softly. One at a time, as in any shop.</p>
     </div>
     <div class="cabinet plate" id="cabinet">
+      <p class="tag cabinet__tag">Pull a drawer</p>
       <span class="rivet rivet--tl" aria-hidden="true"></span><span class="rivet rivet--tr" aria-hidden="true"></span><span class="rivet rivet--bl" aria-hidden="true"></span><span class="rivet rivet--br" aria-hidden="true"></span>
       <div class="drawer" data-family="cant-miss">
         <button class="drawer__front" type="button" aria-expanded="false" aria-controls="drawer-cant-miss"><span class="drawer__label">Can’t miss</span><span class="drawer__note">Hoops, clubs, bows and launchers that refuse to let you miss</span><span class="drawer__count nums">10</span><span class="drawer__handle" aria-hidden="true"></span></button>
@@ -336,9 +359,9 @@
   <!-- ============ HOW A BUILD GOES ============ -->
   <section class="method section wrap" id="method" aria-labelledby="method-h">
     <div class="method__text">
-      <h2 class="head cnc" id="method-h"><span class="cnc__text">How a build goes</span></h2>
+      <h2 class="head egg" id="method-h"><span class="egg__text">How a build goes</span></h2>
       <p>Every video is the same fight: a problem nobody has solved, a machine that does not work yet, and the weeks it takes until it does. The slip prints one stage per turn of the drive.</p>
-      <button class="replay" id="replayMethod" type="button" hidden>Feed it again</button>
+      <button class="replay" id="replayMethod" type="button" hidden>Run it again</button>
     </div>
     <div class="method__machine">
       <div class="printer" id="printer"><canvas aria-hidden="true"></canvas></div>

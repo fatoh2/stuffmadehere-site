@@ -206,3 +206,4 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .sorter { height: 38svh; min-height: 260px; }
 }
 
+.shop__tag { left: 1rem; bottom: 1rem; }

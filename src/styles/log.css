@@ -11,7 +11,7 @@
 
 .projector { background: var(--ink); color: var(--paper); padding-top: max(6svh, 96px); }
 .projector__grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: clamp(2rem, 4vw, 4rem); align-items: center; }
-.projector__machine { margin: 0; }
+.projector__machine { margin: 0; position: relative; }
 .projector__machine canvas { display: block; width: 100%; height: clamp(320px, 66svh, 680px); touch-action: none; border-radius: 6px; }
 .projector__count { font-weight: 700; color: var(--steel); }
 .projector__title { margin-top: 0.5rem; font-family: var(--font-display); font-weight: 900; font-size: clamp(1.6rem, 1rem + 1.8vw, 2.6rem); line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
@@ -53,3 +53,5 @@
   .reel { grid-template-columns: 1fr; gap: 1rem; }
   .frames { padding-block: 4svh; }
 }
+
+.projector__tag { left: 1rem; bottom: 1rem; }

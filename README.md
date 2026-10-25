@@ -1,6 +1,6 @@
 # Stuff Made Here, a fan’s site
 
-A fan-made concept site for [Stuff Made Here](https://www.youtube.com/@stuffmadehere), Shane Wighton’s channel of machines that won’t let you miss. Every section is driven by a mechanism with simulated physics rather than decorated with one. Six mechanisms come from his videos, six are new.
+A fan-made concept site for [Stuff Made Here](https://www.youtube.com/@stuffmadehere), Shane Wighton’s channel of machines that won’t let you miss. Every section is driven by a mechanism with simulated physics rather than decorated with one. Eight mechanisms come from his videos, six are new.
 
 Not affiliated with Stuff Made Here. Video titles and thumbnails belong to Shane Wighton; thumbnails load from YouTube’s own image URLs. A public launch should have his OK for that use.
 
@@ -48,26 +48,29 @@ docs/superpowers/specs/    the approved design document
 .taste-skill/direction.json  the art-direction sheet the layout follows
 ```
 
-## The twelve mechanisms
+## The fourteen mechanisms
 
 | Where | Mechanism | From |
 | --- | --- | --- |
 | Hero | CNC: the name starts as a solid bar of milled aluminium; a roughing pass and a finishing pass leave the letters standing, chips fly, then a buffing pad sweeps each bar and polishes the scalloped part into crisp type | Pumpkin carver, chainsaw robot, the Tormach |
 | Won’t let you miss | The hoop: a two-axis rig predicts where your throw lands and drives there under motor limits | Moving hoop (2020), ball-seeking hoop (2022) |
 | Won’t let you miss | Blank-cartridge button: hold to chamber, release to fire a ball the hoop catches, which opens the latest video | Explosive bat, axe, nut cracker |
+| Bad aim, good putt | The self-correcting putter on a green seen from above: drag back from the ball and let go; the club swings along your line and in the last milliseconds its face motor turns the head toward the hole (40° each way, under a speed and acceleration limit) while a governor sets the pace, so the ball drops however bad the aim. Past the motor’s travel it misses honestly. Every ball that drops moves the hole further off; when nobody plays it putts badly by itself | Self-correcting golf club (2020), autocorrect mini golf club and robot golf vs holes that keep getting harder (2026) |
 | Top right | Pin-tumbler navigation: one pin stack per section, set at the shear line as you scroll. On phones the same lock in its door form: a deadbolt escutcheon; tap it and the key bow turns, the bolt draws back with a click, and the menu swings in from the edge like a door, the section you are in marked by its set pin | The unpickable locks |
 | Everywhere | Servo scroll with detents: the wheel sets a target, a PID loop drives the page, and the top of every section is a notch the page indexes into; a flick carries you one section, leaving takes a push, and the page strains against the stop before it gives. Touch screens get a snap stop per section instead | New |
 | Building now | Pick-and-place: a gantry picks the section’s parts off a conveyor and places them | Puzzle machine (2022) |
 | Building now | Gimbal-stabilised player: the frame stays level against scroll, cursor shoves, drags and tilt | New |
 | All 41 | Camshaft drum: one cam per video on a shaft beside a fixed-height window; turning it sweeps the list and the window follows | New |
 | All 41 | Auto-aim launcher: solves a ballistic shot for a random video and throws its card into the preview | Bow, pool cue, guided launcher |
+| How a build goes | The egg cracker: the heading is inside an egg held by two gripper fingers; a blade comes down and cracks it round the waist, the grippers pull the halves apart and the words fall out letter by letter onto the line, each a ballistic drop with a bounce, the yolk landing as the full stop | Egg-cracking robot (2022, 413 eggs) and why the task is so hard for machines (2025) |
 | How a build goes | Geneva drive feeds the slip one stage per index, with the real dwell | New |
 | How a build goes | Pen plotter writes each stage’s note in single-stroke lettering with pen lifts | Handwriting forgeries (2023) |
 | About | Apple-peel reveal: a blade peels the skin off the text in one continuous strip | Self-peeling apple (2026) |
-| Headings | The same cut, from a solid bar of ink, on the hoop and method headings when they first come into view | Pumpkin carver, chainsaw robot, the Tormach |
+| Headings | The same cut, from a solid bar of ink, on the hoop heading when it first comes into view | Pumpkin carver, chainsaw robot, the Tormach |
 | The numbers | A riveted machine nameplate; every figure is a set of odometer drums that roll up from zero when the plate comes into view | Every machine in his shop has one |
 | Parts drawers | Six drawers in a steel cabinet, one per family of machine, that run out on their slides with a soft close, one at a time, the thumbnails inside as parts in bins | New |
 | First visit | The hoop rig homes: each axis runs to its limit switch, clicks, and comes home, once per browser | Every machine powers up this way |
+| Every control | A riveted placard on the control itself says what to do in the machine’s words; the hoop, the putter and the balancing table also show their gesture once with a ghost hand (a fingertip ring that drags the real path and lets go) when the visitor has not tried it | Shop placards; a demonstrator showing the first move |
 
 Nothing on the site is a stock block. The numbers are a nameplate with odometer drums, not a tile grid; "How he works" on the About page is an engineering drawing sheet with numbered notes, detail views and a title block, not three columns; the vote on the prototypes page is a control panel with push buttons and counter windows, not a card grid; entrances index into place in four stepper-motor steps rather than fading up; and the trebuchet's log is a printed tape. Type sizes are set in rem throughout, so the whole site scales with the device's font setting.
 

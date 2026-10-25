@@ -8,6 +8,7 @@ import { fit, palette, metals, bar, tslot, disc, bolt } from '../lib/canvas';
 import { sprite, drawSprite } from '../lib/sprites';
 import { VelocityTracker, localPoint, capture } from '../lib/pointer';
 import { addTicker } from '../lib/loop';
+import { startGhost, stepGhost, drawGhost, type GhostState } from '../lib/ghost';
 import { onVisible, reducedMotion, narrow } from '../lib/visible';
 
 export interface Ball {
@@ -69,6 +70,11 @@ export function mountHoop(o: HoopOptions): HoopHandle {
   let visible = false;
   const still = reducedMotion();
   let drag: { tracker: VelocityTracker; x: number; y: number } | null = null;
+  // a ghost hand throws once or twice until the visitor does it themselves
+  let ghost: GhostState | null = null;
+  let interacted = false;
+  let demos = 0;
+  let demoAt = 0;
   // homing: on the first visit the rig runs each axis to its limit switch, clicks, then comes home
   let homing = 0;
   try {
@@ -132,6 +138,8 @@ export function mountHoop(o: HoopOptions): HoopHandle {
   /* ---------- throwing ---------- */
   function startDrag(e: PointerEvent, target: Element): void {
     if (e.button !== 0) return;
+    interacted = true;
+    ghost = null;
     capture(target, e);
     const p = localPoint(cv, e, W, H);
     const tracker = new VelocityTracker(110);
@@ -250,6 +258,20 @@ export function mountHoop(o: HoopOptions): HoopHandle {
   /* ---------- the loop ---------- */
   addTicker((dt, now) => {
     if (!visible && balls.length === 0 && !drag) return;
+    if (visible && !demoAt) demoAt = now + 1600;
+    if (ghost) {
+      stepGhost(ghost, dt);
+      if (ghost.done) ghost = null;
+    } else if (visible && !still && !interacted && !drag && demos < 2 && demoAt && now > demoAt) {
+      // the hand picks the ball up where the visitor would (the rack on a phone) and flicks it at the rig
+      demos++;
+      demoAt = now + 16000;
+      const x0 = rackVisible ? g.rackX : g.xmin + (g.xmax - g.xmin) * 0.3;
+      const y0 = rackVisible ? g.rackY : Math.min(g.ymax + 40, H - 140);
+      const x1 = x0 + (phone ? 70 : 150);
+      const y1 = Math.max(g.ymin + 60, y0 - (phone ? 220 : 300));
+      ghost = startGhost(x0, y0, x1, y1, 0.32, (gh) => throwBall(gh.x, gh.y, gh.vx, gh.vy, false));
+    }
     // controller: pick the earliest-arriving live ball
     pred = null;
     let best: { x: number; t: number; plane: number } | null = null;
@@ -481,6 +503,10 @@ export function mountHoop(o: HoopOptions): HoopHandle {
     if (rackVisible && !drag) ball(g.rackX, g.rackY, P.ball);
     for (const b of balls) if (b.state === 'fly' || b.y <= ry) drawBall(b);
     if (drag) ball(drag.x, drag.y, P.ball);
+    if (ghost) {
+      if (!ghost.released) ball(ghost.x, ghost.y, P.ball);
+      drawGhost(ctx, ghost, P.ink);
+    }
   }
   function drawBall(b: Ball): void {
     ctx.globalAlpha = b.rest ? Math.max(0, 1 - b.rest / 1.4) : 1;

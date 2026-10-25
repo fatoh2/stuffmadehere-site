@@ -6,7 +6,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: 
 /* touch: each section catches on the way past (desktop gets the servo's detents instead) */
 @media (hover: none) and (pointer: coarse) {
   html { scroll-snap-type: y proximity; }
-  .hero, .miss, .now, .all, .method, .numbers, .about, .watch { scroll-snap-align: start; scroll-snap-stop: always; }
+  .hero, .miss, .putt, .now, .all, .method, .numbers, .about, .watch { scroll-snap-align: start; scroll-snap-stop: always; }
 }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-text); font-size: var(--step-body); line-height: 1.5; font-kerning: normal; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: clip; }
 h1, h2, h3, h4, p, figure, blockquote, ul, ol, dl, dd { margin: 0; }
@@ -588,3 +588,53 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
   .ledger { height: min(396px, 34svh); }
 }
 
+/* ---------- bad aim, good putt: the self-correcting club on a green seen from above ---------- */
+.putt { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(2rem, 4vw, 4rem); align-items: center; background: var(--surface); }
+.putt__green { margin: 0; position: relative; }
+.putt__green canvas { display: block; width: 100%; height: clamp(300px, 62svh, 640px); touch-action: none; border-radius: var(--radius); }
+.putt__green canvas:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.putt__read { position: absolute; left: 1.4rem; top: 1.2rem; font-size: var(--step-small); font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; pointer-events: none; }
+.putt__text .head { font-size: clamp(2.2rem, 1rem + 3.6vw, 4.6rem); }
+.putt__pitch { margin-top: 1rem; font-size: var(--step-lead); line-height: 1.35; max-width: 40ch; }
+.putt__why { margin-top: 1rem; max-width: 46ch; color: var(--muted); }
+.putt__controls { margin-top: 1.5rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.putt__stat { font-weight: 700; font-variant-numeric: tabular-nums; }
+.putt__rel { margin: 1.25rem 0 0; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 1rem; align-items: center; max-width: 46ch; }
+.putt__rel img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.putt__rel figcaption { font-size: 0.9375rem; line-height: 1.35; color: var(--muted); }
+@media (min-width: 64em) and (max-height: 820px) { .putt__green canvas { height: clamp(280px, 56svh, 560px); } .putt__rel { display: none; } }
+@media (max-width: 63.99em) { .putt { grid-template-columns: 1fr; row-gap: 1.5rem; } .putt__green canvas { height: clamp(260px, 44svh, 520px); } .putt__rel { display: none; } }
+@media (max-width: 47.99em) {
+  .putt { padding-top: max(4svh, 4.5rem); row-gap: 1rem; }
+  .putt__why { display: none; }
+  .putt__pitch { margin-top: 0.75rem; }
+  .putt__controls { margin-top: 0.75rem; }
+  .putt__green canvas { height: clamp(220px, 42svh, 480px); }
+  .putt__read { left: 1rem; top: 0.8rem; }
+}
+@media (max-width: 47.99em) and (max-height: 780px) { .putt__pitch { font-size: 1rem; } .putt__green canvas { height: 38svh; } }
+@media (max-width: 47.99em) and (max-height: 700px) { .putt__green canvas { height: 34svh; } .putt__text .head { font-size: 2rem; } }
+
+/* ---------- the egg cracker: the method heading falls out of an egg, letter by letter ---------- */
+.egg { position: relative; display: block; }
+.egg__letters { position: relative; z-index: 1; }
+.egg__word { display: inline-block; white-space: nowrap; }
+.egg__ch { display: inline-block; letter-spacing: 0; margin-right: -0.04em; will-change: transform; }
+.egg__canvas { position: absolute; left: 0; width: 100%; z-index: 0; pointer-events: none; }
+
+/* ---------- placards: a riveted tag on every control that can be worked, in the machine's own words ---------- */
+.tag { position: absolute; z-index: 4; margin: 0; display: inline-block; padding: 0.42rem 1.45rem; font-size: 0.8125rem; font-weight: 700; line-height: 1.2; color: var(--ink); background: var(--steel) url(/parts/milled.jpg) center / 340px; border-radius: 3px; pointer-events: none; white-space: nowrap; }
+.tag::before, .tag::after { content: ""; position: absolute; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; box-sizing: border-box; background: var(--steel-dark); border: 2px solid var(--steel); }
+.tag::before { left: 7px; }
+.tag::after { right: 7px; }
+.miss__tag { left: var(--margin); top: 44%; font-size: 1rem; padding: 0.5rem 1.6rem; }
+.rack__tag { left: 0; bottom: calc(100% + 0.6rem); }
+.putt__tag { left: 1.2rem; bottom: 1.2rem; }
+.ledger__tag { right: 0; bottom: 0.5rem; }
+.cabinet__tag { right: 2rem; top: 0.75rem; }
+@media (max-width: 47.99em) {
+  .miss__tag { display: none; }
+  .tag { font-size: 0.75rem; padding: 0.36rem 1.3rem; }
+  .putt__tag { left: 0.8rem; bottom: 0.8rem; }
+  .cabinet__tag { right: 1.75rem; top: 0.5rem; }
+}
