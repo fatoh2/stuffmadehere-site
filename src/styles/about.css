@@ -201,3 +201,8 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .sheet { row-gap: 1rem; }
 }
 
+@media (max-width: 47.99em) and (max-height: 700px) {
+  .shop__floor { height: 40svh; min-height: 260px; }
+  .sorter { height: 38svh; min-height: 260px; }
+}
+

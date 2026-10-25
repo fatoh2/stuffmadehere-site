@@ -100,7 +100,7 @@ export function mountTrebuchet(cv: HTMLCanvasElement, log: HTMLElement | null): 
     }
     prev = { mass, range };
     next = Math.max(8, Math.min(400, mass + (next - mass) * 0.85));
-    say(`Shot ${shotNo}: ${err < 0 ? 'short' : 'long'} by ${Math.round(Math.abs(err))} px. Counterweight ${Math.round(mass)} → ${Math.round(next)}.`);
+    say(`Shot ${shotNo}: ${Math.round(Math.abs(err))} px ${err < 0 ? 'short' : 'long'}. Weight ${Math.round(mass)} → ${Math.round(next)}.`);
     mass = next;
     phase = 'settle';
     wait = 0.9;

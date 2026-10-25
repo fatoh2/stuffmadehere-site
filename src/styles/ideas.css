@@ -151,6 +151,25 @@ ol.idea__log { background: var(--paper); color: var(--muted); padding: 0.75rem 1
 @media (max-width: 47.99em) and (max-height: 780px) {
   .idea__machine canvas { height: clamp(200px, 33svh, 320px); }
   .idea__machine--wide canvas { height: clamp(200px, 32svh, 300px); }
+  .idea--learn .idea__machine canvas { height: clamp(190px, 29svh, 300px); }
+  ol.idea__log { padding: 0.5rem 0.75rem 0.9rem; }
   .idea__controls { gap: 0.5rem; margin-top: 0.5rem; }
+}
+
+@media (max-width: 47.99em) and (max-height: 700px) {
+  .idea { padding-top: 3.5rem; }
+  .idea__pitch { font-size: 1rem; }
+  .idea__controls { margin-top: 0.4rem; }
+  .idea__machine canvas { height: clamp(180px, 30svh, 280px); }
+  .idea__machine--wide canvas { height: clamp(180px, 28svh, 260px); }
+  .idea--learn .idea__machine canvas { height: clamp(180px, 29svh, 260px); }
+  .idea__log li:nth-child(n + 3) { display: none; }
+  .panel { padding-block: 0.5rem; }
+  .panel__row { padding: 0.25rem 0.3rem; }
+}
+
+/* the log's lines never wrap on phones, so the section's height does not depend on the shot numbers */
+@media (max-width: 47.99em) {
+  ol.idea__log li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
 

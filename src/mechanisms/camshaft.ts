@@ -516,13 +516,22 @@ export function mountCamshaft(o: CamshaftOptions): void {
 
   function drawLauncher(): void {
     lctx.clearRect(0, 0, LW, LH);
-    const bx = LW * 0.5;
-    const by = LH * 0.68;
+    // the machine is drawn in a 200×190 design space and scaled about its pivot to the canvas it has,
+    // so on a phone the whole launcher shows, barrel up included
+    const DW = 200;
+    const DH = 190;
+    const k = Math.min(1, LW / DW, LH / DH);
+    const bx = DW * 0.5;
+    const by = DH * 0.68;
+    lctx.save();
+    lctx.translate(LW * 0.5, LH * 0.68);
+    lctx.scale(k, k);
+    lctx.translate(-bx, -by);
     // base plate and upright
-    bar(lctx, bx - 44, LH - 14, 88, 14, M.anod, 2);
-    bar(lctx, bx - 6, by, 12, LH - 14 - by, M.steel, 2);
-    bolt(lctx, bx - 32, LH - 7, 3, M.steel);
-    bolt(lctx, bx + 32, LH - 7, 3, M.steel);
+    bar(lctx, bx - 44, DH - 14, 88, 14, M.anod, 2);
+    bar(lctx, bx - 6, by, 12, DH - 14 - by, M.steel, 2);
+    bolt(lctx, bx - 32, DH - 7, 3, M.steel);
+    bolt(lctx, bx + 32, DH - 7, 3, M.steel);
     const img = sprite('launcher');
     lctx.save();
     lctx.translate(bx, by);
@@ -560,5 +569,6 @@ export function mountCamshaft(o: CamshaftOptions): void {
       lctx.arc(bx, by, 3, 0, TAU);
       lctx.fill();
     }
+    lctx.restore();
   }
 }
