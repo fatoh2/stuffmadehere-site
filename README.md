@@ -55,7 +55,7 @@ docs/superpowers/specs/    the approved design document
 | Hero | CNC: the name starts as a solid bar of milled aluminium; a roughing pass and a finishing pass leave the letters standing, chips fly, then a buffing pad sweeps each bar and polishes the scalloped part into crisp type | Pumpkin carver, chainsaw robot, the Tormach |
 | Won’t let you miss | The hoop: a two-axis rig predicts where your throw lands and drives there under motor limits | Moving hoop (2020), ball-seeking hoop (2022) |
 | Won’t let you miss | Blank-cartridge button: hold to chamber, release to fire a ball the hoop catches, which opens the latest video | Explosive bat, axe, nut cracker |
-| Top right | Pin-tumbler navigation: one pin stack per section, set at the shear line as you scroll | The unpickable locks |
+| Top right | Pin-tumbler navigation: one pin stack per section, set at the shear line as you scroll. On phones the same lock in its door form: a deadbolt escutcheon; tap it and the key bow turns, the bolt draws back with a click, and the menu swings in from the edge like a door, the section you are in marked by its set pin | The unpickable locks |
 | Everywhere | Servo scroll with detents: the wheel sets a target, a PID loop drives the page, and the top of every section is a notch the page indexes into; a flick carries you one section, leaving takes a push, and the page strains against the stop before it gives. Touch screens get a snap stop per section instead | New |
 | Building now | Pick-and-place: a gantry picks the section’s parts off a conveyor and places them | Puzzle machine (2022) |
 | Building now | Gimbal-stabilised player: the frame stays level against scroll, cursor shoves, drags and tilt | New |

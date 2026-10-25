@@ -34,9 +34,21 @@
       <g id="lockPins"></g>
     </svg>
     <div class="lock__pins" id="lockPinButtons"></div>
-    <button class="lock__menu" id="lockMenu" type="button" aria-expanded="false" aria-controls="lockList">Menu</button>
+    <button class="lock__key" id="lockMenu" type="button" aria-expanded="false" aria-controls="lockList" aria-label="Menu" title="Menu">
+      <svg viewBox="0 0 100 44" aria-hidden="true" focusable="false">
+        <rect class="key__plate" x="0" y="0" width="86" height="44" rx="5"/>
+        <rect class="key__plateEdge" x="2.5" y="2.5" width="81" height="39" rx="3.5"/>
+        <g class="key__screws"><circle cx="8" cy="8" r="2.6"/><circle cx="78" cy="8" r="2.6"/><circle cx="8" cy="36" r="2.6"/><circle cx="78" cy="36" r="2.6"/></g>
+        <g class="key__slots"><rect x="5.6" y="7.4" width="4.8" height="1.2"/><rect x="75.6" y="7.4" width="4.8" height="1.2"/><rect x="5.6" y="35.4" width="4.8" height="1.2"/><rect x="75.6" y="35.4" width="4.8" height="1.2"/></g>
+        <circle class="key__plug" cx="23" cy="22" r="13"/>
+        <rect class="key__bow" x="20" y="9" width="6" height="26" rx="2"/>
+        <rect class="key__housing" x="44" y="13" width="38" height="18" rx="3"/>
+        <rect class="key__bolt" x="50" y="16.5" width="50" height="11" rx="2"/>
+        <circle class="key__lamp" cx="49" cy="22" r="2.2"/>
+      </svg>
+    </button>
     <div class="lock__list" id="lockList">
-      <button class="lock__close" id="lockClose" type="button">Close</button>
+      <a href="/">Home</a>
       <a href="#table">Won’t let it fall</a>
       <a href="#sign">Sign small</a>
       <a href="#learn">A trebuchet that learns</a>

@@ -140,18 +140,48 @@ p + p { margin-top: 0.9em; }
 .lock__pins { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(6, 1fr); padding: 0 24px 0 44px; }
 .lock__pin { display: block; min-height: 44px; }
 .lock__pin:focus-visible { outline-offset: -2px; }
-.lock__list { position: fixed; inset: 0; z-index: 50; background: var(--paper); color: var(--ink); padding: 5rem var(--margin); display: none; flex-direction: column; gap: 0.25rem; }
-.lock__list.is-open { display: flex; }
-.lock__sound { margin-top: 1.5rem; align-self: flex-start; min-height: 44px; padding: 0 1.25rem; background: var(--ink); color: var(--paper); border: 0; border-radius: var(--radius); font: inherit; font-weight: 700; cursor: pointer; }
+/* the door: it hangs off the right edge and swings in once the bolt is drawn */
+.lock__list { position: fixed; inset: 0 0 0 auto; width: min(100vw, 30rem); z-index: 50; background: var(--paper); color: var(--ink); padding: 5rem 1.25rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; border-left: 10px solid var(--steel-dark); overflow-y: auto; visibility: hidden; transform: translateX(104%); transition: transform 340ms var(--ease-out) 240ms, visibility 0s linear 600ms; }
+.lock__list.is-open { visibility: visible; transform: none; transition: transform 340ms var(--ease-out) 260ms, visibility 0s; }
+/* two hinge knuckles on the door's edge */
+.lock__list::before, .lock__list::after { content: ""; position: absolute; left: -12px; width: 14px; height: 3rem; border-radius: 3px; background: var(--steel); }
+.lock__list::before { top: 18%; }
+.lock__list::after { top: 72%; }
+.lock__list a { position: relative; padding-left: 1.1em; }
+.lock__list a::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 0.42em; height: 0.42em; background: var(--steel-dark); transition: transform var(--t-hover) var(--ease-out), background-color var(--t-hover) ease; }
+.lock__list a.is-here::before { background: var(--accent); transform: translateY(-0.12em); }
+.lock__list a[href^="/"]:not([href="/"])::before { width: 0.3em; height: 0.3em; top: 0.72em; }
+.lock__list .lock__sound { margin-top: auto; padding-top: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .lock__list.is-open a { opacity: 0; animation: index-in 300ms steps(4, end) forwards; animation-delay: calc(var(--i, 0) * 55ms + 380ms); }
+}
+.lock__sound { margin-top: 1.25rem; align-self: flex-start; min-height: 44px; padding: 0 1.25rem; background: var(--ink); color: var(--paper); border: 0; border-radius: var(--radius); font: inherit; font-weight: 700; cursor: pointer; }
 .lock__sound[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
 canvas:focus-visible, .ledger:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.lock__list a { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(2.5rem, 12vw, 5rem); letter-spacing: -0.04em; line-height: 0.95; text-decoration: none; }
-.lock__menu { display: none; font-weight: 700; font-size: var(--step-small); min-height: 44px; padding: 0 0.6rem; background: var(--surface); color: var(--ink); border-radius: 3px; }
-.lock__close { position: absolute; top: 1.25rem; right: var(--margin); font-weight: 700; min-height: 44px; }
+.lock__list a { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(1.5rem, 6.4vw, 2.1rem); letter-spacing: -0.03em; line-height: 1.05; text-decoration: none; padding-block: 0.22em; }
+/* the other pages, below the sections, set smaller; Home stays with the sections */
+.lock__list a[href^="/"]:not([href="/"]) { font-family: var(--font-text); font-weight: 700; text-transform: none; letter-spacing: 0; font-size: 1.125rem; line-height: 1.3; padding-block: 0.3em; }
+.lock__list a[href^="#"] + a[href^="/"]:not([href="/"]) { margin-top: 1.25rem; }
+/* the deadbolt escutcheon that opens the door on phones */
+.lock__key { display: none; position: relative; z-index: 60; width: 100px; height: 44px; padding: 0; background: none; border: 0; cursor: pointer; }
+.lock__key svg { display: block; width: 100px; height: 44px; overflow: visible; }
+.key__plate { fill: var(--steel-dark); }
+.key__plateEdge { fill: none; stroke: var(--steel); stroke-width: 1.2; }
+.key__screws { fill: var(--steel); }
+.key__slots { fill: var(--steel-dark); }
+.key__plug { fill: var(--recess); stroke: var(--steel); stroke-width: 1.5; }
+.key__bow { fill: var(--steel); transform-origin: 23px 22px; transition: transform 220ms var(--ease-out) 180ms; }
+.key__housing { fill: var(--recess); }
+.key__bolt { fill: var(--steel); transition: transform 180ms var(--ease-out); }
+.key__lamp { fill: var(--steel-dark); transition: fill 150ms ease 300ms; }
+.lock.is-open .key__bow { transform: rotate(90deg); transition-delay: 0s; }
+.lock.is-open .key__bolt { transform: translateX(-24px); transition-delay: 200ms; }
+.lock.is-open .key__lamp { fill: var(--accent); }
+.lock__key:active svg { transform: translateY(1px); }
 @media (max-width: 47.99em) {
   .lock { top: 1rem; right: 1rem; }
   .lock__cyl, .lock__pins { display: none; }
-  .lock__menu { display: inline-flex; align-items: center; }
+  .lock__key { display: block; }
 }
 
 /* =========================================================
@@ -361,8 +391,9 @@ canvas:focus-visible, .ledger:focus-visible { outline: 3px solid var(--accent); 
 @media (max-width: 63.99em) { .all__landing { display: block; } }
 
 /* script off: the section links stand in for the lock, as a plain row in the corner */
-html:not(.js) .lock__cyl, html:not(.js) .lock__pins, html:not(.js) .lock__menu, html:not(.js) .lock__close { display: none; }
-html:not(.js) .lock__list { position: static; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 0.25rem 1rem; padding: 0; background: none; max-width: 60vw; }
+html:not(.js) .lock__cyl, html:not(.js) .lock__pins, html:not(.js) .lock__key { display: none; }
+html:not(.js) .lock__list { position: static; width: auto; visibility: visible; transform: none; border: 0; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 0.25rem 1rem; padding: 0; background: none; max-width: 60vw; }
+html:not(.js) .lock__list::before, html:not(.js) .lock__list::after, html:not(.js) .lock__list a::before { display: none; }
 html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--font-text); font-weight: 700; text-transform: none; letter-spacing: 0; line-height: 1.5; color: inherit; }
 
 /* landscape phones: the hoop rig needs more height than the screen gives, so the section runs taller

@@ -1,6 +1,7 @@
 /** Mechanism C: pin-tumbler navigation. One pin stack per section; the key slides in as you scroll
  *  and each stack sets at the shear line when its section arrives. From the two unpickable locks. */
 import { clamp } from '../lib/motor';
+import { cue } from '../lib/sound';
 
 export interface LockSection {
   id: string;
@@ -17,7 +18,8 @@ export function mountLock(nav: HTMLElement, sections: LockSection[], scrollTo: (
   const buttons = nav.querySelector<HTMLElement>('#lockPinButtons')!;
   const menu = nav.querySelector<HTMLButtonElement>('#lockMenu')!;
   const list = nav.querySelector<HTMLElement>('#lockList')!;
-  const close = nav.querySelector<HTMLButtonElement>('#lockClose')!;
+  const links = Array.from(list.querySelectorAll<HTMLAnchorElement>('a'));
+  links.forEach((a, i) => a.style.setProperty('--i', String(i)));
 
   const stacks = sections.map((s, i) => {
     const x = 44 + i * 26;
@@ -72,6 +74,9 @@ export function mountLock(nav: HTMLElement, sections: LockSection[], scrollTo: (
       st.driver.setAttribute('y', String(pinY - PIN_H));
     });
     stacks.forEach((st, i) => st.pin.setAttribute('fill', i === active ? 'var(--accent)' : 'var(--steel)'));
+    // in the open door, the section you are in carries the set pin
+    const here = active >= 0 ? `#${stacks[active].s.id}` : '';
+    links.forEach((a) => a.classList.toggle('is-here', !!here && a.getAttribute('href') === here));
   }
   let queued = false;
   const onScroll = (): void => {
@@ -87,16 +92,20 @@ export function mountLock(nav: HTMLElement, sections: LockSection[], scrollTo: (
   setPins();
 
   /* phone menu */
+  // the deadbolt: the key turns, the bolt draws back with a click, and the door swings in from the edge
+  let opening = 0;
   const open = (v: boolean): void => {
+    if (list.classList.contains('is-open') === v) return;
+    window.clearTimeout(opening);
     list.classList.toggle('is-open', v);
     nav.classList.toggle('is-open', v);
     menu.setAttribute('aria-expanded', String(v));
     document.documentElement.style.overflow = v ? 'hidden' : '';
-    if (v) (list.querySelector('a') as HTMLElement | null)?.focus();
-    else menu.focus();
+    cue.index();
+    if (v) opening = window.setTimeout(() => (list.querySelector('a') as HTMLElement | null)?.focus({ preventScroll: true }), 620);
+    else menu.focus({ preventScroll: true });
   };
   menu.addEventListener('click', () => open(!list.classList.contains('is-open')));
-  close.addEventListener('click', () => open(false));
   list.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const el = document.querySelector<HTMLElement>(a.getAttribute('href')!);
