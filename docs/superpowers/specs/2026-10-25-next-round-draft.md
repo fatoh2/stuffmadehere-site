@@ -9,7 +9,7 @@ one session: S under an hour, M a few hours, L a day. "Needs" lists anything out
 ## Tier 1: makes the concept a real site
 
 ### 1. Live numbers from YouTube
-**Status.** Built: `api/channel.ts`, the drums and the escapement follow it. Waiting on `YOUTUBE_API_KEY` in the Vercel project; until then it serves the built-in figures.
+**Status.** Built and live: `api/channel.ts` reads the channel with the owner's YouTube API key; the drums and the escapement follow it. The subscriber drum shows two decimals.
 The nameplate's drums and the "days since the last video" escapement currently run on figures scraped on
 2026-10-24. A small Vercel serverless function (`api/channel.ts`) would call the YouTube Data API once an
 hour, cache the result, and serve subscribers, total views, video count and the latest upload's id, title
@@ -106,7 +106,7 @@ back to a plain load where unsupported.
 - Effort: M. Risk: easy to overdo; keep it under 400 ms.
 
 ### 12. The real vote
-**Status.** Built: `api/vote.ts` and the panel. Waiting on a Vercel KV store on the project; until then the counts stay in the browser and the page says so.
+**Status.** Built and live: `api/vote.ts` counts on an Upstash Redis store (`stuffmadehere-votes`) attached to the project; the panel shows everyone's totals and no longer offers a reset.
 The ratchet counters live in each browser. A Vercel KV store (or a Vercel Postgres table) would make them
 real: one write per tap, rate-limited by IP, totals shown on the panel. The page already says the real
 site would collect them.

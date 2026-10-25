@@ -104,7 +104,7 @@ Every section is one screen tall on a laptop and a phone (the archive window and
 
 ## Live parts
 
-Two serverless functions in `api/` make the site live once the deployment has what they need; without it, both fall back and the site is unchanged:
+Two serverless functions in `api/` make the site live. Both are set up on the production deployment (a YouTube API key and an Upstash Redis store from Vercel's marketplace, named `stuffmadehere-votes`); without them they fall back and the site is unchanged:
 
 - `api/channel.ts` reads the channel's statistics and latest upload from the YouTube Data API when `YOUTUBE_API_KEY` is set in the Vercel project's environment variables (cached an hour at the edge). The nameplate drums and the "days since the last video" escapement follow it.
 - `api/vote.ts` keeps the prototypes vote on a Vercel KV store (the Upstash REST variables `KV_REST_API_URL` and `KV_REST_API_TOKEN`), fifty taps a day per address. The panel shows the totals and stops offering a reset.
