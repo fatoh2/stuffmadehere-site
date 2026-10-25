@@ -12,6 +12,7 @@ export default defineConfig({
         about: fileURLToPath(new URL('./about.html', import.meta.url)),
         ideas: fileURLToPath(new URL('./ideas.html', import.meta.url)),
         missing: fileURLToPath(new URL('./404.html', import.meta.url)),
+        log: fileURLToPath(new URL('./log.html', import.meta.url)),
       },
     },
   },

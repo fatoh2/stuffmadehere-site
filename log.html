@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Build log: how this site was made</title>
+  <meta name="description" content="This fan site for Stuff Made Here, told like one of his builds: the first version, the parts that failed, the fixes. Crank the projector.">
+  <meta name="theme-color" content="#15161a">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stuffmadehere.vercel.app/log">
+  <meta property="og:title" content="Build log: how this site was made">
+  <meta property="og:description" content="Sixteen frames on a hand-cranked projector: the first version, the parts that failed, the fixes.">
+  <meta property="og:image" content="https://stuffmadehere.vercel.app/og/home.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 fill=%27%231d6fc4%27/%3E%3Ccircle cx=%2732%27 cy=%2736%27 r=%2714%27 fill=%27%23ff5a1f%27/%3E%3Crect x=%278%27 y=%2712%27 width=%2748%27 height=%276%27 fill=%27%23ffffff%27/%3E%3C/svg%3E">
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/page.css">
+  <link rel="stylesheet" href="/src/styles/log.css">
+</head>
+<body>
+
+  <nav class="lock" id="lock" aria-label="Sections">
+    <svg class="lock__cyl" viewBox="0 0 200 44" aria-hidden="true" focusable="false">
+      <rect x="0" y="0" width="200" height="44" rx="3" fill="var(--surface)"/>
+      <rect x="0" y="23" width="200" height="21" fill="var(--steel-dark)"/>
+      <rect x="6" y="27" width="26" height="12" fill="var(--recess)"/>
+      <g id="lockKey"><rect x="-70" y="30" width="80" height="6" fill="var(--steel)"/></g>
+      <g id="lockPins"></g>
+    </svg>
+    <div class="lock__pins" id="lockPinButtons"></div>
+    <button class="lock__menu" id="lockMenu" type="button" aria-expanded="false" aria-controls="lockList">Menu</button>
+    <div class="lock__list" id="lockList">
+      <button class="lock__close" id="lockClose" type="button">Close</button>
+      <a href="#reel">The projector</a>
+      <a href="#frames">All sixteen frames</a>
+      <a href="#watch">Watch</a>
+      <a href="/">The machines</a>
+      <a href="/about.html">About Shane</a>
+      <a href="/ideas.html">Not built yet</a>
+      <button class="lock__sound" id="soundToggle" data-sound-toggle type="button" aria-pressed="false">Sound off</button>
+    </div>
+  </nav>
+
+<header class="lhero" id="top">
+  <div class="hero__top">
+    <p class="wordmark"><a class="link" href="/">Stuff Made Here</a> <span>a fan’s site, and how it was built</span></p>
+  </div>
+  <div class="lhero__body">
+    <h1 class="head lhero__head">Build log</h1>
+    <p class="lhero__lead" data-rise style="--i:1">This site is one of his builds: an idea, a first version that did not fit the screen, parts that failed in review, and the fixes, seven rounds of them in two days. Sixteen frames on a hand-cranked projector tell it in order.</p>
+    <div class="lhero__actions" data-rise style="--i:2"><a class="button" href="#reel">Crank it</a></div>
+  </div>
+</header>
+
+<main>
+  <section class="projector section wrap" id="reel" aria-labelledby="reel-h">
+    <h2 class="sr-only" id="reel-h">The projector</h2>
+    <div class="projector__grid">
+      <figure class="projector__machine">
+        <canvas id="projectorCanvas" data-own-wheel aria-label="The projector"></canvas>
+      </figure>
+      <div class="projector__text">
+        <p class="projector__count nums" id="logCount">Frame 1 of 16</p>
+        <h3 class="projector__title" id="logTitle">Round one: the brief</h3>
+        <p class="projector__body" id="logText">A fan site that behaves like one of his builds, not one that looks like it. The first hero put the hoop rig over the words on a dark field and asked you to throw something; the rig predicted the landing and got there first.</p>
+        <div class="projector__controls">
+          <button class="button" id="logBack" type="button">Back</button>
+          <button class="button" id="logNext" type="button">Next frame</button>
+        </div>
+        <p class="projector__hint">Drag the handle round, wind the film, use the wheel, or the arrow keys.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="frames section wrap" id="frames" aria-labelledby="frames-h">
+    <h2 class="head frames__head" id="frames-h">All sixteen frames</h2>
+    <p class="frames__lead">Pick one and the projector cranks to it.</p>
+    <ol class="reel" id="reelList">
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/r1-hero.jpg" width="960" height="540" alt="Round one: the brief"></a><figcaption><b>1. Round one: the brief</b> A fan site that behaves like one of his builds, not one that looks like it. The first hero put the hoop rig over the words on a dark field and asked you to throw something; the rig predicted the landing and got there first.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/r1-all.jpg" width="960" height="540" alt="A list two thousand pixels long"></a><figcaption><b>2. A list two thousand pixels long</b> All 41 videos under a camshaft, one lobe per video, the taller the lobe the more it was watched. The first review: the list was too long, the hero did not fit the screen, and the drawn parts looked like straight lines and generic shapes.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/r2-hero.jpg" width="960" height="540" alt="Round two: machined"></a><figcaption><b>3. Round two: machined</b> The wordmark became the hero, cut out of a blue anodised plate; the cut exposed a photograph of milled aluminium. The parts got photoreal renders. The dark-and-orange palette went, named for what it was: the generic AI-product look.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/r3-cut.jpg" width="960" height="540" alt="Round three: a solid bar"></a><figcaption><b>4. Round three: a solid bar</b> The title now starts as a bar of material. A roughing pass rasters down, the letters emerge, a finishing pass cleans the edges. Every section was made to fit one screen and the footer stopped carrying a second wordmark.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-hero.jpg" width="960" height="540" alt="The hero as it stands"></a><figcaption><b>5. The hero as it stands</b> A stencil face, the roughing and finishing passes, and then a cotton buffing wheel that rolls along the bar without slipping and polishes the scalloped part into crisp letters. The deburring fade before it felt too fast and sudden; this is what replaced it.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-miss.jpg" width="960" height="540" alt="Won’t let you miss"></a><figcaption><b>6. Won’t let you miss</b> The rig moved to its own section. The ball used to leave the screen on a hard throw; it now reflects off the ceiling and walls, takes a dead bounce off the floor and lies there. On phones the ball you throw sat behind the title for a while, and a long press on Fire opened a menu. Both fixed.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-all.jpg" width="960" height="540" alt="All 41 on a drum"></a><figcaption><b>7. All 41 on a drum</b> The list lives on a roll inside a fixed window; the shaft turns it and the window follows the lifted row. On phones a finger anywhere on the list turns the drum, and the page stays put under it.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-method.jpg" width="960" height="540" alt="How a build goes"></a><figcaption><b>8. How a build goes</b> A Geneva drive feeds the slip one stage per index, with the real dwell, and a pen plotter writes each note in single-stroke letters. The same Geneva now runs this projector.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-plate.jpg" width="960" height="540" alt="The numbers"></a><figcaption><b>9. The numbers</b> They were a grid of coloured tiles with big figures, the commonest stat block on the web. They became a riveted nameplate, every figure a set of odometer drums that roll up when the plate comes into view.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-about.jpg" width="960" height="540" alt="The About page"></a><figcaption><b>10. The About page</b> The wall-painting robot sprays his portrait as a 2,449-dot halftone, in his three thumbnail colours, from the bow video’s thumbnail. Eight motion-capture pan heads watch the shop below it.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-sorter.jpg" width="960" height="540" alt="The sorting line"></a><figcaption><b>11. The sorting line</b> The 41 ride a belt in upload order and diverter gates drop each into its bin. The cards used to land to the right of the bin and snap back; each is now aimed at its place in the pile from the moment it leaves the belt.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-sheet.jpg" width="960" height="540" alt="A drawing sheet"></a><figcaption><b>12. A drawing sheet</b> How he works, set as an engineering drawing: numbered notes, four detail views with callouts, and a title block with the figures. It replaced three columns of text with captioned pictures.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-ideas.jpg" width="960" height="540" alt="Not built yet"></a><figcaption><b>13. Not built yet</b> A third page with six prototypes of machines he has not made: a split-flap board, a table that will not let the ball fall, a pantograph that engraves your signature, a trebuchet that learns, an escapement clock, and ratchet counters for a vote.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-learn.jpg" width="960" height="540" alt="A trebuchet that learns"></a><figcaption><b>14. A trebuchet that learns</b> It fires, measures where the shot lands, moves its own counterweight by the secant through its last two shots, and fires again. The release scatters a little, as a real sling does, so it took four shots in the test.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-vote.jpg" width="960" height="540" alt="The vote"></a><figcaption><b>15. The vote</b> Five identical boxed cards became a control panel on a riveted plate: a push button, a ratchet, a counter window per prototype. With a store attached, the counts are everyone’s.</figcaption></figure></li>
+      <li class="reel__frame" data-reveal><figure><a class="reel__link" href="#reel" data-frame><img loading="lazy" src="/log/now-drawers.jpg" width="960" height="540" alt="Parts drawers"></a><figcaption><b>16. Parts drawers</b> The last section added: six drawers in a steel cabinet, one per family, that run out on their slides and close softly, with the thumbnails as parts in bins. Then this page, to tell the whole thing the way his videos do.</figcaption></figure></li>
+    </ol>
+  </section>
+
+  <a class="watch" id="watch" href="https://www.youtube.com/@stuffmadehere">
+    <p class="watch__note">Opens the channel on YouTube, where all 41 videos live.</p>
+    <svg class="watch__arrow" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M12 36 36 12M16 12h20v20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square"/></svg>
+    <p class="watch__word" aria-hidden="true">Watch</p>
+  </a>
+</main>
+
+<footer class="foot" id="foot">
+  <div class="foot__cols">
+    <div><b>Channel</b><a href="https://www.youtube.com/@stuffmadehere">Stuff Made Here on YouTube</a><a href="https://www.youtube.com/watch?v=RpslsMqPFWA">The latest video</a></div>
+    <div><b>Community</b><a href="https://www.reddit.com/r/StuffMadeHere/">r/StuffMadeHere</a></div>
+    <div><b>This site</b><a href="/">The machines</a><a href="/about.html">About Shane</a><a href="/ideas.html">Not built yet</a></div>
+    <div><b>This page</b><span>The build, on a projector: a Geneva intermittent and a crank</span></div>
+  </div>
+  <p class="foot__legal">Stuff Made Here, a fan’s site. Not affiliated with the channel. Video titles and pictures belong to Shane Wighton.</p>
+</footer>
+
+<div class="servo-panel" id="servoPanel">
+  <div class="servo-panel__body" id="servoBody">
+    <label>P <input type="range" id="kp" min="0" max="400" value="90"><output id="kpo">90</output></label>
+    <label>I <input type="range" id="ki" min="0" max="200" value="0"><output id="kio">0</output></label>
+    <label>D <input type="range" id="kd" min="0" max="40" value="19"><output id="kdo">19</output></label>
+    <button class="link-plain" id="servoTuned" type="button">Back to tuned</button>
+  </div>
+  <button class="servo-panel__toggle" id="servoToggle" type="button" aria-expanded="false" aria-controls="servoBody">Servo scroll</button>
+  <button class="servo-panel__toggle servo-panel__sound" data-sound-toggle type="button" aria-pressed="false">Sound off</button>
+</div>
+
+<script type="module" src="/src/log.ts"></script>
+</body>
+</html>

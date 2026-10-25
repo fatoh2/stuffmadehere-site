@@ -1,0 +1,55 @@
+/* =========================================================
+   BUILD LOG: a hand-cranked projector
+   ========================================================= */
+.lhero { position: relative; min-height: 70svh; display: grid; grid-template-rows: auto 1fr; padding: var(--margin); background: var(--dark); color: var(--dark-ink); }
+.lhero__body { align-self: center; padding-block: 4svh 3rem; max-width: 60ch; }
+.lhero__head { font-size: clamp(3rem, 1rem + 9vw, 9rem); }
+.lhero__lead { margin-top: 1.5rem; font-size: var(--step-lead); line-height: 1.35; color: var(--steel); max-width: 48ch; }
+.lhero__actions { margin-top: 1.75rem; }
+.lhero .button { background: var(--paper); color: var(--ink); }
+.lhero .wordmark span { color: var(--steel); }
+
+.projector { background: var(--ink); color: var(--paper); padding-top: max(6svh, 96px); }
+.projector__grid { display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: clamp(2rem, 4vw, 4rem); align-items: center; }
+.projector__machine { margin: 0; }
+.projector__machine canvas { display: block; width: 100%; height: clamp(320px, 66svh, 680px); touch-action: none; border-radius: 6px; }
+.projector__count { font-weight: 700; color: var(--steel); }
+.projector__title { margin-top: 0.5rem; font-family: var(--font-display); font-weight: 900; font-size: clamp(1.6rem, 1rem + 1.8vw, 2.6rem); line-height: 1; letter-spacing: -0.03em; text-transform: uppercase; }
+.projector__body { margin-top: 1rem; font-size: var(--step-body); line-height: 1.45; color: var(--steel); min-height: 9.5em; }
+.projector__controls { margin-top: 1.25rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.projector .button { background: var(--paper); color: var(--ink); }
+.projector__hint { margin-top: 1rem; font-size: var(--step-small); color: var(--steel); }
+.frames { background: var(--paper); color: var(--ink); min-height: 0; }
+.frames__head { font-size: clamp(2rem, 1rem + 3vw, 3.6rem); }
+.frames__lead { margin-top: 0.75rem; color: var(--muted); }
+.reel { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem 1rem; }
+.reel__link { display: block; }
+.reel__link img { transition: transform var(--t-hover) var(--ease-out); }
+.reel figure { margin: 0; }
+.reel img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.reel figcaption { margin-top: 0.5rem; font-size: 1rem; line-height: 1.4; color: var(--muted); }
+.reel figcaption b { color: var(--ink); }
+@media (hover: hover) and (pointer: fine) {
+  .reel__link:hover img { transform: scale(1.02); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projector__hint { display: none; }
+}
+@media (max-width: 63.99em) {
+  .projector__grid { grid-template-columns: 1fr; row-gap: 1.25rem; }
+  .projector__machine canvas { height: clamp(300px, 54svh, 560px); }
+  .projector__body { min-height: 0; }
+  .reel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 47.99em) {
+  .lhero { min-height: 0; padding-bottom: 2rem; }
+  .lhero__lead { font-size: 1.0625rem; }
+  .projector { padding-top: 4rem; padding-bottom: 4svh; }
+  .projector__machine canvas { height: clamp(280px, 46svh, 420px); }
+  .projector__title { font-size: 1.5rem; }
+  .projector__body { font-size: 0.9375rem; }
+  .projector__controls { margin-top: 0.75rem; }
+  .projector__hint { display: none; }
+  .reel { grid-template-columns: 1fr; gap: 1rem; }
+  .frames { padding-block: 4svh; }
+}
