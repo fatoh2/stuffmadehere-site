@@ -119,7 +119,7 @@ void fetchLive().then((live) => {
   if (!live || !live.live) return;
   plate.set('videos', String(live.videos));
   plate.set('views', millions(live.views, 0));
-  plate.set('subscribers', millions(live.subscribers, 1));
+  plate.set('subscribers', millions(live.subscribers, 2));
   const sub = document.getElementById('plateSub');
   if (sub) sub.textContent = `Stuff Made Here · live from YouTube, ${live.asOf} · drums roll when the plate comes into view`;
 });
