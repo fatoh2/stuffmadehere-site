@@ -5,6 +5,7 @@ import { axis, stepAxis, type Axis } from '../lib/motor';
 import { bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion } from '../lib/visible';
+import { drawSprite, sprite } from '../lib/sprites';
 
 interface Card {
   el: HTMLElement;
@@ -52,6 +53,7 @@ export function mountSorter(root: HTMLElement, cv: HTMLCanvasElement, cardEls: H
   });
   const DROP_VY = 60;
   const piles = binEls.map(() => 0);
+  sprite('flap');
   const binW = binEls.map(() => 200);
   const landed = binEls.map(() => 0);
   const totals = binEls.map((_, i) => cards.filter((c) => c.bin === i).length);
@@ -195,12 +197,14 @@ export function mountSorter(root: HTMLElement, cv: HTMLCanvasElement, cardEls: H
     // the gates: a flap hinged at the belt that swings down to divert
     gates.forEach((g) => {
       const a = g.flap.p * 1.05;
+      const flapImg = sprite('flap');
       ctx.save();
-      ctx.translate(g.x - 30, beltY + 9);
+      ctx.translate(g.x - 30, beltY + 12);
       ctx.rotate(a);
-      bar(ctx, 0, 0, 46, 6, g.flap.p > 0.3 ? M.alu : M.steel, 1.5);
+      if (flapImg) drawSprite(ctx, flapImg, 0, 0, 7, 0.05, 0.5);
+      else bar(ctx, 0, -3, 46, 6, g.flap.p > 0.3 ? M.alu : M.steel, 1.5);
       ctx.restore();
-      bolt(ctx, g.x - 30, beltY + 12, 3.5, M.anod);
+      bolt(ctx, g.x - 30, beltY + 12, 3, M.anod);
     });
   }
 

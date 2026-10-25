@@ -6,6 +6,7 @@ import { bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { reducedMotion } from '../lib/visible';
 import { cue } from '../lib/sound';
+import { drawSprite, sprite } from '../lib/sprites';
 
 const KEY = 'smh-votes';
 const TEETH = 12;
@@ -40,6 +41,9 @@ export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonEle
     }
   };
   const counts = load();
+  sprite('ratchet');
+  sprite('pawl');
+  sprite('pivot');
   const counters: Counter[] = buttons.map((b) => {
     const key = b.dataset.idea ?? b.id;
     const cv = b.querySelector('canvas')!;
@@ -56,10 +60,14 @@ export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonEle
     const cx = w * 0.46;
     const cy = h * 0.54;
     const r = Math.min(w, h) * 0.36;
+    const wheelImg = sprite('ratchet');
+    const pawlImg = sprite('pawl');
+    const pivotImg = sprite('pivot');
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(c.wheel.p);
-    ctx.fillStyle = M.anod.face;
+    if (wheelImg) drawSprite(ctx, wheelImg, 0, 0, r * 2.06, 0.5, 0.5);
+    ctx.fillStyle = wheelImg ? 'rgba(0,0,0,0)' : M.anod.face;
     ctx.beginPath();
     for (let i = 0; i < TEETH; i++) {
       const a0 = (i / TEETH) * Math.PI * 2;
@@ -70,31 +78,39 @@ export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonEle
       ctx.lineTo(Math.cos(a2) * r * 0.8, Math.sin(a2) * r * 0.8);
     }
     ctx.closePath();
-    ctx.fill();
-    ctx.strokeStyle = M.anod.dark;
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    if (!wheelImg) {
+      ctx.fill();
+      ctx.strokeStyle = M.anod.dark;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
     ctx.restore();
     disc(ctx, cx, cy, r * 0.22, M.steel, r * 0.07);
-    // the pawl, hinged above right, its tip resting between two teeth
+    // the pawl, hinged above right, its hooked tip resting between two teeth; a tap lifts it over one
     const px = cx + r * 0.95;
     const py = cy - r * 1.05;
+    const aim = Math.atan2(cy - r * 0.84 - py, cx + r * 0.5 - px);
     ctx.save();
     ctx.translate(px, py);
-    ctx.rotate(Math.PI * 0.62 + c.pawl * 0.22);
-    ctx.fillStyle = M.steel.face;
-    ctx.strokeStyle = M.steel.dark;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(-4, -4);
-    ctx.lineTo(r * 1.15, -3);
-    ctx.lineTo(r * 1.22, 3);
-    ctx.lineTo(-4, 4);
-    ctx.closePath();
-    ctx.fill();
-    ctx.stroke();
+    ctx.rotate(aim + c.pawl * 0.25);
+    if (pawlImg) {
+      drawSprite(ctx, pawlImg, 0, 0, r * 0.4, 0.176, 0.553);
+    } else {
+      ctx.fillStyle = M.steel.face;
+      ctx.strokeStyle = M.steel.dark;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(-4, -4);
+      ctx.lineTo(r * 0.6, -3);
+      ctx.lineTo(r * 0.66, 3);
+      ctx.lineTo(-4, 4);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
     ctx.restore();
-    bolt(ctx, px, py, 3.5, M.steel);
+    if (pivotImg) drawSprite(ctx, pivotImg, px, py, 8, 0.5, 0.5);
+    else bolt(ctx, px, py, 3.5, M.steel);
     ctx.fillStyle = P.accent;
     ctx.fillRect(px - 2, py + 6, 4, 4);
   };

@@ -7,6 +7,7 @@ import { addTicker } from '../lib/loop';
 import { localPoint, capture } from '../lib/pointer';
 import { narrow, onVisible, reducedMotion } from '../lib/visible';
 import { strokesFor, textWidth } from './strokefont';
+import { drawLink, drawSprite, sprite, texture } from '../lib/sprites';
 
 export interface PantographHandle {
   clear(): void;
@@ -32,6 +33,11 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
   let last: { x: number; y: number } | null = null;
   let visible = true;
   let userDrawing = false;
+  let plateFill: CanvasPattern | null = null;
+  sprite('armlink');
+  sprite('pivot');
+  sprite('pen');
+  texture('milled');
   let lastUser = -1e9;
   // the demo: the machine signs the name once, stroke by stroke
   let demo: { strokes: number[][][]; si: number; pi: number; t: number; done: boolean } | null = null;
@@ -211,7 +217,12 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
   function draw(): void {
     ctx.clearRect(0, 0, W, H);
     // the plate and the engraving on it
-    ctx.fillStyle = '#f3f3f0';
+    const mill = texture('milled');
+    if (mill && !plateFill) {
+      plateFill = ctx.createPattern(mill, 'repeat');
+      plateFill?.setTransform(new DOMMatrix().scale(0.5, 0.5));
+    }
+    ctx.fillStyle = plateFill ?? '#f3f3f0';
     ctx.fillRect(plate.x, plate.y, plate.w, plate.h);
     ctx.drawImage(ink, plate.x, plate.y, plate.w, plate.h);
     bolt(ctx, plate.x + 10, plate.y + 10, 4, M.steel);
@@ -230,7 +241,12 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
     const sol = solve(tracer.x, tracer.y);
     if (sol) {
       const { A, C, D, Q } = sol;
+      const arm = sprite('armlink');
       const link = (x1: number, y1: number, x2: number, y2: number, wdt: number, m = M.alu): void => {
+        if (arm) {
+          drawLink(ctx, arm, x1, y1, x2, y2, wdt * 1.9);
+          return;
+        }
         const L = Math.hypot(x2 - x1, y2 - y1);
         ctx.save();
         ctx.translate(x1, y1);
@@ -238,21 +254,32 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
         bar(ctx, -wdt / 2, -wdt / 2, L + wdt, wdt, m, wdt / 2);
         ctx.restore();
       };
-      const wdt = Math.max(6, s * 0.06);
+      const pivotImg = sprite('pivot');
+      const pen = sprite('pen');
+      const wdt = Math.max(7, s * 0.07);
       link(O.x, O.y, D[0], D[1], wdt, M.anod); // the long bar through A
       link(D[0], D[1], Q[0], Q[1], wdt, M.anod); // the long bar through C
       link(A[0], A[1], tracer.x, tracer.y, wdt * 0.8); // short bar A-B
       link(C[0], C[1], tracer.x, tracer.y, wdt * 0.8); // short bar C-B
-      for (const [x, y] of [A, C, D]) bolt(ctx, x, y, wdt * 0.42, M.steel);
+      for (const [x, y] of [A, C, D]) {
+        if (pivotImg) drawSprite(ctx, pivotImg, x, y, wdt * 1.7, 0.5, 0.5);
+        else bolt(ctx, x, y, wdt * 0.42, M.steel);
+      }
       // the fixed pivot on its post
-      disc(ctx, O.x, O.y, wdt * 0.9, M.steel, wdt * 0.3);
-      // the tracer stylus you hold, and the pen that does the work
-      disc(ctx, tracer.x, tracer.y, wdt * 0.7, tracer.down ? M.anod : M.alu, wdt * 0.2);
+      disc(ctx, O.x, O.y, wdt * 1.1, M.steel, wdt * 0.3);
+      if (pivotImg) drawSprite(ctx, pivotImg, O.x, O.y, wdt * 2.1, 0.5, 0.5);
+      // the tracer stylus you hold, and the pen that does the work: the plotter's pen, tip down
+      if (pen) {
+        drawSprite(ctx, pen, tracer.x, tracer.y, wdt * 6, 0.523, 0.998, 0.22);
+        drawSprite(ctx, pen, Q[0], Q[1], wdt * 6, 0.523, 0.998, -0.1);
+      } else {
+        disc(ctx, tracer.x, tracer.y, wdt * 0.7, tracer.down ? M.anod : M.alu, wdt * 0.2);
+        disc(ctx, Q[0], Q[1], wdt * 0.3, M.steel);
+      }
       ctx.fillStyle = tracer.down || userDrawing ? P.accent : P.steelDark;
       ctx.beginPath();
-      ctx.arc(Q[0], Q[1], wdt * 0.55, 0, Math.PI * 2);
+      ctx.arc(Q[0], Q[1], wdt * 0.28, 0, Math.PI * 2);
       ctx.fill();
-      disc(ctx, Q[0], Q[1], wdt * 0.3, M.steel);
     }
   }
 

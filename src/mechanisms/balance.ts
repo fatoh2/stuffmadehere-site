@@ -7,6 +7,7 @@ import { bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { VelocityTracker, capture, localPoint } from '../lib/pointer';
 import { onVisible, reducedMotion } from '../lib/visible';
+import { drawSprite, sprite, texture } from '../lib/sprites';
 
 export interface BalanceHandle {
   shove(): void;
@@ -35,6 +36,9 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
   let lastShove = performance.now() + 1500;
   let visible = true;
   let drag: VelocityTracker | null = null;
+  let plateFill: CanvasPattern | null = null;
+  sprite('servo');
+  texture('milled');
   const user = { x: 0, y: 0 }; // the visitor's own tilt, from the phone's orientation
 
   const layout = (): void => {
@@ -152,28 +156,58 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
     // the stand and the two servos, one on each axis
     bar(ctx, cx - 10, cy + R * 0.2, 20, H - (cy + R * 0.2) - 10, M.steel, 3);
     bar(ctx, cx - 60, H - 14, 120, 10, M.anod, 2);
-    const servo = (x: number, y: number, a: number, vertical: boolean): void => {
+    // two servos at the base, one per axis, each with a pushrod up to the plate's rim
+    const servoImg = sprite('servo');
+    const servo = (x: number, y: number, a: number, flip: boolean, rod: [number, number]): void => {
       ctx.save();
       ctx.translate(x, y);
-      if (vertical) ctx.rotate(Math.PI / 2);
-      bar(ctx, -18, -11, 36, 22, M.anod, 3);
-      disc(ctx, 0, 0, 6, M.steel, 1.5);
-      ctx.rotate(a * 2.4);
-      bar(ctx, -3, -22, 6, 28, M.alu, 1.5);
+      if (servoImg) drawSprite(ctx, servoImg, 0, 0, 30, 0.73, 0.5, 0, flip);
+      else bar(ctx, flip ? -8 : -70, -11, 78, 22, M.anod, 3);
       ctx.restore();
+      // the horn stands up from the shaft and swings with the tilt; the rod follows its tip
+      const ha = -Math.PI / 2 + a * 2.4;
+      const hx = x + Math.cos(ha) * 22;
+      const hy = y + Math.sin(ha) * 22;
+      ctx.strokeStyle = M.steel.dark;
+      ctx.lineWidth = 3;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(hx, hy);
+      ctx.lineTo(rod[0], rod[1]);
+      ctx.stroke();
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(ha);
+      bar(ctx, -3, -3, 25, 6, M.alu, 2);
+      ctx.restore();
+      disc(ctx, x, y, 4.5, M.steel, 1.4);
+      disc(ctx, hx, hy, 3, M.steel, 1);
     };
-    servo(cx + R + 34, cy, tx, false);
-    servo(cx, cy + R + 34, ty, true);
+    const sy = H - 26;
+    servo(cx + R * 0.58, sy, tx, true, [cx + R * 0.85, cy + R * 0.53]);
+    servo(cx - R * 0.58, sy, -ty, false, [cx - R * 0.85, cy + R * 0.53]);
     // the plate, seen from above: the high side catches the light, the low side falls into shadow
     ctx.save();
     ctx.translate(cx, cy);
     const g = ctx.createLinearGradient(-R * tx * 4, -R * ty * 4, R * tx * 4, R * ty * 4);
-    g.addColorStop(0, '#f1f1ee');
-    g.addColorStop(1, '#bdbeb8');
+    g.addColorStop(0, 'rgba(255,255,255,0.9)');
+    g.addColorStop(1, 'rgba(0,0,0,0.55)');
     ctx.beginPath();
     ctx.arc(0, 0, R, 0, Math.PI * 2);
-    ctx.fillStyle = Math.abs(tx) + Math.abs(ty) > 0.004 ? g : '#dedfdb';
+    const mill = texture('milled');
+    if (mill && !plateFill) {
+      plateFill = ctx.createPattern(mill, 'repeat');
+      plateFill?.setTransform(new DOMMatrix().scale(0.45, 0.45));
+    }
+    ctx.fillStyle = plateFill ?? '#dedfdb';
     ctx.fill();
+    // the tilt reads as light on the high side and dark on the low side, over the machined surface
+    if (Math.abs(tx) + Math.abs(ty) > 0.004) {
+      ctx.globalAlpha = 0.5;
+      ctx.fillStyle = g;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
     ctx.strokeStyle = P.steelDark;
     ctx.lineWidth = 4;
     ctx.stroke();

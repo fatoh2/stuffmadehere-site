@@ -6,6 +6,7 @@ import { bar, bolt, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion } from '../lib/visible';
 import { PORTRAIT } from '../data/portrait';
+import { drawSprite, sprite } from '../lib/sprites';
 
 interface Dot {
   c: number;
@@ -29,6 +30,8 @@ export function mountPainter(cv: HTMLCanvasElement, onProgress?: (done: number, 
   const M = metals();
   const { cell, cols, rows } = PORTRAIT;
   const RAIL = 34; // the rail runs above the picture
+  sprite('carriage');
+  sprite('spray');
   const W = cols * cell;
   const H = rows * cell + RAIL;
   const blue = getComputedStyle(document.documentElement).getPropertyValue('--blue').trim() || '#1d6fc4';
@@ -165,13 +168,27 @@ export function mountPainter(cv: HTMLCanvasElement, onProgress?: (done: number, 
     const hx = Math.max(-16, Math.min(W + 16, x));
     const hy = pause > 0 && pi === 0 && ri === 0 ? dotY(pass.rows[0]) : dotY(pass.rows[ri]);
     // the carriage, the arm down to the head, and the head with the colour it is spraying
-    bar(ctx, hx - 15, 2, 30, 21, M.alu, 3);
-    bolt(ctx, hx - 8, 12.5, 2.5, M.steel);
-    bolt(ctx, hx + 8, 12.5, 2.5, M.steel);
-    bar(ctx, hx - 3, 20, 6, Math.max(0, hy - 16 - 20), M.steel, 1.5);
-    bar(ctx, hx - 9, hy - 18, 18, 13, M.anod, 2);
-    ctx.fillStyle = pass.colour;
-    ctx.fillRect(hx - 2.5, hy - 6, 5, 4);
+    const carriageImg = sprite('carriage');
+    const sprayImg = sprite('spray');
+    if (carriageImg) drawSprite(ctx, carriageImg, hx, 12, 22, 0.5, 1);
+    else {
+      bar(ctx, hx - 15, 2, 30, 21, M.alu, 3);
+      bolt(ctx, hx - 8, 12.5, 2.5, M.steel);
+      bolt(ctx, hx + 8, 12.5, 2.5, M.steel);
+    }
+    if (sprayImg) {
+      const headH = 40;
+      bar(ctx, hx - 3, 12, 6, Math.max(0, hy - 2 - headH - 12), M.steel, 1.5);
+      drawSprite(ctx, sprayImg, hx, hy - 2, headH, 0.5, 1);
+      // the pass's colour on a chip on the head
+      ctx.fillStyle = pass.colour;
+      ctx.fillRect(hx - 3, hy - 2 - headH * 0.58, 6, 6);
+    } else {
+      bar(ctx, hx - 3, 20, 6, Math.max(0, hy - 16 - 20), M.steel, 1.5);
+      bar(ctx, hx - 9, hy - 18, 18, 13, M.anod, 2);
+      ctx.fillStyle = pass.colour;
+      ctx.fillRect(hx - 2.5, hy - 6, 5, 4);
+    }
     if (puff > 0) {
       puff -= 1 / 60;
       ctx.globalAlpha = 0.5;

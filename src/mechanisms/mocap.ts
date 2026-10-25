@@ -7,6 +7,7 @@ import { axis, stepAxis, type Axis } from '../lib/motor';
 import { bar, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { finePointer, onVisible, reducedMotion } from '../lib/visible';
+import { drawSprite, sprite } from '../lib/sprites';
 
 interface Cam {
   fx: number; // position as a fraction of the stage
@@ -31,6 +32,7 @@ export function mountMocap(stage: HTMLElement, cv: HTMLCanvasElement, tools: HTM
   let ctx = cv.getContext('2d')!;
   let W = 10;
   let H = 10;
+  sprite('mocam');
   const cams: Cam[] = SPOTS.map(([fx, fy]) => ({ fx, fy, pan: axis(0, 5, 28) }));
   const centres: { x: number; y: number }[] = [];
   const target = { x: 0, y: 0 };
@@ -100,20 +102,30 @@ export function mountMocap(stage: HTMLElement, cv: HTMLCanvasElement, tools: HTM
       // the line runs along the head's own bearing for the distance to the target, so a head that is
       // still turning points past the mark until it settles
       const dist = Math.hypot(target.x - cx, target.y - cy);
+      const camImg = sprite('mocam');
+      const lens = camImg ? 46 : 18;
       ctx.beginPath();
-      ctx.moveTo(cx + Math.cos(c.pan.p) * 18, cy + Math.sin(c.pan.p) * 18);
+      ctx.moveTo(cx + Math.cos(c.pan.p) * lens, cy + Math.sin(c.pan.p) * lens);
       ctx.lineTo(cx + Math.cos(c.pan.p) * dist, cy + Math.sin(c.pan.p) * dist);
       ctx.stroke();
       ctx.globalAlpha = 1;
-      // the pan head: a base, a body turned to the pan angle, a lens, a tally light
-      disc(ctx, cx, cy, 11, M.anod);
+      // the pan head: the base, then the camera on its bracket turned to the pan angle, and a tally light
+      disc(ctx, cx, cy, 10, M.anod);
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(c.pan.p);
-      bar(ctx, -10, -8, 28, 16, M.steel, 2.5);
-      disc(ctx, 18, 0, 6, M.anod, 2.5);
-      ctx.fillStyle = locked ? P.accent : P.steelDark;
-      ctx.fillRect(-8, -4, 4, 8);
+      if (camImg) {
+        drawSprite(ctx, camImg, 0, 0, 27, 0.22, 0.5);
+        ctx.fillStyle = locked ? P.accent : P.steelDark;
+        ctx.beginPath();
+        ctx.arc(-7, 0, 2.4, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        bar(ctx, -10, -8, 28, 16, M.steel, 2.5);
+        disc(ctx, 18, 0, 6, M.anod, 2.5);
+        ctx.fillStyle = locked ? P.accent : P.steelDark;
+        ctx.fillRect(-8, -4, 4, 8);
+      }
       ctx.restore();
     }
     // the point where the lines cross

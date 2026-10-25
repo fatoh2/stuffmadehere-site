@@ -49,6 +49,7 @@ export function mountProjector(cv: HTMLCanvasElement, frames: Frame[], onFrame: 
   });
   sprite('geneva');
   sprite('driver');
+  sprite('crank');
   const crank: Axis = axis(0, 11, 70);
   let target = 0;
   const maxTheta = (frames.length - 1) * TAU;
@@ -229,16 +230,29 @@ export function mountProjector(cv: HTMLCanvasElement, frames: Frame[], onFrame: 
       ctx.lineTo(handle.x + r * 0.5, handle.y - r * 0.3);
       ctx.stroke();
     }
+    // the flywheel, and the crank on its hub; a red ring round the grip while it is being turned
     disc(ctx, handle.x, handle.y, r, M.anod, r * 0.12);
+    const crankImg = sprite('crank');
     ctx.save();
     ctx.translate(handle.x, handle.y);
     ctx.rotate(crank.p);
-    bar(ctx, -r * 0.08, -r * 0.08, r * 0.95, r * 0.16, M.alu, 2);
-    disc(ctx, r * 0.8, 0, r * 0.22, M.steel, r * 0.06);
-    ctx.fillStyle = drag?.kind === 'crank' ? P.accent : P.ball;
-    ctx.beginPath();
-    ctx.arc(r * 0.8, 0, r * 0.14, 0, TAU);
-    ctx.fill();
+    if (crankImg) {
+      drawSprite(ctx, crankImg, 0, 0, r * 0.9, 0.115, 0.792);
+      if (drag?.kind === 'crank') {
+        ctx.strokeStyle = P.accent;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(r * 0.9 * (360 / 209) * 0.82, -r * 0.9 * 0.45, r * 0.22, 0, TAU);
+        ctx.stroke();
+      }
+    } else {
+      bar(ctx, -r * 0.08, -r * 0.08, r * 0.95, r * 0.16, M.alu, 2);
+      disc(ctx, r * 0.8, 0, r * 0.22, M.steel, r * 0.06);
+      ctx.fillStyle = drag?.kind === 'crank' ? P.accent : P.ball;
+      ctx.beginPath();
+      ctx.arc(r * 0.8, 0, r * 0.14, 0, TAU);
+      ctx.fill();
+    }
     ctx.restore();
   }
 

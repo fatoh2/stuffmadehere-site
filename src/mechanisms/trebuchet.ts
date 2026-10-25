@@ -7,6 +7,7 @@ import { bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { localPoint, capture } from '../lib/pointer';
 import { onVisible, reducedMotion } from '../lib/visible';
+import { drawLink, drawSprite, sprite } from '../lib/sprites';
 
 export interface TrebuchetHandle {
   reset(): void;
@@ -24,6 +25,10 @@ export function mountTrebuchet(cv: HTMLCanvasElement, log: HTMLElement | null): 
   const base = { x: 80, y: 0 }; // the pivot
   let targetX = 500;
   let dragging = false;
+  sprite('armlink');
+  sprite('weight');
+  sprite('bucket');
+  sprite('pivot');
   let visible = true;
   const beam: Axis = axis(-1.05, 9, 60); // angle of the long arm, rad; rest is down and back
   let mass = 60; // the counterweight, in made-up kilos
@@ -196,54 +201,76 @@ export function mountTrebuchet(cv: HTMLCanvasElement, log: HTMLElement | null): 
       ctx.textAlign = 'center';
       ctx.fillText(String(s.n), s.x, ground - 14);
     }
-    // the bucket
-    ctx.save();
-    ctx.translate(targetX, ground);
-    ctx.fillStyle = dragging ? P.accent : P.ink;
-    ctx.beginPath();
-    ctx.moveTo(-24, -40);
-    ctx.lineTo(24, -40);
-    ctx.lineTo(18, 0);
-    ctx.lineTo(-18, 0);
-    ctx.closePath();
-    ctx.fill();
-    ctx.fillStyle = P.steel;
-    ctx.fillRect(-26, -44, 52, 6);
-    ctx.restore();
-    // the frame: two legs to the pivot, a cross brace
+    // the bucket: a steel one, standing on the ground; a red ring under it while it is being moved
+    const bucketImg = sprite('bucket');
+    if (dragging) {
+      ctx.strokeStyle = P.accent;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.ellipse(targetX, ground - 2, 30, 7, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+    if (bucketImg) drawSprite(ctx, bucketImg, targetX, ground, 46, 0.5, 1);
+    else {
+      ctx.save();
+      ctx.translate(targetX, ground);
+      ctx.fillStyle = dragging ? P.accent : P.ink;
+      ctx.beginPath();
+      ctx.moveTo(-24, -40);
+      ctx.lineTo(24, -40);
+      ctx.lineTo(18, 0);
+      ctx.lineTo(-18, 0);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+    // the frame: two legs to the pivot on a base plate; the beam is one long link through the pivot
     const L = armLen();
+    const arm = sprite('armlink');
     bar(ctx, base.x - 34, ground - 8, 68, 8, M.anod, 2);
     const leg = (dx: number): void => {
-      ctx.save();
-      ctx.translate(base.x, base.y);
-      ctx.rotate(Math.atan2(ground - base.y, dx));
-      bar(ctx, 0, -5, Math.hypot(dx, ground - base.y), 10, M.steel, 2);
-      ctx.restore();
+      if (arm) drawLink(ctx, arm, base.x + dx, ground - 6, base.x, base.y, 10);
+      else {
+        ctx.save();
+        ctx.translate(base.x, base.y);
+        ctx.rotate(Math.atan2(ground - base.y, dx));
+        bar(ctx, 0, -5, Math.hypot(dx, ground - base.y), 10, M.steel, 2);
+        ctx.restore();
+      }
     };
     leg(-30);
     leg(30);
     // the beam: short arm back to the counterweight, long arm out to the sling
-    ctx.save();
-    ctx.translate(base.x, base.y);
-    ctx.rotate(beam.p);
-    bar(ctx, -L * 0.42, -6, L + L * 0.42, 12, M.alu, 3);
-    ctx.restore();
-    // the counterweight hangs from the short arm
-    const cwx = base.x - Math.cos(beam.p) * L * 0.42;
-    const cwy = base.y - Math.sin(beam.p) * L * 0.42;
+    const cb = Math.cos(beam.p);
+    const sb = Math.sin(beam.p);
+    if (arm) drawLink(ctx, arm, base.x - cb * L * 0.42, base.y - sb * L * 0.42, base.x + cb * L, base.y + sb * L, 12);
+    else {
+      ctx.save();
+      ctx.translate(base.x, base.y);
+      ctx.rotate(beam.p);
+      bar(ctx, -L * 0.42, -6, L + L * 0.42, 12, M.alu, 3);
+      ctx.restore();
+    }
+    // the counterweight, a cast block, hangs from the short arm by its eye; its figure is the mass
+    const cwx = base.x - cb * L * 0.42;
+    const cwy = base.y - sb * L * 0.42;
     const box = 16 + Math.sqrt(mass) * 2.2;
     ctx.strokeStyle = P.steelDark;
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(cwx, cwy);
-    ctx.lineTo(cwx, cwy + 18);
+    ctx.lineTo(cwx, cwy + 14);
     ctx.stroke();
-    bar(ctx, cwx - box / 2, cwy + 18, box, box * 0.8, M.anod, 3);
+    const weightImg = sprite('weight');
+    if (weightImg) drawSprite(ctx, weightImg, cwx, cwy + 12, box * 0.95, 0.5, 0.02);
+    else bar(ctx, cwx - box / 2, cwy + 18, box, box * 0.8, M.anod, 3);
     ctx.fillStyle = P.paper;
-    ctx.font = `700 ${Math.max(10, box * 0.32)}px Chivo, sans-serif`;
+    ctx.font = `700 ${Math.max(10, box * 0.3)}px Chivo, sans-serif`;
     ctx.textAlign = 'center';
-    ctx.fillText(`${Math.round(mass)}`, cwx, cwy + 18 + box * 0.5);
-    bolt(ctx, base.x, base.y, 7, M.steel);
+    ctx.fillText(`${Math.round(mass)}`, cwx, cwy + 12 + box * 0.66);
+    const pivotImg = sprite('pivot');
+    if (pivotImg) drawSprite(ctx, pivotImg, base.x, base.y, 16, 0.5, 0.5);
+    else bolt(ctx, base.x, base.y, 7, M.steel);
     // the sling and the ball before release, the ball in flight after
     const [tx, ty] = tip(beam.p);
     if (phase === 'wind' || phase === 'swing' || phase === 'idle' || phase === 'settle') {
