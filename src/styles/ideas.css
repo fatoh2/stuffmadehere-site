@@ -120,8 +120,8 @@
 }
 .idea--vote .idea__controls { justify-content: flex-end; }
 
-/* the trebuchet's log is a printed tape */
-.idea__log { background: var(--paper); color: var(--muted); padding: 0.75rem 1rem 1.1rem; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 96.43% 100%, 92.86% calc(100% - 8px), 89.29% 100%, 85.71% calc(100% - 8px), 82.14% 100%, 78.57% calc(100% - 8px), 75.00% 100%, 71.43% calc(100% - 8px), 67.86% 100%, 64.29% calc(100% - 8px), 60.71% 100%, 57.14% calc(100% - 8px), 53.57% 100%, 50.00% calc(100% - 8px), 46.43% 100%, 42.86% calc(100% - 8px), 39.29% 100%, 35.71% calc(100% - 8px), 32.14% 100%, 28.57% calc(100% - 8px), 25.00% 100%, 21.43% calc(100% - 8px), 17.86% 100%, 14.29% calc(100% - 8px), 10.71% 100%, 7.14% calc(100% - 8px), 3.57% 100%, -0.00% calc(100% - 8px)); max-width: 44ch; }
+/* the trebuchet's log is a printed tape (ol.idea__log outranks the ol[class] reset) */
+ol.idea__log { background: var(--paper); color: var(--muted); padding: 0.75rem 1rem 1.1rem; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 96.43% 100%, 92.86% calc(100% - 8px), 89.29% 100%, 85.71% calc(100% - 8px), 82.14% 100%, 78.57% calc(100% - 8px), 75.00% 100%, 71.43% calc(100% - 8px), 67.86% 100%, 64.29% calc(100% - 8px), 60.71% 100%, 57.14% calc(100% - 8px), 53.57% 100%, 50.00% calc(100% - 8px), 46.43% 100%, 42.86% calc(100% - 8px), 39.29% 100%, 35.71% calc(100% - 8px), 32.14% 100%, 28.57% calc(100% - 8px), 25.00% 100%, 21.43% calc(100% - 8px), 17.86% 100%, 14.29% calc(100% - 8px), 10.71% 100%, 7.14% calc(100% - 8px), 3.57% 100%, -0.00% calc(100% - 8px)); max-width: 44ch; }
 .idea--learn .idea__log { background: var(--surface); }
 @media (max-width: 47.99em) {
   .panel { gap: 0.15rem; padding-block: 0.75rem; }

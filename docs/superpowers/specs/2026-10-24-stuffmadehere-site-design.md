@@ -247,3 +247,5 @@ Twelve of the thirteen proposals in `2026-10-25-next-round-draft.md` were built 
 
 Every page passes the design inspector except the home page's two deliberate failures (the three-line hero mark on phones and a video caption read as a kicker). Deployed through the Git connection; the production functions answer as designed without their keys.
 
+Review pass after the build (same night): the "All 41" and "Parts drawers" headings sat under the menu button on phones when their content reached the top (fixed with top padding that clears it); the trebuchet's printed tape had lost its padding to the `ol[class]` reset (fixed by outranking it); the drawer part labels were 12 px on phones (now 13); and the nameplate fills its field on desktops with room. Every page passes the inspector except the home page's three defended findings: the three-line hero mark on phones, a video caption read as a kicker above the next heading, and the long About paragraph that is the peel's material.
+

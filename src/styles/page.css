@@ -508,8 +508,23 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
   .drawer__front { min-height: 2.75rem; padding: 0.3rem 0.75rem; gap: 0.6rem; }
   .drawer__label { font-size: 0.9375rem; }
   .drawer__bin { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; max-height: 38svh; padding: 0.5rem; }
-  .drawer__part { font-size: 0.75rem; }
+  .drawer__part { font-size: 0.8125rem; }
 }
 .only-coarse { display: none; }
 @media (hover: none) and (pointer: coarse) { .only-coarse { display: inline-flex; } }
+
+/* ---------- phones: sections whose content can reach the top clear the menu button ---------- */
+@media (max-width: 47.99em) {
+  .all, .drawers { padding-top: max(4svh, 4.5rem); }
+}
+
+/* ---------- desktops with room: the nameplate fills its field ---------- */
+@media (min-width: 64em) and (min-height: 821px) {
+  .plate { padding: clamp(2rem, 3.2vw, 3rem) clamp(2rem, 3.8vw, 3.5rem) clamp(2.25rem, 3.4vw, 3.25rem); }
+  .plate__title { font-size: clamp(2rem, 3.4vw, 3.2rem); }
+  .plate__grid { gap: clamp(1.75rem, 3vw, 2.75rem) clamp(1.5rem, 3vw, 3rem); }
+  .plate__val { font-size: clamp(2.6rem, 3.6vw, 4.2rem); }
+  .plate__key { font-size: 1.0625rem; margin-top: 0.6rem; }
+  .plate__sub { font-size: 0.9375rem; }
+}
 
