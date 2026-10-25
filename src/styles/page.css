@@ -416,7 +416,7 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
 @media (max-width: 47.99em) {
   .now { padding-block: 4svh; row-gap: 1rem; --objw: min(58vw, 240px); }
   .now__facts { font-size: 1.0625rem; gap: 0.75rem; }
-  .now__object { margin: 0; justify-self: center; }
+  .now__object { margin: 0 0 5rem; justify-self: center; } /* room below for the gimbal ring that overhangs its box */
   .all { padding-block: 4svh; }
   .all__head { margin-bottom: 1rem; }
   .all__note { margin: -0.5rem 0 1rem; }
