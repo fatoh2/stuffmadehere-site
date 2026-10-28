@@ -4,7 +4,7 @@
 import { bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion } from '../lib/visible';
-import { drawSprite, sprite } from '../lib/sprites';
+import { drawSprite, sprite, near } from '../lib/sprites';
 
 export interface EscapementHandle {
   setSince(d: Date): void;
@@ -25,9 +25,7 @@ export function mountEscapement(cv: HTMLCanvasElement, since: Date, out: { days:
   let H = 10;
   let visible = true;
   const TEETH = 30;
-  sprite('escape');
-  sprite('anchor');
-  sprite('bob');
+  near(cv, ['escape', 'anchor', 'bob']);
   const layout = (): void => {
     const f = fit(cv);
     ctx = f.ctx;

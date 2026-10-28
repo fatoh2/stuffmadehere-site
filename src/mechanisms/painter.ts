@@ -6,7 +6,7 @@ import { bar, bolt, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion } from '../lib/visible';
 import { PORTRAIT } from '../data/portrait';
-import { drawSprite, sprite } from '../lib/sprites';
+import { drawSprite, sprite, near } from '../lib/sprites';
 
 interface Dot {
   c: number;
@@ -30,8 +30,7 @@ export function mountPainter(cv: HTMLCanvasElement, onProgress?: (done: number, 
   const M = metals();
   const { cell, cols, rows } = PORTRAIT;
   const RAIL = 34; // the rail runs above the picture
-  sprite('carriage');
-  sprite('spray');
+  near(cv, ['carriage', 'spray']);
   const W = cols * cell;
   const H = rows * cell + RAIL;
   const blue = getComputedStyle(document.documentElement).getPropertyValue('--blue').trim() || '#1d6fc4';

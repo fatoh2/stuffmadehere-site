@@ -7,7 +7,7 @@ import { axis, stepAxis, type Axis } from '../lib/motor';
 import { bar, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { finePointer, onVisible, reducedMotion } from '../lib/visible';
-import { drawSprite, sprite } from '../lib/sprites';
+import { drawSprite, sprite, near } from '../lib/sprites';
 
 interface Cam {
   fx: number; // position as a fraction of the stage
@@ -32,7 +32,7 @@ export function mountMocap(stage: HTMLElement, cv: HTMLCanvasElement, tools: HTM
   let ctx = cv.getContext('2d')!;
   let W = 10;
   let H = 10;
-  sprite('mocam');
+  near(cv, ['mocam']);
   const cams: Cam[] = SPOTS.map(([fx, fy]) => ({ fx, fy, pan: axis(0, 5, 28) }));
   const centres: { x: number; y: number }[] = [];
   const target = { x: 0, y: 0 };

@@ -2,12 +2,12 @@
  *  you move and the pen at the far end stay in line with the pivot and the pen travels k times as far.
  *  Draw on the small pad and the linkage engraves it k times larger on the plate. Left alone, the
  *  machine signs the channel's name first, in single-stroke letters. New. */
-import { bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
+import { DPR, bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { localPoint, capture } from '../lib/pointer';
 import { narrow, onVisible, reducedMotion } from '../lib/visible';
 import { strokesFor, textWidth } from './strokefont';
-import { drawLink, drawSprite, sprite, texture } from '../lib/sprites';
+import { drawLink, drawSprite, sprite, texture, near } from '../lib/sprites';
 
 export interface PantographHandle {
   clear(): void;
@@ -33,11 +33,8 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
   let last: { x: number; y: number } | null = null;
   let visible = true;
   let userDrawing = false;
-  let plateFill: CanvasPattern | null = null;
-  sprite('armlink');
-  sprite('pivot');
-  sprite('pen');
-  texture('milled');
+  let plateImg: HTMLCanvasElement | null = null;
+  near(cv, ['armlink', 'pivot', 'pen'], ['milled']);
   let lastUser = -1e9;
   // the demo: the machine signs the name once, stroke by stroke
   let demo: { strokes: number[][][]; si: number; pi: number; t: number; done: boolean } | null = null;
@@ -60,6 +57,7 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
     tracer.x = pad.x + pad.w / 2;
     tracer.y = pad.y + pad.h / 2;
     last = null;
+    plateImg = null;
   };
   new ResizeObserver(layout).observe(cv);
   layout();
@@ -217,13 +215,26 @@ export function mountPantograph(cv: HTMLCanvasElement): PantographHandle {
   function draw(): void {
     ctx.clearRect(0, 0, W, H);
     // the plate and the engraving on it
+    // the milled plate is painted once per size and copied each frame: a pattern fill every frame was
+    // the one thing that put a throttled phone under 50 fps
     const mill = texture('milled');
-    if (mill && !plateFill) {
-      plateFill = ctx.createPattern(mill, 'repeat');
-      plateFill?.setTransform(new DOMMatrix().scale(0.5, 0.5));
+    if (mill && !plateImg) {
+      const d = DPR();
+      plateImg = document.createElement('canvas');
+      plateImg.width = Math.max(1, Math.ceil(plate.w * d));
+      plateImg.height = Math.max(1, Math.ceil(plate.h * d));
+      const g = plateImg.getContext('2d')!;
+      g.scale(d, d);
+      const pat = g.createPattern(mill, 'repeat');
+      pat?.setTransform(new DOMMatrix().scale(0.5, 0.5));
+      g.fillStyle = pat ?? '#f3f3f0';
+      g.fillRect(0, 0, plate.w, plate.h);
     }
-    ctx.fillStyle = plateFill ?? '#f3f3f0';
-    ctx.fillRect(plate.x, plate.y, plate.w, plate.h);
+    if (plateImg) ctx.drawImage(plateImg, plate.x, plate.y, plate.w, plate.h);
+    else {
+      ctx.fillStyle = '#f3f3f0';
+      ctx.fillRect(plate.x, plate.y, plate.w, plate.h);
+    }
     ctx.drawImage(ink, plate.x, plate.y, plate.w, plate.h);
     bolt(ctx, plate.x + 10, plate.y + 10, 4, M.steel);
     bolt(ctx, plate.x + plate.w - 10, plate.y + 10, 4, M.steel);

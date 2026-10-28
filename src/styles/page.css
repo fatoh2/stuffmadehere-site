@@ -200,7 +200,7 @@ canvas:focus-visible, .ledger:focus-visible { outline: 3px solid var(--accent); 
 .js .now.is-live .gantry { display: block; }
 .gantry { display: none; position: absolute; left: 0; right: 0; top: 0; height: 0; z-index: 3; pointer-events: none; }
 .gantry__rail { position: absolute; left: 0; right: 0; top: 0; height: 8px; background: var(--steel-dark); }
-.gantry__head { position: absolute; left: 0; top: -14px; width: 54px; height: 44px; background: url(/parts/head.png) center top / 100% auto no-repeat; will-change: transform; }
+.gantry__head { position: absolute; left: 0; top: -14px; width: 54px; height: 44px; background: url(/parts/head.webp) center top / 100% auto no-repeat; will-change: transform; }
 .gantry__arm { position: absolute; left: 0; top: 14px; width: 8px; height: 10px; background: var(--steel-dark); transform-origin: 0 0; will-change: transform; }
 .gantry__cup { position: absolute; left: 0; top: 0; width: 24px; height: 10px; background: var(--ball); border-radius: 0 0 8px 8px; will-change: transform; }
 .part { will-change: transform; }
@@ -460,7 +460,7 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
 /* =========================================================
    PLATES: a machine's nameplate, riveted, with engraved keys and odometer drums
    ========================================================= */
-.plate { position: relative; background: var(--steel) url(/parts/milled.jpg) center / 680px; color: var(--ink); padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 3.5vw, 3rem); border-radius: 6px; }
+.plate { position: relative; background: var(--steel) url(/parts/milled-680.jpg) center / 680px; color: var(--ink); padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1.25rem, 3.5vw, 3rem); border-radius: 6px; }
 .rivet { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--steel-dark); }
 .rivet::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--steel); }
 .rivet--tl { left: 10px; top: 10px; }
@@ -623,7 +623,7 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
 .egg__canvas { position: absolute; left: 0; width: 100%; z-index: 0; pointer-events: none; }
 
 /* ---------- placards: a riveted tag on every control that can be worked, in the machine's own words ---------- */
-.tag { position: absolute; z-index: 4; margin: 0; display: inline-block; padding: 0.42rem 1.45rem; font-size: 0.8125rem; font-weight: 700; line-height: 1.2; color: var(--ink); background: var(--steel) url(/parts/milled.jpg) center / 340px; border-radius: 3px; pointer-events: none; white-space: nowrap; }
+.tag { position: absolute; z-index: 4; margin: 0; display: inline-block; padding: 0.42rem 1.45rem; font-size: 0.8125rem; font-weight: 700; line-height: 1.2; color: var(--ink); background: var(--steel) url(/parts/milled-680.jpg) center / 340px; border-radius: 3px; pointer-events: none; white-space: nowrap; }
 .tag::before, .tag::after { content: ""; position: absolute; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; box-sizing: border-box; background: var(--steel-dark); border: 2px solid var(--steel); }
 .tag::before { left: 7px; }
 .tag::after { right: 7px; }

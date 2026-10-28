@@ -313,3 +313,36 @@ Checked in headless Chrome at desktop and phone: the hoop catches the ghost's th
 the ghost's putt, the table saves the ghost's flick; no page errors; every section still one screen on
 four pages at four sizes; lint clean.
 
+## 17. Round eleven (2026-10-28): what the site costs a phone
+
+A measured report (`docs/perf/2026-10-26-phone-budget.md`, written by a separate session) found the
+home page transferring 4 MB, three quarters of it part renders fetched at first paint for sections far
+down the page; one screen under 50 fps on a throttled CPU (the pantograph, which rebuilt its milled
+plate pattern every frame); three machines drawing while off screen; and the peel's skin canvas ignoring
+the pixel-ratio cap. The owner said yes to the fixes, in this order:
+
+1. **Pantograph.** The plate is painted once per size into an offscreen canvas and copied each frame.
+   Throttled 4x: 46 fps before, 144 after.
+2. **Idle gates.** The peel, the ratchet counters and the drawers return at once when their section is
+   off screen (`onVisible`). The peel's skin canvas uses the site's `DPR()` cap of 2, so it is 5 MiB on a
+   3x phone instead of 11.
+3. **Parts when near.** `sprites.ts` no longer downloads a part the moment a mechanism names it; a part
+   downloads once its section has asked for it with `near(element, names, textures)`, an
+   IntersectionObserver with a 150 % margin, or when a draw happens after that. Every mechanism asks at
+   mount. The projector loads three frames at once and the rest when it is in view, and the gimbal ring
+   is a lazy image. The hero's buffing wheel is asked for immediately, since the hero is on screen.
+4. **WebP.** All 28 part renders are WebP at the same pixel size (quality 90): 3.7 MB of PNG became
+   0.7 MB, indistinguishable side by side at twice the drawn size. The CSS plates and placards use a
+   680 px copy of the milled texture (39 kB) instead of the 1344 px one (188 kB).
+
+Measured again at 390x844 (DPR 3, dev server, parts and textures only):
+
+| Page | At first paint, before | After | Fetched on scroll, after |
+| --- | --- | --- | --- |
+| Home | 9 files, 2050 kB | 8 files, 556 kB | 11 files, 300 kB |
+| About | 6 files, 671 kB | 6 files, 110 kB | none |
+| Ideas | 12 files, 1345 kB | 3 files, 239 kB | 10 files, 225 kB |
+| Build log | 4 parts + 16 frames, 1223 kB | 3 frames + 3 parts, 231 kB | 13 frames, 673 kB |
+
+Every machine section still shows its renders at desktop and phone, no page errors, lint clean.
+

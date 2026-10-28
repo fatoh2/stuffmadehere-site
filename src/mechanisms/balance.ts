@@ -8,7 +8,7 @@ import { addTicker } from '../lib/loop';
 import { startGhost, stepGhost, drawGhost, type GhostState } from '../lib/ghost';
 import { VelocityTracker, capture, localPoint } from '../lib/pointer';
 import { onVisible, reducedMotion } from '../lib/visible';
-import { drawSprite, sprite, texture } from '../lib/sprites';
+import { drawSprite, sprite, texture, near } from '../lib/sprites';
 
 export interface BalanceHandle {
   shove(): void;
@@ -43,8 +43,7 @@ export function mountBalance(cv: HTMLCanvasElement, stat: HTMLElement | null): B
   let demos = 0;
   let demoAt = 0;
   let plateFill: CanvasPattern | null = null;
-  sprite('servo');
-  texture('milled');
+  near(cv, ['servo'], ['milled']);
   const user = { x: 0, y: 0 }; // the visitor's own tilt, from the phone's orientation
 
   const layout = (): void => {

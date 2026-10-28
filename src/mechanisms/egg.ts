@@ -6,7 +6,7 @@
 import { cue } from '../lib/sound';
 import { axis, stepAxis, clamp } from '../lib/motor';
 import { fit, palette, metals, bar, disc } from '../lib/canvas';
-import { sprite, drawSprite, drawLink } from '../lib/sprites';
+import { sprite, drawSprite, drawLink, near } from '../lib/sprites';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion } from '../lib/visible';
 import { stepSpring, type SpringState } from '../lib/spring';
@@ -109,9 +109,7 @@ export function mountEgg(head: HTMLElement): EggHandle {
   const drops: Drop[] = [];
   const yolk = { x: 0, y: 0, vx: 0, vy: 0, r: 8, state: 'in' as 'in' | 'fly' | 'rest', squash: { x: 1, v: 0 } as SpringState };
   let safety = 0;
-  sprite('egg');
-  sprite('servo');
-  sprite('armlink');
+  near(head, ['egg', 'servo', 'armlink']);
 
   function layout(): void {
     const hr = head.getBoundingClientRect();

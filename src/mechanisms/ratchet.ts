@@ -4,9 +4,9 @@
 import { axis, stepAxis, type Axis } from '../lib/motor';
 import { bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
-import { reducedMotion } from '../lib/visible';
+import { onVisible, reducedMotion } from '../lib/visible';
 import { cue } from '../lib/sound';
-import { drawSprite, sprite } from '../lib/sprites';
+import { drawSprite, sprite, near } from '../lib/sprites';
 
 const KEY = 'smh-votes';
 const TEETH = 12;
@@ -41,9 +41,10 @@ export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonEle
     }
   };
   const counts = load();
-  sprite('ratchet');
-  sprite('pawl');
-  sprite('pivot');
+  const root: Element = buttons[0]?.closest('.panel') ?? buttons[0] ?? document.body;
+  near(root, ['ratchet', 'pawl', 'pivot']);
+  let visible = false;
+  onVisible(root, (v) => (visible = v), 0.05);
   const counters: Counter[] = buttons.map((b) => {
     const key = b.dataset.idea ?? b.id;
     const cv = b.querySelector('canvas')!;
@@ -170,6 +171,7 @@ export function mountTally(buttons: HTMLButtonElement[], resetBtn: HTMLButtonEle
 
   if (reducedMotion()) return;
   addTicker((dt) => {
+    if (!visible) return;
     for (const c of counters) {
       // the wheel is driven to the next tooth position; the pawl drops back once it has passed
       stepAxis(c.wheel, Math.round(c.wheel.p / ((Math.PI * 2) / TEETH)) * ((Math.PI * 2) / TEETH), dt);

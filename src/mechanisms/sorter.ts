@@ -5,7 +5,7 @@ import { axis, stepAxis, type Axis } from '../lib/motor';
 import { bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion } from '../lib/visible';
-import { drawSprite, sprite } from '../lib/sprites';
+import { drawSprite, sprite, near } from '../lib/sprites';
 
 interface Card {
   el: HTMLElement;
@@ -53,7 +53,7 @@ export function mountSorter(root: HTMLElement, cv: HTMLCanvasElement, cardEls: H
   });
   const DROP_VY = 60;
   const piles = binEls.map(() => 0);
-  sprite('flap');
+  near(cv, ['flap']);
   const binW = binEls.map(() => 200);
   const landed = binEls.map(() => 0);
   const totals = binEls.map((_, i) => cards.filter((c) => c.bin === i).length);

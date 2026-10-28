@@ -1,10 +1,16 @@
-/** Rendered part images (PNG with alpha) used by the mechanisms. Each loads once; a mechanism draws
- *  its fallback shapes until the sprite is ready, and forever if the file is missing. */
+/** Rendered part images (WebP with alpha) used by the mechanisms. Each loads once; a mechanism draws
+ *  its fallback shapes until the sprite is ready, and forever if the file is missing. A mechanism asks
+ *  for its parts with near() so they download when its section is about to arrive, not at page load. */
 const cache = new Map<string, HTMLImageElement | null>();
 const pending = new Map<string, Promise<HTMLImageElement | null>>();
+// a part downloads only once its section has asked for it through near() or preload(); a draw that
+// runs earlier (a first frame at mount) gets null and draws the fallback
+const released = new Set<string>();
+const releasedTextures = new Set<string>();
 
 export function sprite(name: string): HTMLImageElement | null {
   if (cache.has(name)) return cache.get(name)!;
+  if (!released.has(name)) return null;
   if (!pending.has(name)) {
     const p = new Promise<HTMLImageElement | null>((resolve) => {
       const img = new Image();
@@ -17,7 +23,7 @@ export function sprite(name: string): HTMLImageElement | null {
         cache.set(name, null);
         resolve(null);
       };
-      img.src = `/parts/${name}.png`;
+      img.src = `/parts/${name}.webp`;
     });
     pending.set(name, p);
   }
@@ -25,7 +31,35 @@ export function sprite(name: string): HTMLImageElement | null {
 }
 
 export function preload(names: string[]): void {
-  names.forEach(sprite);
+  for (const n of names) {
+    released.add(n);
+    sprite(n);
+  }
+}
+
+/** Start loading a section's renders (and textures) once it is within about a screen and a half of
+ *  the viewport, so they are ready when it arrives and cost nothing while it is far away. */
+export function near(el: Element, names: string[], textureNames: string[] = []): void {
+  const go = (): void => {
+    preload(names);
+    for (const t of textureNames) {
+      releasedTextures.add(t);
+      texture(t);
+    }
+  };
+  if (!('IntersectionObserver' in window)) {
+    go();
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      go();
+      io.disconnect();
+    },
+    { rootMargin: '150% 0px 150% 0px', threshold: 0 },
+  );
+  io.observe(el);
 }
 
 /** Draw a sprite scaled to a target height, anchored at (ax, ay) in its own 0..1 box, rotated. */
@@ -74,6 +108,7 @@ const textures = new Map<string, HTMLImageElement>();
 /** A photographed material (a jpg in /parts) for fills; null until it has loaded. */
 export function texture(name: string): HTMLImageElement | null {
   let img = textures.get(name);
+  if (!img && !releasedTextures.has(name)) return null;
   if (!img) {
     img = new Image();
     img.decoding = 'async';

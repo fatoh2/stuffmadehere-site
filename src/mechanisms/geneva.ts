@@ -8,7 +8,7 @@ import { onVisible, reducedMotion } from '../lib/visible';
 import { clamp } from '../lib/motor';
 import { capture } from '../lib/pointer';
 import { strokesFor, textWidth } from './strokefont';
-import { sprite, drawSprite } from '../lib/sprites';
+import { sprite, drawSprite, near } from '../lib/sprites';
 import { metals, bar, disc } from '../lib/canvas';
 
 const TAU = Math.PI * 2;
@@ -42,6 +42,7 @@ export interface GenevaHandle {
 }
 
 export function mountGeneva(o: GenevaOptions): GenevaHandle {
+  near(o.section, ['geneva', 'driver', 'armlink', 'pen']);
   const P = palette();
   const M = metals();
   if (reducedMotion()) return { reset() {} }; // the slip is simply printed

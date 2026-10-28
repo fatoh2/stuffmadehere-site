@@ -7,7 +7,7 @@ import { bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { localPoint, capture } from '../lib/pointer';
 import { onVisible, reducedMotion } from '../lib/visible';
-import { drawLink, drawSprite, sprite } from '../lib/sprites';
+import { drawLink, drawSprite, sprite, near } from '../lib/sprites';
 
 export interface TrebuchetHandle {
   reset(): void;
@@ -25,10 +25,7 @@ export function mountTrebuchet(cv: HTMLCanvasElement, log: HTMLElement | null): 
   const base = { x: 80, y: 0 }; // the pivot
   let targetX = 500;
   let dragging = false;
-  sprite('armlink');
-  sprite('weight');
-  sprite('bucket');
-  sprite('pivot');
+  near(cv, ['armlink', 'weight', 'bucket', 'pivot']);
   let visible = true;
   const beam: Axis = axis(-1.05, 9, 60); // angle of the long arm, rad; rest is down and back
   let mass = 60; // the counterweight, in made-up kilos

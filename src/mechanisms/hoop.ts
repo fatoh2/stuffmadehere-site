@@ -5,7 +5,7 @@
 import { cue } from '../lib/sound';
 import { axis, stepAxis, clamp } from '../lib/motor';
 import { fit, palette, metals, bar, tslot, disc, bolt } from '../lib/canvas';
-import { sprite, drawSprite } from '../lib/sprites';
+import { sprite, drawSprite, near } from '../lib/sprites';
 import { VelocityTracker, localPoint, capture } from '../lib/pointer';
 import { addTicker } from '../lib/loop';
 import { startGhost, stepGhost, drawGhost, type GhostState } from '../lib/ghost';
@@ -47,6 +47,7 @@ const R = 13;
 
 export function mountHoop(o: HoopOptions): HoopHandle {
   const cv = o.canvas;
+  near(cv, ['hoop', 'pitcher', 'carriage']);
   const P = palette();
   const M = metals();
   let W = 0;

@@ -7,7 +7,7 @@
  *  finished part stays on screen.
  *  From the pumpkin carver, the chainsaw robot and the Tormach. */
 import { DPR, palette } from '../lib/canvas';
-import { drawSprite, sprite } from '../lib/sprites';
+import { drawSprite, sprite, near } from '../lib/sprites';
 import { spindle } from '../lib/sound';
 import { addTicker } from '../lib/loop';
 import { onceInView, reducedMotion } from '../lib/visible';
@@ -55,6 +55,7 @@ export interface CncHandle {
 }
 
 export function mountCnc(host: HTMLElement, opts: CncOptions = {}): CncHandle {
+  near(host, ['buff']);
   const textMaybe = host.querySelector<HTMLElement>('.cnc__text');
   if (!textMaybe || reducedMotion()) return { run() {} };
   const text: HTMLElement = textMaybe;

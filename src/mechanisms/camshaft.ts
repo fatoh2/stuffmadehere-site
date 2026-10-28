@@ -10,7 +10,7 @@ import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion, finePointer } from '../lib/visible';
 import { capture } from '../lib/pointer';
 import { stepSpring } from '../lib/spring';
-import { sprite, drawSprite } from '../lib/sprites';
+import { sprite, drawSprite, near } from '../lib/sprites';
 
 const TAU = Math.PI * 2;
 const R0 = 13;
@@ -40,6 +40,7 @@ export interface CamshaftOptions {
 }
 
 export function mountCamshaft(o: CamshaftOptions): void {
+  near(o.ledger, ['cam', 'launcher']);
   const P = palette();
   const M = metals();
   const still = reducedMotion();

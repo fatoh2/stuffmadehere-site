@@ -7,7 +7,7 @@
 import { cue } from '../lib/sound';
 import { axis, stepAxis, clamp } from '../lib/motor';
 import { fit, palette, metals, bar, disc, bolt } from '../lib/canvas';
-import { sprite, drawSprite } from '../lib/sprites';
+import { sprite, drawSprite, near } from '../lib/sprites';
 import { localPoint, capture } from '../lib/pointer';
 import { addTicker } from '../lib/loop';
 import { startGhost, stepGhost, drawGhost, type GhostState } from '../lib/ghost';
@@ -69,7 +69,7 @@ export function mountPutter(cv: HTMLCanvasElement, read: HTMLElement | null, sta
   let demoAt = 0;
   const trail: { x: number; y: number }[] = [];
   const still = reducedMotion();
-  sprite('putter');
+  near(cv, ['putter']);
 
   const layout = (): void => {
     const f = fit(cv);

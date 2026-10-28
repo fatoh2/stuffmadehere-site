@@ -1,12 +1,12 @@
 /** Mechanism A: the apple-peel reveal. The text block is covered by a skin; as the section scrolls in,
  *  a blade peels it off in one continuous strip that runs back and forth, the strip rolling up behind
  *  the blade. From "I made an apple peel itself" (2026). */
-import { fit, palette } from '../lib/canvas';
+import { DPR, fit, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { onVisible, reducedMotion, narrow } from '../lib/visible';
 import { clamp } from '../lib/motor';
 import { stepSpring } from '../lib/spring';
-import { sprite, drawSprite } from '../lib/sprites';
+import { sprite, drawSprite, near } from '../lib/sprites';
 
 export interface PeelHandle {
   reset(): void;
@@ -30,7 +30,6 @@ export function mountPeel(section: HTMLElement, textEl: HTMLElement, canvas: HTM
   let cut = 0; // length already peeled (px along the path)
   const blade = { x: 0, v: 0 };
   let visible = false;
-  let finished = false;
   let dropT = -1;
   let roll = { x: 0, y: 0, r: 0 };
 
@@ -46,10 +45,10 @@ export function mountPeel(section: HTMLElement, textEl: HTMLElement, canvas: HTM
     rowsN = Math.ceil(box.h / strip);
     total = rowsN * box.w;
     skin = document.createElement('canvas');
-    skin.width = Math.ceil(W * (window.devicePixelRatio || 1));
-    skin.height = Math.ceil(H * (window.devicePixelRatio || 1));
+    const d = DPR();
+    skin.width = Math.ceil(W * d);
+    skin.height = Math.ceil(H * d);
     sctx = skin.getContext('2d')!;
-    const d = window.devicePixelRatio || 1;
     sctx.setTransform(d, 0, 0, d, 0, 0);
     sctx.fillStyle = P.surface;
     sctx.fillRect(box.x, box.y, box.w, box.h);
@@ -61,6 +60,7 @@ export function mountPeel(section: HTMLElement, textEl: HTMLElement, canvas: HTM
   layout();
   new ResizeObserver(layout).observe(section);
   onVisible(section, (v) => (visible = v), 0.01);
+  near(section, ['peeler']);
 
   /** position along the path -> point and direction */
   function at(s: number): { x: number; y: number; dir: number; row: number } {
@@ -89,7 +89,7 @@ export function mountPeel(section: HTMLElement, textEl: HTMLElement, canvas: HTM
   }
 
   addTicker((dt) => {
-    if (!visible && finished) return;
+    if (!visible) return;
     const r = section.getBoundingClientRect();
     const vh = window.innerHeight;
     // peel progress: starts when the block enters, done when it is three-quarters up the screen
@@ -133,7 +133,6 @@ export function mountPeel(section: HTMLElement, textEl: HTMLElement, canvas: HTM
         drawRoll(roll.x + p.dir * 40 * dropT, y, roll.r, p.dir, dropT * 6);
         ctx.globalAlpha = 1;
       } else {
-        finished = true;
         ctx.clearRect(0, 0, W, H);
       }
     }
@@ -169,7 +168,6 @@ export function mountPeel(section: HTMLElement, textEl: HTMLElement, canvas: HTM
       cut = 0;
       blade.x = 0;
       blade.v = 0;
-      finished = false;
       dropT = -1;
       layout();
     },

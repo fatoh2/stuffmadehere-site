@@ -3,7 +3,7 @@
  *  thumbnails inside as parts in bins. One drawer open at a time, as in any shop. New. */
 import { axis, stepAxis, type Axis } from '../lib/motor';
 import { addTicker } from '../lib/loop';
-import { reducedMotion } from '../lib/visible';
+import { onVisible, reducedMotion } from '../lib/visible';
 import { cue } from '../lib/sound';
 
 interface Drawer {
@@ -74,7 +74,10 @@ export function mountDrawers(cabinet: HTMLElement): void {
   }
 
   if (still) return;
+  let visible = false;
+  onVisible(cabinet, (v) => (visible = v), 0.05);
   addTicker((dt) => {
+    if (!visible) return;
     for (const d of drawers) {
       const target = d.open ? 0 : -d.h;
       if (d.y.p === target && !d.open && !d.bin.hidden && d.slot.style.height === '0px') continue;

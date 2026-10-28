@@ -7,7 +7,7 @@ import { bar, bolt, disc, fit, metals, palette } from '../lib/canvas';
 import { addTicker } from '../lib/loop';
 import { localPoint, capture } from '../lib/pointer';
 import { onVisible, reducedMotion } from '../lib/visible';
-import { drawSprite, sprite } from '../lib/sprites';
+import { drawSprite, sprite, near } from '../lib/sprites';
 import { cue } from '../lib/sound';
 
 export interface Frame {
@@ -41,15 +41,30 @@ export function mountProjector(cv: HTMLCanvasElement, frames: Frame[], onFrame: 
   let ctx = cv.getContext('2d')!;
   let W = 10;
   let H = 10;
-  const imgs = frames.map((f) => {
+  // frames load as the film reaches them: the first three now, the rest once the projector is near
+  const imgs = frames.map(() => {
     const im = new Image();
     im.decoding = 'async';
-    im.src = f.src;
     return im;
   });
-  sprite('geneva');
-  sprite('driver');
-  sprite('crank');
+  const want = (i: number): void => {
+    for (let j = Math.max(0, i - 2); j <= Math.min(frames.length - 1, i + 2); j++) if (!imgs[j].src) imgs[j].src = frames[j].src;
+  };
+  want(0);
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        frames.forEach((f, j) => {
+          if (!imgs[j].src) imgs[j].src = f.src;
+        });
+        io.disconnect();
+      },
+      { rootMargin: '0px' },
+    );
+    io.observe(cv);
+  }
+  near(cv, ['geneva', 'driver', 'crank']);
   const crank: Axis = axis(0, 11, 70);
   let target = 0;
   const maxTheta = (frames.length - 1) * TAU;
@@ -172,6 +187,7 @@ export function mountProjector(cv: HTMLCanvasElement, frames: Frame[], onFrame: 
     for (let i = first; i <= last; i++) {
       const y = gy + (i - pos) * frameH;
       const im = imgs[i];
+      if (!im.src) want(i);
       ctx.fillStyle = '#0a0a0c';
       ctx.fillRect(gx, y, gateW, gateH);
       if (im.complete && im.naturalWidth) ctx.drawImage(im, gx, y, gateW, gateH);
