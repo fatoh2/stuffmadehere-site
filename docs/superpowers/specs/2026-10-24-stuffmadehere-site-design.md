@@ -370,3 +370,32 @@ above the next heading; "STUFF MADE HERE" on three lines on phones is the owner'
 heroes keep an empty right half as the type-only art direction; the About hero's caption stays 11 px
 on 667 px phones because 13 px pushes the hero past one screen. Audit: 24 of 24 page/size pairs pass.
 
+## 19. Round thirteen (2026-10-31): depth, the way the videos have it
+
+The owner asked whether the site lives up to the standard and complexity of the videos. The honest
+answer was: it matches their breadth and look, not their depth. Each machine was one trick that worked
+first time; half the sections were watched, not worked; three sections repeated "aim badly, it
+corrects"; the constants were invented. The owner said "do all, and add more mechanics that have more
+depths to them". Built:
+
+- **Show the controller** on the hoop and the putter: a toggle that puts the maths on the footage. The
+  hoop draws each live ball's predicted arc and the plane it chose, meters both axes against their
+  speed and acceleration limits with the position error, and says in words when a throw is out of
+  reach in the time it has. The putter draws the hole line against the visitor's line, the face angle
+  over the last quarter second, the governor's asked and set pace, and after impact the predicted roll
+  against the hole distance.
+- **Fail first, then fix**: the launcher's first shot of a visit is 10% under charge, hits the front of
+  the slot, is read off in pixels low, and the second shot is corrected, with the slip saying so.
+- **Three machines with real depth on the About page**, from the videos: the all-white jigsaw (edge
+  signatures, a border rule, a unique-fit rule, a piece put back when there is nothing to compare it
+  with, solved face down and flipped), the explosive bat (a proper collision with the load on the
+  handle and a failure past its limit, at one eighth speed, hold-to-load), and the bow aimed by
+  cameras (two noisy bearings, a fix with its error ellipse, a least-squares track, a lead solve, a
+  pan motor, and a first miss from a 2.5° calibration error that is then corrected).
+
+Measured: no page errors, every section one screen at six sizes on all four pages (24 of 24), lint
+clean. The jigsaw solves 24 pieces in about 15 s with one piece put back; the bat fails at 95% and
+holds at 68% with exit 45 m/s; the bow's first target is missed by a measured amount and the second
+hit. Renders for the new parts (bat, bow, arrow, jigsaw head) are not yet made; the drawn helpers
+stand in, and a quote follows.
+

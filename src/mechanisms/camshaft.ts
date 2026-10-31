@@ -75,6 +75,10 @@ export function mountCamshaft(o: CamshaftOptions): void {
   let omega = 0;
   let idle = true;
   let held: number | null = null;
+  let shotN = 0;
+  let missShort = 0; // px the first shot falls short of the slot, 0 once corrected
+  const launchNote = o.fireButton.parentElement?.querySelector('p') ?? null;
+  const noteDefault = launchNote?.textContent ?? '';
   const drive = axis(0, 7, 40);
   let drag: { y: number; t: number; v: number } | null = null;
   let lastTouch = 0;
@@ -244,7 +248,7 @@ export function mountCamshaft(o: CamshaftOptions): void {
     target: -1.2,
     spin: 0,
     rpm: 0,
-    phase: 'idle' as 'idle' | 'aim' | 'spin' | 'fly',
+    phase: 'idle' as 'idle' | 'aim' | 'spin' | 'fly' | 'drop',
     flying: false,
     cardIdx: -1,
     t: 0,
@@ -290,10 +294,7 @@ export function mountCamshaft(o: CamshaftOptions): void {
   o.ledger.addEventListener('pointerdown', clearLanding, { passive: true });
   o.ledger.addEventListener('wheel', clearLanding, { passive: true });
 
-  o.fireButton.addEventListener('click', () => {
-    if (launch.phase !== 'idle') return;
-    let i = Math.floor(Math.random() * cams.length);
-    if (i === onRow) i = (i + 7) % cams.length;
+  const fire = (i: number): void => {
     launch.cardIdx = i;
     held = i;
     idle = false;
@@ -344,6 +345,18 @@ export function mountCamshaft(o: CamshaftOptions): void {
     launch.vy = -vyUp;
     // time of flight: when x reaches the slot, or for a vertical shot when y comes back down to it
     launch.T = Math.abs(dx) > 1 ? dx / vx : (vyUp + Math.sqrt(Math.max(0, vyUp * vyUp + 2 * G * dy))) / G;
+    // the first shot of a visit is 7% under charge, as first shots are: it falls short of the slot, the
+    // miss is measured, and the launcher fires again with the charge corrected
+    shotN++;
+    missShort = 0;
+    if (shotN === 1) {
+      // 10% under: when the card reaches the slot's x it is this many px below the slot's top edge
+      const k = 0.9;
+      launch.vx = vx * k;
+      launch.vy = -vyUp * k;
+      launch.T = Math.abs(dx) > 1 ? dx / launch.vx : launch.T / k;
+      missShort = Math.max(6, launch.y0 + launch.vy * launch.T + 0.5 * G * launch.T * launch.T - launch.landY);
+    }
     launch.target = Math.atan2(launch.vy, launch.vx);
     launch.phase = 'aim';
     launch.t = 0;
@@ -359,6 +372,12 @@ export function mountCamshaft(o: CamshaftOptions): void {
       const rowTop = o.ledger.getBoundingClientRect().top + window.scrollY;
       o.scrollTo(Math.max(0, rowTop - window.innerHeight * 0.3));
     }
+  };
+  o.fireButton.addEventListener('click', () => {
+    if (launch.phase !== 'idle') return;
+    let i = Math.floor(Math.random() * cams.length);
+    if (i === onRow) i = (i + 7) % cams.length;
+    fire(i);
   });
 
   /* ---------- the loop ---------- */
@@ -432,11 +451,23 @@ export function mountCamshaft(o: CamshaftOptions): void {
         const y = launch.y0 + launch.vy * t + 0.5 * G * t * t;
         const rot = (1 - t / launch.T) * -12;
         o.card.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${rot.toFixed(1)}deg)`;
-        if (launch.t >= launch.T) {
+        if (launch.t >= launch.T && missShort > 0) {
+          // it hit the front of the slot: it drops, the miss is read off, and the next shot is corrected
+          launch.phase = 'drop';
+          launch.t = 0;
+          launch.rpm = 0;
+        } else if (launch.t >= launch.T) {
           launch.phase = 'idle';
           launch.flying = false;
           launch.rpm = 0;
           o.card.classList.remove('is-flying');
+          if (shotN > 1 && launchNote) {
+            launchNote.textContent = 'Shot 2: in the slot.';
+            o.fireButton.textContent = 'Fire a random one';
+            window.setTimeout(() => {
+              launchNote.textContent = noteDefault;
+            }, 4000);
+          }
           const c = cams[launch.cardIdx];
           previewImg.src = `https://i.ytimg.com/vi/${c.id}/mqdefault.jpg`;
           previewCap.textContent = c.title;
@@ -448,6 +479,24 @@ export function mountCamshaft(o: CamshaftOptions): void {
             if (held === launch.cardIdx) held = null;
             lastTouch = performance.now();
           }, 1800);
+        }
+      } else if (launch.phase === 'drop') {
+        launch.t += dt;
+        const t = launch.t;
+        const x = launch.x0 + launch.vx * launch.T - 14 * t;
+        const y = launch.y0 + launch.vy * launch.T + 0.5 * G * launch.T * launch.T + 260 * t * t;
+        o.card.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${(-12 - 70 * t).toFixed(1)}deg)`;
+        o.card.style.opacity = String(Math.max(0, 1 - t / 0.45));
+        if (t >= 0.45) {
+          o.card.classList.remove('is-flying');
+          o.card.style.opacity = '';
+          launch.phase = 'idle';
+          launch.flying = false;
+          const short = Math.round(missShort);
+          missShort = 0;
+          if (launchNote) launchNote.textContent = `Shot 1: ${short} px low. Charge +10%.`;
+          o.fireButton.textContent = `${short} px low. Again`;
+          window.setTimeout(() => fire(launch.cardIdx), 900);
         }
       }
     }

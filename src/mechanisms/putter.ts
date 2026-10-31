@@ -6,7 +6,7 @@
  *  "Making an autocorrect mini golf club" and "Robot golf vs holes that keep getting harder" (2026). */
 import { cue } from '../lib/sound';
 import { axis, stepAxis, clamp } from '../lib/motor';
-import { fit, palette, metals, bar, disc, bolt } from '../lib/canvas';
+import { fit, palette, metals, bar, disc, bolt, fontFor } from '../lib/canvas';
 import { sprite, drawSprite, near } from '../lib/sprites';
 import { localPoint, capture } from '../lib/pointer';
 import { addTicker } from '../lib/loop';
@@ -17,6 +17,8 @@ export interface PutterHandle {
   /** putt with a deliberately bad aim, as the machine does when nobody plays */
   putt(): void;
   stats(): { made: number; shots: number; level: number };
+  /** draw what the club knows: both lines, the face over the last quarter second, the governor */
+  maths(on: boolean): void;
 }
 
 const FACE_MAX = (40 * Math.PI) / 180; // the face motor's travel each way
@@ -67,6 +69,10 @@ export function mountPutter(cv: HTMLCanvasElement, read: HTMLElement | null, sta
   let interacted = false;
   let demos = 0;
   let demoAt = 0;
+  let maths = false;
+  const faceTrace: { t: number; a: number }[] = [];
+  let impactInfo: { asked: number; set: number; roll: number; hole: number } | null = null;
+  let strokeFrom: { x: number; y: number; ux: number; uy: number } | null = null;
   const trail: { x: number; y: number }[] = [];
   const still = reducedMotion();
   near(cv, ['putter']);
@@ -158,6 +164,8 @@ export function mountPutter(cv: HTMLCanvasElement, read: HTMLElement | null, sta
     s = { ux, uy, power, back: wound ? 0 : back0, back0, speed: 0, user, corr: clamp(off, -FACE_MAX, FACE_MAX), off };
     face.p = 0;
     face.v = 0;
+    strokeFrom = { x: ball.x, y: ball.y, ux, uy };
+    impactInfo = null;
     phase = wound ? 'back' : 'down';
     shots++;
     trail.length = 0;
@@ -174,6 +182,7 @@ export function mountPutter(cv: HTMLCanvasElement, read: HTMLElement | null, sta
     const d = Math.hypot(dx, dy);
     const need = Math.sqrt(2 * MU * (d + 10));
     const speed = clamp(need, 120, 1500);
+    impactInfo = { asked: s.user, set: speed, roll: (speed * speed) / (2 * MU), hole: d };
     ball.vx = Math.cos(a) * speed;
     ball.vy = Math.sin(a) * speed;
     s.speed = 0;
@@ -484,7 +493,62 @@ export function mountPutter(cv: HTMLCanvasElement, read: HTMLElement | null, sta
     drawAim();
     drawBall();
     drawClub();
+    if (maths) drawMaths();
     if (ghost) drawGhost(ctx, ghost, '#ffffff');
+  }
+
+  /** what the club knows: the hole line against the visitor's line, the face over the last quarter second, the governor */
+  function drawMaths(): void {
+    ctx.save();
+    ctx.setLineDash([4, 6]);
+    ctx.lineWidth = 1.5;
+    const from = strokeFrom ?? { x: ball.x, y: ball.y, ux: 0, uy: 0 };
+    ctx.strokeStyle = 'rgba(255,255,255,0.7)';
+    ctx.beginPath();
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(hole.x, hole.y);
+    ctx.stroke();
+    if (strokeFrom) {
+      ctx.strokeStyle = P.accent;
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(from.x + from.ux * 140, from.y + from.uy * 140);
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+    // the face over the last 250 ms against its 40° travel, and the governor's figures
+    const bw = 124;
+    const bh = 40;
+    const bx = g.x1 - bw - 10;
+    const by = g.y0 + 10;
+    ctx.fillStyle = 'rgba(0,0,0,0.38)';
+    ctx.fillRect(bx - 6, by - 6, bw + 12, bh + 58);
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(bx, by + bh / 2);
+    ctx.lineTo(bx + bw, by + bh / 2);
+    ctx.stroke();
+    const now = performance.now();
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    faceTrace.forEach((p, i) => {
+      const x = bx + bw - ((now - p.t) / 250) * bw;
+      const y = by + bh / 2 - (p.a / FACE_MAX) * (bh / 2);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.font = fontFor(11, 700);
+    ctx.fillStyle = '#ffffff';
+    ctx.textBaseline = 'top';
+    ctx.fillText(`face ${(face.p * DEG).toFixed(0)}° of ±${(FACE_MAX * DEG).toFixed(0)}°`, bx, by + bh + 6);
+    if (impactInfo) {
+      ctx.fillText(`pace ${Math.round(impactInfo.asked)} asked, ${Math.round(impactInfo.set)} set`, bx, by + bh + 21);
+      ctx.fillText(`roll ${Math.round(impactInfo.roll)} px, hole ${Math.round(impactInfo.hole)} px`, bx, by + bh + 36);
+    } else if (s) ctx.fillText(`pace asked ${Math.round(s.user)} px/s`, bx, by + bh + 21);
+    ctx.restore();
   }
 
   /* ---------- the loop ---------- */
@@ -495,6 +559,8 @@ export function mountPutter(cv: HTMLCanvasElement, read: HTMLElement | null, sta
       return;
     }
     if (visible && !demoAt) demoAt = now + 1500;
+    faceTrace.push({ t: now, a: face.p });
+    while (faceTrace.length && now - faceTrace[0].t > 250) faceTrace.shift();
     if (ghost) {
       stepGhost(ghost, dt);
       if (!ghost.released) {
@@ -556,5 +622,8 @@ export function mountPutter(cv: HTMLCanvasElement, read: HTMLElement | null, sta
       idleAt = performance.now() + 7000;
     },
     stats: () => ({ made, shots, level }),
+    maths(on) {
+      maths = on;
+    },
   };
 }

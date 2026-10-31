@@ -87,6 +87,19 @@ const hoop = mountHoop({
   },
 });
 mountCartridge($('#fire'), hoop, miss);
+// the controller overlays: what each machine knows, the way the videos put the maths on the footage
+const mathsToggle = (id: string, set: (on: boolean) => void): void => {
+  const b = document.getElementById(id) as HTMLButtonElement | null;
+  if (!b) return;
+  let on = false;
+  b.hidden = false;
+  b.addEventListener('click', () => {
+    on = !on;
+    set(on);
+    b.textContent = on ? 'Hide the controller' : 'Show the controller';
+  });
+};
+mathsToggle('missMaths', (on) => hoop.maths(on));
 $('#heroWatch').addEventListener('click', (e) => {
   e.preventDefault();
   const now = document.getElementById('now');
@@ -97,6 +110,7 @@ $('#heroWatch').addEventListener('click', (e) => {
 /* ---------- bad aim, good putt: the self-correcting club ---------- */
 const putter = mountPutter($('#green'), $('#puttRead'), $('#puttStat'));
 $('#puttBad').addEventListener('click', () => putter.putt());
+mathsToggle('puttMaths', (on) => putter.maths(on));
 
 /* ---------- building now: assembled by the gantry ---------- */
 const assembly = mountPickPlace($('#now'));

@@ -52,6 +52,9 @@
       <a href="#shop">The shop</a>
       <a href="#builds">What he builds</a>
       <a href="#work">How he works</a>
+      <a href="#jigsaw">The hardest jigsaw</a>
+      <a href="#bat">Powder charge</a>
+      <a href="#bow">Aimed by cameras</a>
       <a href="#watch">Watch</a>
       <a href="/">The machines</a>
       <a href="/ideas.html">Not built yet</a>
@@ -202,6 +205,60 @@
         <div class="sheet__cell"><dt>Scale</dt><dd class="nums">1:1</dd></div>
         <div class="sheet__cell"><dt>Sheet</dt><dd class="nums">1 of 1</dd></div>
       </dl>
+    </div>
+  </section>
+
+  <!-- ============ THE HARDEST JIGSAW ============ -->
+  <section class="lab lab--jigsaw section wrap" id="jigsaw" aria-labelledby="jigsaw-h">
+    <figure class="lab__machine">
+      <canvas id="jigsawCanvas" aria-label="A gantry solving an all-white jigsaw by reading the shape of each piece’s edges"></canvas>
+      <p class="tag lab__tag">Watch it read the edges</p>
+    </figure>
+    <div class="lab__text">
+      <h2 class="head" id="jigsaw-h">The hardest jigsaw</h2>
+      <p class="lab__pitch">Twenty-four blank pieces. The head picks one, reads its four edges, compares them with every open slot it already knows something about, and places it only when exactly one fits.</p>
+      <p class="lab__why">A piece with nothing placed beside it goes back to the tray: there is nothing to compare it with yet. The board is solved face down, as his machine did it. When the last piece is in, it flips.</p>
+      <div class="lab__controls">
+        <button class="button" id="jigsawAgain" type="button">Scramble it again</button>
+        <output class="lab__stat" id="jigsawStat">0 of 24 placed</output>
+      </div>
+      <figure class="lab__rel"><a href="https://www.youtube.com/watch?v=WsPHBD5NsS0"><img loading="lazy" src="https://i.ytimg.com/vi/WsPHBD5NsS0/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “Worlds hardest jigsaw vs. puzzle machine (all white)”"></a><figcaption>From <a class="link" href="https://www.youtube.com/watch?v=WsPHBD5NsS0">Worlds hardest jigsaw vs. puzzle machine</a> (2022).</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ============ THE EXPLOSIVE BAT ============ -->
+  <section class="lab lab--bat lab--flip section wrap" id="bat" aria-labelledby="bat-h">
+    <div class="lab__text">
+      <h2 class="head" id="bat-h">Powder charge, exit speed</h2>
+      <p class="lab__pitch">A blank cartridge swings the bat. The charge sets the bat speed; the collision does the rest: the bat’s effective mass, the ball’s mass, how much bounce a baseball has.</p>
+      <p class="lab__why">Shown at one eighth speed, as his high-speed camera showed it. Hold the button to load more charge. Past about 85 percent the handle cannot take the load and the bat fails, as his did. It is rebuilt a moment later.</p>
+      <div class="lab__controls">
+        <button class="button cartridge" id="batLoad" type="button"><span class="cartridge__face">Hold to load</span><span class="cartridge__gauge" aria-hidden="true"></span></button>
+      </div>
+      <output class="lab__stat" id="batStat">Load a charge.</output>
+      <figure class="lab__rel"><a href="https://www.youtube.com/watch?v=Puo6Vgcbxps"><img loading="lazy" src="https://i.ytimg.com/vi/Puo6Vgcbxps/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “Explosive Bat: crushing MLB records”"></a><figcaption>From <a class="link" href="https://www.youtube.com/watch?v=B3CsOx5U9Gs">World’s most powerful bat goes boom</a> and <a class="link" href="https://www.youtube.com/watch?v=Puo6Vgcbxps">Explosive Bat: crushing MLB records</a> (2020).</figcaption></figure>
+    </div>
+    <figure class="lab__machine">
+      <canvas id="batCanvas" aria-label="A bat swung by a blank cartridge hitting a pitched ball, shown in slow motion"></canvas>
+      <p class="tag lab__tag">Hold the button, let go</p>
+    </figure>
+  </section>
+
+  <!-- ============ THE BOW ============ -->
+  <section class="lab lab--bow section wrap" id="bow" aria-labelledby="bow-h">
+    <figure class="lab__machine">
+      <canvas id="bowCanvas" aria-label="Two cameras triangulating a flying target while a bow on a pan motor aims ahead of it and fires"></canvas>
+      <p class="tag lab__tag">Flick a target across</p>
+    </figure>
+    <div class="lab__text">
+      <h2 class="head" id="bow-h">Aimed by cameras</h2>
+      <p class="lab__pitch">Two cameras each see a bearing to the target. Where the rays cross is the fix, with the error a camera’s noise gives it. A tracker fits the path, solves how far to lead, and the pan motor turns there.</p>
+      <p class="lab__why">The first target of a visit is missed: one camera is two and a half degrees out of calibration. The miss is measured, the bearing corrected, and the next one drops. Flick a target yourself, or let the thrower do it.</p>
+      <div class="lab__controls">
+        <button class="button" id="bowLaunch" type="button">Throw a target</button>
+        <output class="lab__stat" id="bowStat"></output>
+      </div>
+      <figure class="lab__rel"><a href="https://www.youtube.com/watch?v=1MkrNVic7pw"><img loading="lazy" src="https://i.ytimg.com/vi/1MkrNVic7pw/hqdefault.jpg" width="480" height="360" alt="Thumbnail of the video “Auto-aiming bow vs. FLYING targets”"></a><figcaption>From <a class="link" href="https://www.youtube.com/watch?v=1MkrNVic7pw">Auto-aiming bow vs. FLYING targets</a> (2021).</figcaption></figure>
     </div>
   </section>
 

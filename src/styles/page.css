@@ -640,3 +640,7 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
   .putt__tag { left: 0.8rem; bottom: 0.8rem; }
   .cabinet__tag { right: 1.75rem; top: 0.5rem; }
 }
+/* the controller toggles: on a phone the hoop's bottom block has no room for one more line */
+.miss__maths { margin-top: 0.5rem; }
+@media (max-width: 47.99em) { .miss__maths { display: none; } }
+

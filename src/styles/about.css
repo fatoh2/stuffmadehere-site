@@ -209,3 +209,48 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
 .shop__tag { left: 1rem; bottom: 1rem; }
 /* on a phone the lead above the floor already says to move across it; the tag would sit on the 17,342 lb label */
 @media (max-width: 47.99em) { .shop__tag { display: none; } }
+
+/* ---------- three machines from the videos, with their working shown: the jigsaw, the bat, the bow ---------- */
+.lab { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(2rem, 4vw, 4rem); align-items: center; }
+.lab--flip { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.lab__machine { margin: 0; position: relative; }
+.lab__machine canvas { display: block; width: 100%; height: clamp(300px, 62svh, 640px); touch-action: none; border-radius: var(--radius); background: var(--surface); }
+.lab__machine canvas:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.lab__text .head { font-size: clamp(2.2rem, 1rem + 3.6vw, 4.6rem); }
+.lab__pitch { margin-top: 1rem; font-size: var(--step-lead); line-height: 1.35; max-width: 40ch; }
+.lab__why { margin-top: 1rem; max-width: 46ch; color: var(--muted); }
+.lab__controls { margin-top: 1.5rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.lab__stat { display: block; margin-top: 0.75rem; font-weight: 700; font-variant-numeric: tabular-nums; max-width: 46ch; font-size: var(--step-small); line-height: 1.35; }
+.lab__controls .lab__stat { display: inline; margin: 0; }
+.lab__tag { left: 1rem; bottom: 1rem; }
+.lab__rel { margin: 1.25rem 0 0; display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 1rem; align-items: center; max-width: 46ch; }
+.lab__rel img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.lab__rel figcaption { font-size: 0.9375rem; line-height: 1.35; color: var(--muted); }
+.lab--jigsaw { background: var(--paper); }
+.lab--jigsaw .lab__machine canvas { background: var(--surface); }
+.lab--bat { background: var(--dark); color: var(--dark-ink); }
+.lab--bat .lab__why, .lab--bat .lab__rel figcaption { color: var(--steel); }
+.lab--bat .lab__machine canvas { background: #1d1e22; }
+.lab--bat .button { background: var(--dark-ink); color: var(--dark); }
+.lab--bat .cartridge__gauge { background: var(--ball); }
+.lab--bow { background: var(--blue); color: var(--blue-ink); }
+.lab--bow .lab__why, .lab--bow .lab__rel figcaption, .lab--bow .link { color: var(--blue-ink); }
+.lab--bow .lab__machine canvas { background: var(--paper); }
+.lab--bow .button { background: var(--blue-ink); color: var(--blue); }
+@media (min-width: 64em) and (max-height: 820px) { .lab__machine canvas { height: clamp(280px, 56svh, 560px); } .lab__rel { display: none; } }
+@media (max-width: 63.99em) {
+  .lab, .lab--flip { grid-template-columns: 1fr; row-gap: 1.25rem; }
+  .lab__machine canvas { height: clamp(260px, 44svh, 520px); }
+  .lab__rel { display: none; }
+}
+@media (max-width: 47.99em) {
+  .lab { padding-top: max(4svh, 4.5rem); row-gap: 1rem; }
+  .lab__why { display: none; }
+  .lab__pitch { margin-top: 0.75rem; }
+  .lab__controls { margin-top: 0.75rem; }
+  .lab__stat { margin-top: 0.5rem; }
+  .lab__machine canvas { height: clamp(220px, 40svh, 480px); }
+  .lab__tag { left: 0.8rem; bottom: 0.8rem; }
+}
+@media (max-width: 47.99em) and (max-height: 780px) { .lab__pitch { font-size: 1rem; } .lab__machine canvas { height: 36svh; } }
+@media (max-width: 47.99em) and (max-height: 700px) { .lab__machine canvas { height: 32svh; } .lab__text .head { font-size: 2rem; } .lab__stat { font-size: 0.8125rem; } }

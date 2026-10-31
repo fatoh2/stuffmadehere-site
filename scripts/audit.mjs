@@ -22,7 +22,7 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 // and so is the build log's 'frames' index, which is allowed to be long.
 const PAGES = [
   { file: 'index.html', sections: ['top', 'miss', 'putt', 'now', 'all', 'drawers', 'method', 'numbers', 'about'] },
-  { file: 'about.html', sections: ['top', 'shop', 'builds', 'work'] },
+  { file: 'about.html', sections: ['top', 'shop', 'builds', 'work', 'jigsaw', 'bat', 'bow'] },
   { file: 'ideas.html', sections: ['top', 'table', 'sign', 'learn', 'since', 'vote'] },
   { file: 'log.html', sections: ['top', 'reel'] },
 ];

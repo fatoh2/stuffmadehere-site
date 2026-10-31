@@ -3,8 +3,8 @@
  *  motor limits (speed and acceleration per axis, no overshoot). From "Moving hoop won't let you
  *  miss" (2020) and "I made a ball seeking hoop" (2022). */
 import { cue } from '../lib/sound';
-import { axis, stepAxis, clamp } from '../lib/motor';
-import { fit, palette, metals, bar, tslot, disc, bolt } from '../lib/canvas';
+import { axis, stepAxis, clamp, type Axis } from '../lib/motor';
+import { fit, palette, metals, bar, tslot, disc, bolt, fontFor } from '../lib/canvas';
 import { sprite, drawSprite, near } from '../lib/sprites';
 import { VelocityTracker, localPoint, capture } from '../lib/pointer';
 import { addTicker } from '../lib/loop';
@@ -40,6 +40,8 @@ export interface HoopHandle {
   /** Launch a ball from a point (canvas coordinates) with a charge 0..1. */
   fire(x: number, y: number, charge: number): void;
   stats(): { made: number; shots: number };
+  /** draw what the controller knows: predicted arcs, planes, the axes against their limits */
+  maths(on: boolean): void;
 }
 
 const G = 1800;
@@ -76,6 +78,11 @@ export function mountHoop(o: HoopOptions): HoopHandle {
   let interacted = false;
   let demos = 0;
   let demoAt = 0;
+  let maths = false;
+  const acc = { x: 0, y: 0 };
+  let limit: { need: number; can: number; t: number } | null = null;
+  // how far an axis can travel from rest in T seconds under its limits (trapezoid or triangle profile)
+  const reachIn = (T: number, a: Axis): number => (T < (2 * a.vmax) / a.amax ? (a.amax * T * T) / 4 : a.vmax * T - (a.vmax * a.vmax) / a.amax);
   // homing: on the first visit the rig runs each axis to its limit switch, clicks, then comes home
   let homing = 0;
   try {
@@ -324,13 +331,19 @@ export function mountHoop(o: HoopOptions): HoopHandle {
       tx = clamp(best.x, g.xmin, g.xmax);
       ty = best.plane;
       pred = { x: best.x, y: best.plane };
+      limit = { need: Math.abs(tx - rig.x.p), can: reachIn(best.t, rig.x), t: best.t };
     } else {
       tx = g.homeX;
       ty = g.homeY;
+      limit = null;
     }
     if (!still || best || homing) {
+      const pvx = rig.x.v;
+      const pvy = rig.y.v;
       stepAxis(rig.x, tx, dt);
       stepAxis(rig.y, ty, dt);
+      acc.x = (rig.x.v - pvx) / Math.max(dt, 1e-3);
+      acc.y = (rig.y.v - pvy) / Math.max(dt, 1e-3);
     }
     // balls
     for (const b of balls) {
@@ -468,6 +481,7 @@ export function mountHoop(o: HoopOptions): HoopHandle {
       ctx.lineTo(pred.x, pred.y + 16);
       ctx.stroke();
     }
+    if (maths) drawMaths();
     // pitching machine
     if (!still) {
       const x = g.pitchX;
@@ -509,6 +523,76 @@ export function mountHoop(o: HoopOptions): HoopHandle {
       drawGhost(ctx, ghost, P.ink);
     }
   }
+  /** what the controller knows: each ball's predicted arc and chosen plane, the axes against their limits */
+  function drawMaths(): void {
+    ctx.save();
+    ctx.setLineDash([4, 6]);
+    ctx.lineWidth = 1.5;
+    for (const b of balls) {
+      if (b.state !== 'fly' || b.plane == null) continue;
+      ctx.strokeStyle = P.ink;
+      ctx.globalAlpha = 0.6;
+      ctx.beginPath();
+      let x = b.x;
+      let y = b.y;
+      let vx = b.vx;
+      let vy = b.vy;
+      ctx.moveTo(x, y);
+      for (let i = 0; i < 400; i++) {
+        vy += G / 120;
+        x += vx / 120;
+        y += vy / 120;
+        if (x < R) {
+          x = R;
+          vx = -vx * 0.7;
+        } else if (x > W - R) {
+          x = W - R;
+          vx = -vx * 0.7;
+        }
+        if (y < R) {
+          y = R;
+          vy = -vy * 0.7;
+        }
+        ctx.lineTo(x, y);
+        if (vy > 0 && y >= b.plane) break;
+      }
+      ctx.stroke();
+      ctx.globalAlpha = 0.35;
+      ctx.beginPath();
+      ctx.moveTo(g.xmin, b.plane);
+      ctx.lineTo(g.xmax, b.plane);
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+    const x0 = m + 4;
+    let y0 = g.railY + 34;
+    ctx.font = fontFor(12, 700);
+    ctx.textBaseline = 'top';
+    const meter = (yy: number, frac: number, text: string): void => {
+      ctx.fillStyle = P.steel;
+      ctx.fillRect(x0, yy, 90, 6);
+      ctx.fillStyle = P.accent;
+      ctx.fillRect(x0, yy, 90 * clamp(frac, 0, 1), 6);
+      ctx.fillStyle = P.muted;
+      ctx.fillText(text, x0 + 98, yy - 4);
+    };
+    const row = (label: string, a: Axis, accel: number, err: number): void => {
+      ctx.fillStyle = P.ink;
+      ctx.fillText(`${label}  error ${Math.round(err)} px`, x0, y0);
+      meter(y0 + 18, Math.abs(a.v) / a.vmax, `v ${Math.round(Math.abs(a.v))} of ${a.vmax} px/s`);
+      meter(y0 + 32, Math.abs(accel) / a.amax, `a ${Math.round(Math.abs(accel))} of ${a.amax} px/s²`);
+      y0 += 50;
+    };
+    row('x', rig.x, acc.x, tx - rig.x.p);
+    row('y', rig.y, acc.y, ty - rig.y.p);
+    if (limit) {
+      const short = limit.need > limit.can + 1;
+      ctx.fillStyle = short ? P.accent : P.ink;
+      ctx.fillText(short ? `can reach ${Math.round(limit.can)} of ${Math.round(limit.need)} px in ${limit.t.toFixed(2)} s: short` : `${Math.round(limit.need)} px to go, ${limit.t.toFixed(2)} s to get there`, x0, y0);
+    }
+    ctx.restore();
+  }
   function drawBall(b: Ball): void {
     ctx.globalAlpha = b.rest ? Math.max(0, 1 - b.rest / 1.4) : 1;
     ball(b.x, b.y, b.state === 'miss' ? P.steelDark : P.ball);
@@ -537,5 +621,8 @@ export function mountHoop(o: HoopOptions): HoopHandle {
       throwBall(x, y, vx, vy, true);
     },
     stats: () => ({ made, shots }),
+    maths(on) {
+      maths = on;
+    },
   };
 }
