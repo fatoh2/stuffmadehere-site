@@ -19,7 +19,7 @@ export function mountLock(nav: HTMLElement, sections: LockSection[], scrollTo: (
   const menu = nav.querySelector<HTMLButtonElement>('#lockMenu')!;
   const list = nav.querySelector<HTMLElement>('#lockList')!;
   const links = Array.from(list.querySelectorAll<HTMLAnchorElement>('a'));
-  links.forEach((a, i) => a.style.setProperty('--i', String(i)));
+  list.querySelectorAll<HTMLElement>('a, .lock__head').forEach((el, i) => el.style.setProperty('--i', String(i)));
 
   const stacks = sections.map((s, i) => {
     const x = 44 + i * 26;
@@ -132,5 +132,8 @@ export function mountLock(nav: HTMLElement, sections: LockSection[], scrollTo: (
   }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && list.classList.contains('is-open')) open(false);
+  });
+  document.addEventListener('click', (e) => {
+    if (list.classList.contains('is-open') && !nav.contains(e.target as Node)) open(false);
   });
 }
