@@ -20,6 +20,8 @@ export interface BowHandle {
 
 const G = 1500;
 const ARROW_V = 1900;
+const BOW_H = 112; // px, axle to axle
+const ARROW_L = 96; // px
 const NOISE = 0.5 * (Math.PI / 180); // a camera's bearing noise
 const BIAS0 = 2.5 * (Math.PI / 180); // camera 2's calibration error on the first target
 const DEG = 180 / Math.PI;
@@ -61,7 +63,7 @@ export function mountBow(cv: HTMLCanvasElement, stat: HTMLElement | null): BowHa
   let demos = 0;
   let drag: { tracker: VelocityTracker; x: number; y: number } | null = null;
   const still = reducedMotion();
-  near(cv, ['mocam', 'servo']);
+  near(cv, ['mocam', 'servo', 'bow', 'arrow']);
 
   const layout = (): void => {
     const f = fit(cv);
@@ -71,7 +73,7 @@ export function mountBow(cv: HTMLCanvasElement, stat: HTMLElement | null): BowHa
     cam[0] = { x: 28, y: 30 };
     cam[1] = { x: W - 28, y: 30 };
     bow.x = W * 0.5;
-    bow.y = H - 34;
+    bow.y = H - 62; // the grip on the pan servo's top
   };
   layout();
   new ResizeObserver(layout).observe(cv);
@@ -352,42 +354,50 @@ export function mountBow(cv: HTMLCanvasElement, stat: HTMLElement | null): BowHa
       ctx.lineTo(lead.px, lead.py + 12);
       ctx.stroke();
     }
-    // the bow on its pan: a bar with a string, the arrow on it until it flies
+    // the bow on its pan, pivoting at its grip; the arrow nocked on it until it flies
+    const bowImg = sprite('bow');
+    const arrowImg = sprite('arrow');
+    const drawArrow = (x: number, y: number, a: number): void => {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(a);
+      // the shaft is drawn a shade thicker than true scale so it stays visible in flight
+      if (arrowImg) ctx.drawImage(arrowImg, -ARROW_L / 2, -2.5, ARROW_L, 5);
+      else {
+        bar(ctx, -26, -2, 52, 4, M.steel, 1);
+        ctx.fillStyle = P.accent;
+        ctx.beginPath();
+        ctx.moveTo(26, 0);
+        ctx.lineTo(16, -5);
+        ctx.lineTo(16, 5);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.restore();
+    };
     ctx.save();
     ctx.translate(bow.x, bow.y);
     ctx.rotate(bow.pan.p);
-    ctx.strokeStyle = M.alu.face;
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.arc(-6, 0, 30, -Math.PI / 2 - 0.3, Math.PI / 2 + 0.3);
-    ctx.stroke();
-    ctx.strokeStyle = P.ink;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(-6 + 30 * Math.cos(-Math.PI / 2 - 0.3), 30 * Math.sin(-Math.PI / 2 - 0.3));
-    ctx.lineTo(arrow && arrow.live ? -6 : -22, 0);
-    ctx.lineTo(-6 + 30 * Math.cos(Math.PI / 2 + 0.3), 30 * Math.sin(Math.PI / 2 + 0.3));
-    ctx.stroke();
-    if (!arrow || !arrow.live) {
-      bar(ctx, -22, -2, 54, 4, M.steel, 1);
+    if (bowImg) drawSprite(ctx, bowImg, 0, 0, BOW_H, 0.64, 0.55, 0);
+    else {
+      ctx.strokeStyle = M.alu.face;
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.arc(-6, 0, 30, -Math.PI / 2 - 0.3, Math.PI / 2 + 0.3);
+      ctx.stroke();
+      ctx.strokeStyle = P.ink;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(-6 + 30 * Math.cos(-Math.PI / 2 - 0.3), 30 * Math.sin(-Math.PI / 2 - 0.3));
+      ctx.lineTo(arrow && arrow.live ? -6 : -22, 0);
+      ctx.lineTo(-6 + 30 * Math.cos(Math.PI / 2 + 0.3), 30 * Math.sin(Math.PI / 2 + 0.3));
+      ctx.stroke();
     }
+    if (!arrow || !arrow.live) drawArrow(ARROW_L / 2 - 21, 0, 0); // nock on the string, a brace height behind the grip
     ctx.restore();
     disc(ctx, bow.x, bow.y, 7, M.steel);
     bolt(ctx, bow.x, bow.y, 2.5, M.steel);
-    if (arrow && arrow.live) {
-      ctx.save();
-      ctx.translate(arrow.x, arrow.y);
-      ctx.rotate(Math.atan2(arrow.vy, arrow.vx));
-      bar(ctx, -26, -2, 52, 4, M.steel, 1);
-      ctx.fillStyle = P.accent;
-      ctx.beginPath();
-      ctx.moveTo(26, 0);
-      ctx.lineTo(16, -5);
-      ctx.lineTo(16, 5);
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
-    }
+    if (arrow && arrow.live) drawArrow(arrow.x, arrow.y, Math.atan2(arrow.vy, arrow.vx));
     // the target: an orange disc, or its two halves
     if (target) {
       ctx.fillStyle = P.ball;

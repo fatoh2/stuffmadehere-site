@@ -396,6 +396,8 @@ depths to them". Built:
 Measured: no page errors, every section one screen at six sizes on all four pages (24 of 24), lint
 clean. The jigsaw solves 24 pieces in about 15 s with one piece put back; the bat fails at 95% and
 holds at 68% with exit 45 m/s; the bow's first target is missed by a measured amount and the second
-hit. Renders for the new parts (bat, bow, arrow, jigsaw head) are not yet made; the drawn helpers
-stand in, and a quote follows.
+hit. The jigsaw uses the pick-and-place head render and drawn pieces. The bat, the bow and its
+arrow were rendered and cut out on 2026-11-01 (three renders and three cut-outs, 4.5 credits), with
+the drawn versions kept as the fallback until each render arrives; the bat's first render was refused
+by the content filter over the cartridge wording and reworded.
 

@@ -52,14 +52,14 @@ export function mountBat(cv: HTMLCanvasElement, loadBtn: HTMLButtonElement, out:
   let demos = 0;
   let interacted = false;
   const still = reducedMotion();
-  near(cv, ['pitcher']);
+  near(cv, ['pitcher', 'bat']);
 
   const layout = (): void => {
     const f = fit(cv);
     ctx = f.ctx;
     W = f.w;
     H = f.h;
-    scale = Math.min(W / 7.2, H / 4.2);
+    scale = Math.min(W / 6.4, H / 3.8);
     ground = H - 24;
     pivot.x = W * 0.22;
     pivot.y = ground - 1.05 * scale;
@@ -277,10 +277,18 @@ export function mountBat(cv: HTMLCanvasElement, loadBtn: HTMLButtonElement, out:
     }
     // the bat: a tapered barrel on the pivot; the cartridge sits in the knob
     const L = BAT_L * scale;
-    const drawBatBody = (x: number, y: number, a: number, from: number, to: number): void => {
+    const img = sprite('bat');
+    const drawBatBody = (x: number, y: number, a: number, from: number, to: number, shift = 0): void => {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(a);
+      if (img) {
+        // the render spans the bat's length; a broken piece is the same columns of it, so the break lines up
+        const h = (img.naturalHeight / img.naturalWidth) * L;
+        ctx.drawImage(img, (from + shift) * img.naturalWidth, 0, (to - from) * img.naturalWidth, img.naturalHeight, from * L, -h / 2, (to - from) * L, h);
+        ctx.restore();
+        return;
+      }
       ctx.beginPath();
       ctx.moveTo(from * L, -6);
       ctx.lineTo(to * L, -11 * (0.5 + to));
@@ -297,7 +305,7 @@ export function mountBat(cv: HTMLCanvasElement, loadBtn: HTMLButtonElement, out:
     if (!bat.broken) drawBatBody(pivot.x, pivot.y, bat.a, 0.05, 1);
     else {
       drawBatBody(pivot.x, pivot.y, bat.a, 0.05, 0.42);
-      drawBatBody(bat.barrel.x, bat.barrel.y, bat.barrel.a, 0, 0.58);
+      drawBatBody(bat.barrel.x, bat.barrel.y, bat.barrel.a, 0, 0.58, 0.42);
     }
     disc(ctx, pivot.x, pivot.y, 12, M.steel, 4);
     bolt(ctx, pivot.x, pivot.y, 3, M.steel);
