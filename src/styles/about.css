@@ -89,7 +89,7 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .ahero { padding-block: 0.75rem; }
   .ahero__grid { row-gap: 1rem; padding-block: 1svh 3.5rem; }
   .ahero__portrait { width: min(100%, 60vw); }
-  .ahero__portrait figcaption { font-size: 0.75rem; margin-top: 0.5rem; }
+  .ahero__portrait figcaption { font-size: 0.8125rem; margin-top: 0.5rem; }
   .ahero__text .lead { margin-top: 0.75rem; font-size: 1.0625rem; }
   .ahero__actions { margin-top: 1rem; gap: 0.75rem; }
   .shop, .builds { padding-top: 4.5rem; padding-bottom: 4svh; }
@@ -109,14 +109,14 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
   .ahero__actions .link { display: none; }
   .sort__bins { gap: 4px; }
   .sort__bin { padding: 6px 3px; min-height: 112px; }
-  .sort__bin b { font-size: 0.6562rem; overflow-wrap: normal; hyphens: auto; line-height: 1.1; }
-  .sort__count { font-size: 0.625rem; }
+  .sort__bin b { font-size: 0.6875rem; overflow-wrap: normal; hyphens: auto; line-height: 1.1; }
+  .sort__count { font-size: 0.6875rem; }
 }
 @media (max-width: 47.99em) and (max-height: 780px) {
   .ahero__mark { font-size: 12vw; }
   .ahero__text .lead { font-size: 1rem; }
   .ahero__portrait { width: min(100%, 42vw); }
-  .ahero__portrait figcaption { font-size: 0.6875rem; }
+  .ahero__portrait figcaption { font-size: 0.6875rem; } /* anything larger pushes the hero past one screen at 375x667 */
 }
 
 /* ---------- phones: the last few pixels of the hero ---------- */
@@ -207,3 +207,5 @@ html:not(.js) .sort__bins { position: static; margin-top: 1rem; }
 }
 
 .shop__tag { left: 1rem; bottom: 1rem; }
+/* on a phone the lead above the floor already says to move across it; the tag would sit on the 17,342 lb label */
+@media (max-width: 47.99em) { .shop__tag { display: none; } }

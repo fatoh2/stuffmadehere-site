@@ -346,3 +346,27 @@ Measured again at 390x844 (DPR 3, dev server, parts and textures only):
 
 Every machine section still shows its renders at desktop and phone, no page errors, lint clean.
 
+## 18. Round twelve (2026-10-31): a polish pass
+
+The design inspector ran on all four pages at three widths, and a sweep in headless Chrome checked
+every page at desktop and phone for console errors, failed requests, duplicate ids, images without
+alt, unnamed controls, reduced-motion hiding and section screenshots. No errors, no failed requests,
+nothing hidden under reduced motion except the closed menu. What the measurements and the screenshots
+did show, and what changed:
+
+- Placards were 12 px on phones; now 13 px (the inspector's floor).
+- The hoop section's text sat 14 px from the phone's edge; the section now has 20 px side padding.
+- The empty landing slot in "All 41" on phones was a black box that read as a broken image; it is a
+  faint outlined slot until a card lands in it.
+- The shop floor's placard sat on the "17,342 lb" label on phones; on phones the lead sentence above
+  the floor already gives the instruction, so the placard is hidden there.
+- The sorter's bin labels were 10 px on phones; now 11 px, the most six bins across 390 px can carry.
+- The landing slot's image link had no accessible name; it is labelled.
+- The desktop lock pins were 22 px wide as targets; now 24.
+
+Defended, not changed: the inspector's eyebrow flags are placards and captions that happen to sit
+above the next heading; "STUFF MADE HERE" on three lines on phones is the owner's choice; the
+"Shane Wighton" paragraph runs long by design (it is the thing the peel reveals); the ideas and log
+heroes keep an empty right half as the type-only art direction; the About hero's caption stays 11 px
+on 667 px phones because 13 px pushes the hero past one screen. Audit: 24 of 24 page/size pairs pass.
+

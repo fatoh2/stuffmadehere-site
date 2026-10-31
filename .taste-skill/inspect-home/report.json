@@ -1,0 +1,2627 @@
+{
+ "url": "http://localhost:5173/",
+ "at": "2026-10-31T19:28:50.759Z",
+ "allow": [
+  "covered-text"
+ ],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 10,
+   "filled": [
+    1,
+    0.97,
+    1,
+    1,
+    0.22,
+    0.83,
+    0.95,
+    1,
+    0.33,
+    0.93
+   ],
+   "motion": {
+    "elements": 110,
+    "css": 13,
+    "transitions": 11,
+    "scripted": 86,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 8915,
+     "screens": 9.9,
+     "words": 1577,
+     "img": 88,
+     "video": 0,
+     "canvas": 20,
+     "svg": 4,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 49,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "hqdefault.jpg",
+      "gimbal.webp",
+      "maxresdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "STUFF MADE HERE",
+     "words": 3,
+     "chars": 15,
+     "lines": 2,
+     "size": 224.6,
+     "vw": 15.6,
+     "font": "Saira Stencil One",
+     "weight": 400,
+     "tracking": -0.01,
+     "leading": 0.92,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.96,
+     "top": 203,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "STUFF MADE HERE",
+     "words": 3,
+     "lines": 2,
+     "size": 224.6,
+     "font": "Saira Stencil One"
+    },
+    "headings": [
+     {
+      "text": "STUFF MADE HERE",
+      "words": 3,
+      "chars": 15,
+      "lines": 2,
+      "size": 224.6,
+      "vw": 15.6,
+      "font": "Saira Stencil One",
+      "weight": 400,
+      "tracking": -0.01,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 203,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "WON’T LET YOU MISS",
+      "words": 4,
+      "chars": 18,
+      "lines": 2,
+      "size": 73.6,
+      "vw": 5.1,
+      "font": "Saira Stencil One",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 0.95,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.25,
+      "top": 1495,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "BAD AIM, GOOD PUTT",
+      "words": 4,
+      "chars": 18,
+      "lines": 2,
+      "size": 67.8,
+      "vw": 4.7,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.04,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.38,
+      "top": 1940,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "AN APPLE PEELS ITSELF",
+      "words": 4,
+      "chars": 21,
+      "lines": 2,
+      "size": 99,
+      "vw": 6.9,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.05,
+      "leading": 0.88,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.55,
+      "top": 2871,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "PARTS DRAWERS",
+      "words": 2,
+      "chars": 13,
+      "lines": 2,
+      "size": 88,
+      "vw": 6.1,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.04,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.38,
+      "top": 4639,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "HOW A BUILD GOES HOW A BUILD GOES",
+      "words": 8,
+      "chars": 33,
+      "lines": 2,
+      "size": 88,
+      "vw": 6.1,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": 0,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.39,
+      "top": 5656,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "NAMEPLATE",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 49,
+      "vw": 3.4,
+      "font": "Saira Stencil One",
+      "weight": 400,
+      "tracking": 0.04,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.21,
+      "top": 6561,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Shane Wighton is an engineer who used to lead an engineering team at Formlabs, the 3D‑printer company, and now builds things in his own shop for a camera. He has a degree in mechanical engineering, a ",
+      "words": 122,
+      "chars": 683,
+      "lines": 8,
+      "size": 30.2,
+      "vw": 2.1,
+      "font": "Chivo",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1.18,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 7469,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "WATCH",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 381.6,
+      "vw": 26.5,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.06,
+      "leading": 0.78,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 8342,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 8,
+     "over2Lines": 0,
+     "statements": 2,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Chivo",
+       "share": 1,
+       "mono": false
+      },
+      {
+       "family": "Saira Stencil One",
+       "share": 0,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      19,
+      20,
+      22,
+      26,
+      30,
+      49,
+      68,
+      74,
+      88,
+      99,
+      225,
+      382
+     ],
+     "sizeCount": 17,
+     "notLoaded": [],
+     "body": {
+      "font": "Chivo",
+      "size": 19,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 7.3
+     },
+     "measureChars": 57,
+     "max": {
+      "size": 381.6,
+      "vw": 26.5,
+      "font": "Chivo",
+      "text": "Watch"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.01,
+     "smallText": 0
+    },
+    "eyebrows": [
+     {
+      "text": "Moving hoop won’t let you miss",
+      "above": "PARTS DRAWERS",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 16,
+      "top": 4553
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#e8e9e6",
+     "bodyBgHsl": {
+      "h": 80,
+      "s": 0.06,
+      "l": 0.91
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#1d6fc4",
+       "top": 0,
+       "hsl": {
+        "h": 211,
+        "s": 0.74,
+        "l": 0.44
+       }
+      },
+      {
+       "color": "#dadcd8",
+       "top": 1800,
+       "hsl": {
+        "h": 90,
+        "s": 0.05,
+        "l": 0.85
+       }
+      },
+      {
+       "color": "#15161a",
+       "top": 2700,
+       "hsl": {
+        "h": 228,
+        "s": 0.11,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#d4d4ce",
+       "top": 4824,
+       "hsl": {
+        "h": 60,
+        "s": 0.07,
+        "l": 0.82
+       }
+      },
+      {
+       "color": "#0d0e10",
+       "top": 4923,
+       "hsl": {
+        "h": 220,
+        "s": 0.1,
+        "l": 0.06
+       }
+      },
+      {
+       "color": "#d9281e",
+       "top": 5400,
+       "hsl": {
+        "h": 3,
+        "s": 0.76,
+        "l": 0.48
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#15161a",
+       "share": 0.35
+      },
+      {
+       "color": "#474a51",
+       "share": 0.26
+      },
+      {
+       "color": "#e8e9e6",
+       "share": 0.25
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.11
+      },
+      {
+       "color": "#d4d4ce",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#15161a",
+      "hsl": {
+       "h": 228,
+       "s": 0.11,
+       "l": 0.09
+      },
+      "fg": "#e8e9e6"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 7,
+     "inHero": 2,
+     "radius": 0,
+     "height": 52,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Watch the latest video"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 11,
+     "roundedMedia": 3,
+     "mediaRadius": 6,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "bg-image",
+      "ratio": 1
+     },
+     {
+      "type": "canvas",
+      "ratio": 0.44
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 44,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "chivo",
+     "saira stencil one"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 8915,
+    "margins": {
+     "left": 29,
+     "right": 32
+    },
+    "sections": [
+     {
+      "sel": "header#top.hero",
+      "tag": "header",
+      "top": 0,
+      "height": 900,
+      "words": 45,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Stuff Made",
+       "size": 225,
+       "tag": "h1"
+      },
+      "left": 23,
+      "right": 27,
+      "textLeft": 23,
+      "textRight": 27,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#miss.miss",
+      "tag": "section",
+      "top": 900,
+      "height": 900,
+      "words": 60,
+      "media": 2,
+      "middle": 691,
+      "heading": null,
+      "left": 29,
+      "right": 32,
+      "textLeft": 29,
+      "textRight": 32,
+      "fullBleed": true,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#putt.putt.section",
+      "tag": "section",
+      "top": 1800,
+      "height": 900,
+      "words": 98,
+      "media": 2,
+      "middle": 76,
+      "heading": {
+       "text": "Bad aim, good putt",
+       "size": 68,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 571,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#now.now.wrap",
+      "tag": "section",
+      "top": 2700,
+      "height": 900,
+      "words": 61,
+      "media": 2,
+      "middle": 0,
+      "heading": {
+       "text": "An apple",
+       "size": 99,
+       "tag": "h2"
+      },
+      "left": 28,
+      "right": 0,
+      "textLeft": 28,
+      "textRight": 62,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#all.all.section",
+      "tag": "section",
+      "top": 3600,
+      "height": 900,
+      "words": 140,
+      "media": 3,
+      "middle": 80,
+      "heading": {
+       "text": "All 41 videos, in order",
+       "size": 26,
+       "tag": "h2"
+      },
+      "left": 94,
+      "right": 43,
+      "textLeft": 204,
+      "textRight": 43,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#drawers.drawers.section",
+      "tag": "section",
+      "top": 4500,
+      "height": 900,
+      "words": 86,
+      "media": 32,
+      "middle": 0,
+      "heading": {
+       "text": "Parts drawers",
+       "size": 88,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 35,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#method.method.section",
+      "tag": "section",
+      "top": 5400,
+      "height": 900,
+      "words": 52,
+      "media": 3,
+      "middle": 137,
+      "heading": null,
+      "left": 32,
+      "right": 148,
+      "textLeft": 32,
+      "textRight": 172,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#numbers.numbers.section",
+      "tag": "section",
+      "top": 6300,
+      "height": 900,
+      "words": 68,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Nameplate",
+       "size": 49,
+       "tag": "h2"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 86,
+      "textRight": 102,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.about",
+      "tag": "section",
+      "top": 7200,
+      "height": 900,
+      "words": 120,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Shane Wighton",
+       "size": 30,
+       "tag": "span"
+      },
+      "left": 32,
+      "right": 33,
+      "textLeft": 32,
+      "textRight": 33,
+      "fullBleed": true,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a#watch.watch",
+      "tag": "a",
+      "top": 8100,
+      "height": 540,
+      "words": 12,
+      "media": 0,
+      "middle": 56,
+      "heading": {
+       "text": "Watch",
+       "size": 382,
+       "tag": "p"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 136,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer#foot.foot",
+      "tag": "footer",
+      "top": 8640,
+      "height": 275,
+      "words": 70,
+      "media": 0,
+      "middle": 215,
+      "heading": null,
+      "left": 32,
+      "right": 46,
+      "textLeft": 32,
+      "textRight": 46,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 3508,
+      "height": 272
+     },
+     {
+      "top": 6116,
+      "height": 396
+     }
+    ],
+    "h1s": [
+     {
+      "text": "STUFF MADE HERE",
+      "size": 225,
+      "top": 203,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 23,
+      "n": 15
+     },
+     {
+      "x": 204,
+      "n": 2
+     },
+     {
+      "x": 86,
+      "n": 1
+     },
+     {
+      "x": 112,
+      "n": 1
+     },
+     {
+      "x": 639,
+      "n": 1
+     },
+     {
+      "x": 736,
+      "n": 1
+     },
+     {
+      "x": 782,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 22,
+    "bodySize": 19,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.07,
+    "voidBox": {
+     "x": 660,
+     "y": 720,
+     "w": 480,
+     "h": 180
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 10,
+   "filled": [
+    0.98,
+    0.91,
+    0.98,
+    0.98,
+    0.42,
+    0.86,
+    0.92,
+    0.98,
+    0.26,
+    0.93
+   ],
+   "motion": {
+    "elements": 123,
+    "css": 13,
+    "transitions": 10,
+    "scripted": 100,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 10153,
+     "screens": 9.9,
+     "words": 1470,
+     "img": 88,
+     "video": 0,
+     "canvas": 20,
+     "svg": 4,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 49,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "gimbal.webp",
+      "maxresdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg",
+      "mqdefault.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "STUFF MADE HERE",
+     "words": 3,
+     "chars": 15,
+     "lines": 2,
+     "size": 119.8,
+     "vw": 15.6,
+     "font": "Saira Stencil One",
+     "weight": 400,
+     "tracking": -0.01,
+     "leading": 0.92,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.96,
+     "top": 346,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "STUFF MADE HERE",
+     "words": 3,
+     "lines": 2,
+     "size": 119.8,
+     "font": "Saira Stencil One"
+    },
+    "headings": [
+     {
+      "text": "STUFF MADE HERE",
+      "words": 3,
+      "chars": 15,
+      "lines": 2,
+      "size": 119.8,
+      "vw": 15.6,
+      "font": "Saira Stencil One",
+      "weight": 400,
+      "tracking": -0.01,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 346,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "WON’T LET YOU MISS",
+      "words": 4,
+      "chars": 18,
+      "lines": 2,
+      "size": 48.3,
+      "vw": 6.3,
+      "font": "Saira Stencil One",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 0.95,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.31,
+      "top": 1811,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "BAD AIM, GOOD PUTT",
+      "words": 4,
+      "chars": 18,
+      "lines": 1,
+      "size": 43.6,
+      "vw": 5.7,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.04,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 2148,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "AN APPLE PEELS ITSELF",
+      "words": 4,
+      "chars": 21,
+      "lines": 2,
+      "size": 56.8,
+      "vw": 7.4,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.05,
+      "leading": 0.88,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.55,
+      "top": 3323,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "All 41 videos, in order",
+      "words": 5,
+      "chars": 23,
+      "lines": 1,
+      "size": 26,
+      "vw": 3.4,
+      "font": "Chivo",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.84,
+      "top": 4217,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "PARTS DRAWERS",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 57.6,
+      "vw": 7.5,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.04,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 5358,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "HOW A BUILD GOES HOW A BUILD GOES",
+      "words": 8,
+      "chars": 33,
+      "lines": 2,
+      "size": 57.6,
+      "vw": 7.5,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": 0,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.47,
+      "top": 6494,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "WATCH",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 203.5,
+      "vw": 26.5,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.06,
+      "leading": 0.78,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.96,
+      "top": 9672,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Chivo",
+       "share": 0.99,
+       "mono": false
+      },
+      {
+       "family": "Saira Stencil One",
+       "share": 0.01,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      13,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      22,
+      23,
+      26,
+      44,
+      48,
+      57,
+      58,
+      120,
+      204
+     ],
+     "sizeCount": 16,
+     "notLoaded": [],
+     "body": {
+      "font": "Chivo",
+      "size": 22,
+      "leading": 1.3,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": null
+     },
+     "measureChars": 67,
+     "max": {
+      "size": 203.5,
+      "vw": 26.5,
+      "font": "Chivo",
+      "text": "Watch"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.01,
+     "smallText": 0
+    },
+    "eyebrows": [
+     {
+      "text": "Drag anywhere and let go to throw",
+      "above": "BAD AIM, GOOD PUTT",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 16,
+      "top": 1380
+     },
+     {
+      "text": "Shop",
+      "above": "PARTS DRAWERS",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 5341
+     },
+     {
+      "text": "Robot arm",
+      "above": "HOW A BUILD GOES HOW A BUILD GOES",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 6474
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#e8e9e6",
+     "bodyBgHsl": {
+      "h": 80,
+      "s": 0.06,
+      "l": 0.91
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#1d6fc4",
+       "top": 0,
+       "hsl": {
+        "h": 211,
+        "s": 0.74,
+        "l": 0.44
+       }
+      },
+      {
+       "color": "#d4d4ce",
+       "top": 1380,
+       "hsl": {
+        "h": 60,
+        "s": 0.07,
+        "l": 0.82
+       }
+      },
+      {
+       "color": "#dadcd8",
+       "top": 2048,
+       "hsl": {
+        "h": 90,
+        "s": 0.05,
+        "l": 0.85
+       }
+      },
+      {
+       "color": "#15161a",
+       "top": 3072,
+       "hsl": {
+        "h": 228,
+        "s": 0.11,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#0d0e10",
+       "top": 5604,
+       "hsl": {
+        "h": 220,
+        "s": 0.1,
+        "l": 0.06
+       }
+      },
+      {
+       "color": "#d9281e",
+       "top": 6144,
+       "hsl": {
+        "h": 3,
+        "s": 0.76,
+        "l": 0.48
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#15161a",
+       "share": 0.37
+      },
+      {
+       "color": "#e8e9e6",
+       "share": 0.27
+      },
+      {
+       "color": "#474a51",
+       "share": 0.21
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.12
+      },
+      {
+       "color": "#d4d4ce",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#e8e9e6",
+      "hsl": {
+       "h": 80,
+       "s": 0.06,
+       "l": 0.91
+      },
+      "fg": "#15161a"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 13,
+     "inHero": 2,
+     "radius": 0,
+     "height": 52,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Watch the latest video"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 10,
+     "roundedMedia": 3,
+     "mediaRadius": 6,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "bg-image",
+      "ratio": 1
+     },
+     {
+      "type": "canvas",
+      "ratio": 0.21
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 44,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "chivo",
+     "saira stencil one"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 10153,
+    "margins": {
+     "left": 15,
+     "right": 17
+    },
+    "sections": [
+     {
+      "sel": "header#top.hero",
+      "tag": "header",
+      "top": 0,
+      "height": 1024,
+      "words": 45,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Stuff Made",
+       "size": 120,
+       "tag": "h1"
+      },
+      "left": 12,
+      "right": 15,
+      "textLeft": 12,
+      "textRight": 15,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#miss.miss",
+      "tag": "section",
+      "top": 1024,
+      "height": 1024,
+      "words": 60,
+      "media": 2,
+      "middle": 84,
+      "heading": null,
+      "left": 15,
+      "right": 17,
+      "textLeft": 15,
+      "textRight": 17,
+      "fullBleed": true,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#putt.putt.section",
+      "tag": "section",
+      "top": 2048,
+      "height": 1024,
+      "words": 81,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Bad aim, good putt",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 17,
+      "right": 17,
+      "textLeft": 17,
+      "textRight": 187,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#now.now.wrap",
+      "tag": "section",
+      "top": 3072,
+      "height": 1024,
+      "words": 61,
+      "media": 2,
+      "middle": 0,
+      "heading": {
+       "text": "An apple",
+       "size": 57,
+       "tag": "h2"
+      },
+      "left": 15,
+      "right": 0,
+      "textLeft": 15,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#all.all.section",
+      "tag": "section",
+      "top": 4096,
+      "height": 1024,
+      "words": 53,
+      "media": 3,
+      "middle": 8,
+      "heading": {
+       "text": "All 41 videos, in order",
+       "size": 26,
+       "tag": "h2"
+      },
+      "left": 25,
+      "right": 34,
+      "textLeft": 89,
+      "textRight": 57,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#drawers.drawers.section",
+      "tag": "section",
+      "top": 5120,
+      "height": 1024,
+      "words": 42,
+      "media": 27,
+      "middle": 0,
+      "heading": {
+       "text": "Parts drawers",
+       "size": 58,
+       "tag": "h2"
+      },
+      "left": 17,
+      "right": 17,
+      "textLeft": 17,
+      "textRight": 72,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#method.method.section",
+      "tag": "section",
+      "top": 6144,
+      "height": 1024,
+      "words": 36,
+      "media": 3,
+      "middle": 12,
+      "heading": null,
+      "left": 17,
+      "right": 79,
+      "textLeft": 17,
+      "textRight": 318,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#numbers.numbers.section",
+      "tag": "section",
+      "top": 7168,
+      "height": 1024,
+      "words": 68,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Nameplate",
+       "size": 26,
+       "tag": "h2"
+      },
+      "left": 17,
+      "right": 17,
+      "textLeft": 44,
+      "textRight": 89,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.about",
+      "tag": "section",
+      "top": 8192,
+      "height": 1024,
+      "words": 120,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 17,
+      "right": 18,
+      "textLeft": 17,
+      "textRight": 18,
+      "fullBleed": true,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a#watch.watch",
+      "tag": "a",
+      "top": 9216,
+      "height": 614,
+      "words": 12,
+      "media": 0,
+      "middle": 7,
+      "heading": {
+       "text": "Watch",
+       "size": 204,
+       "tag": "p"
+      },
+      "left": 17,
+      "right": 17,
+      "textLeft": 17,
+      "textRight": 72,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer#foot.foot",
+      "tag": "footer",
+      "top": 9830,
+      "height": 323,
+      "words": 70,
+      "media": 0,
+      "middle": 22,
+      "heading": null,
+      "left": 17,
+      "right": 39,
+      "textLeft": 17,
+      "textRight": 39,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 2972,
+      "height": 340
+     },
+     {
+      "top": 3848,
+      "height": 372
+     },
+     {
+      "top": 5000,
+      "height": 348
+     },
+     {
+      "top": 7080,
+      "height": 352
+     },
+     {
+      "top": 9296,
+      "height": 332
+     }
+    ],
+    "h1s": [
+     {
+      "text": "STUFF MADE HERE",
+      "size": 120,
+      "top": 346,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 12,
+      "n": 17
+     },
+     {
+      "x": 44,
+      "n": 1
+     },
+     {
+      "x": 89,
+      "n": 1
+     },
+     {
+      "x": 400,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 20,
+    "bodySize": 22,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 11,
+   "filled": [
+    1,
+    0.9,
+    1,
+    1,
+    0.45,
+    0.9,
+    0.99,
+    1,
+    0.48,
+    1,
+    1
+   ],
+   "motion": {
+    "elements": 122,
+    "css": 13,
+    "transitions": 10,
+    "scripted": 99,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 8455,
+     "screens": 10,
+     "words": 1409,
+     "img": 88,
+     "video": 0,
+     "canvas": 20,
+     "svg": 4,
+     "sections": 8,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 6,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "gimbal.webp",
+      "maxresdefault.jpg",
+      "mqdefault.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "STUFF MADE HERE",
+     "words": 3,
+     "chars": 15,
+     "lines": 3,
+     "size": 87.8,
+     "vw": 22.5,
+     "font": "Saira Stencil One",
+     "weight": 400,
+     "tracking": -0.01,
+     "leading": 0.92,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.92,
+     "top": 117,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "STUFF MADE HERE",
+     "words": 3,
+     "lines": 3,
+     "size": 87.8,
+     "font": "Saira Stencil One"
+    },
+    "headings": [
+     {
+      "text": "STUFF MADE HERE",
+      "words": 3,
+      "chars": 15,
+      "lines": 3,
+      "size": 87.8,
+      "vw": 22.5,
+      "font": "Saira Stencil One",
+      "weight": 400,
+      "tracking": -0.01,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 117,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "WON’T LET YOU MISS",
+      "words": 4,
+      "chars": 18,
+      "lines": 2,
+      "size": 38.4,
+      "vw": 9.8,
+      "font": "Saira Stencil One",
+      "weight": 400,
+      "tracking": -0.04,
+      "leading": 0.95,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.48,
+      "top": 1348,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "BAD AIM, GOOD PUTT",
+      "words": 4,
+      "chars": 18,
+      "lines": 1,
+      "size": 35.2,
+      "vw": 9,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.04,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1813,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "AN APPLE PEELS ITSELF",
+      "words": 4,
+      "chars": 21,
+      "lines": 2,
+      "size": 53,
+      "vw": 13.6,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.05,
+      "leading": 0.88,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2582,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "All 41 videos, in order",
+      "words": 5,
+      "chars": 23,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Chivo",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.69,
+      "top": 3481,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "PARTS DRAWERS",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 40,
+      "vw": 10.3,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.04,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 4436,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "HOW A BUILD GOES HOW A BUILD GOES",
+      "words": 8,
+      "chars": 33,
+      "lines": 1,
+      "size": 35.1,
+      "vw": 9,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": 0,
+      "leading": 0.92,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 5142,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "NAMEPLATE",
+      "words": 1,
+      "chars": 9,
+      "lines": 1,
+      "size": 25.6,
+      "vw": 6.6,
+      "font": "Saira Stencil One",
+      "weight": 400,
+      "tracking": 0.04,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.41,
+      "top": 6105,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "WATCH",
+      "words": 1,
+      "chars": 5,
+      "lines": 1,
+      "size": 97.5,
+      "vw": 25,
+      "font": "Chivo",
+      "weight": 900,
+      "tracking": -0.06,
+      "leading": 0.78,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 7908,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 9,
+     "maxLines": 3,
+     "over2Lines": 1,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Chivo",
+       "share": 0.99,
+       "mono": false
+      },
+      {
+       "family": "Saira Stencil One",
+       "share": 0.01,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      20,
+      22,
+      26,
+      35,
+      38,
+      40,
+      53,
+      88,
+      98
+     ],
+     "sizeCount": 16,
+     "notLoaded": [],
+     "body": {
+      "font": "Chivo",
+      "size": 17,
+      "leading": 1.3,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": null
+     },
+     "measureChars": 40,
+     "max": {
+      "size": 97.5,
+      "vw": 25,
+      "font": "Chivo",
+      "text": "Watch"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.01,
+     "centerShare": 0.01,
+     "smallText": 4
+    },
+    "eyebrows": [
+     {
+      "text": "Can’t miss",
+      "above": "PARTS DRAWERS",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 13,
+      "top": 4352
+     }
+    ],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#e8e9e6",
+     "bodyBgHsl": {
+      "h": 80,
+      "s": 0.06,
+      "l": 0.91
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#1d6fc4",
+       "top": 0,
+       "hsl": {
+        "h": 211,
+        "s": 0.74,
+        "l": 0.44
+       }
+      },
+      {
+       "color": "#dadcd8",
+       "top": 1688,
+       "hsl": {
+        "h": 90,
+        "s": 0.05,
+        "l": 0.85
+       }
+      },
+      {
+       "color": "#15161a",
+       "top": 2532,
+       "hsl": {
+        "h": 228,
+        "s": 0.11,
+        "l": 0.09
+       }
+      },
+      {
+       "color": "#d4d4ce",
+       "top": 4583,
+       "hsl": {
+        "h": 60,
+        "s": 0.07,
+        "l": 0.82
+       }
+      },
+      {
+       "color": "#0d0e10",
+       "top": 4637,
+       "hsl": {
+        "h": 220,
+        "s": 0.1,
+        "l": 0.06
+       }
+      },
+      {
+       "color": "#d9281e",
+       "top": 5064,
+       "hsl": {
+        "h": 3,
+        "s": 0.76,
+        "l": 0.48
+       }
+      },
+      {
+       "color": "#e8e9e6",
+       "top": 5411,
+       "hsl": {
+        "h": 80,
+        "s": 0.06,
+        "l": 0.91
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#15161a",
+       "share": 0.38
+      },
+      {
+       "color": "#e8e9e6",
+       "share": 0.28
+      },
+      {
+       "color": "#474a51",
+       "share": 0.18
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.12
+      },
+      {
+       "color": "#d4d4ce",
+       "share": 0.02
+      }
+     ],
+     "button": {
+      "bg": "#e8e9e6",
+      "hsl": {
+       "h": 80,
+       "s": 0.06,
+       "l": 0.91
+      },
+      "fg": "#15161a"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 12,
+     "inHero": 2,
+     "radius": 0,
+     "height": 44,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Watch the latest video"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 0,
+     "boxRadius": 0,
+     "squareMedia": 10,
+     "roundedMedia": 2,
+     "mediaRadius": 6,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "bg-image",
+      "ratio": 1
+     },
+     {
+      "type": "canvas",
+      "ratio": 0.26
+     }
+    ],
+    "nav": {
+     "links": 2,
+     "fixed": true,
+     "height": 44,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "chivo",
+     "saira stencil one"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 8455,
+    "margins": {
+     "left": 14,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "header#top.hero",
+      "tag": "header",
+      "top": 0,
+      "height": 844,
+      "words": 45,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Stuff Made",
+       "size": 88,
+       "tag": "h1"
+      },
+      "left": 13,
+      "right": 16,
+      "textLeft": 13,
+      "textRight": 26,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#miss.miss",
+      "tag": "section",
+      "top": 844,
+      "height": 844,
+      "words": 58,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Won’t let",
+       "size": 38,
+       "tag": "h2"
+      },
+      "left": 14,
+      "right": 20,
+      "textLeft": 14,
+      "textRight": 20,
+      "fullBleed": true,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section#putt.putt.section",
+      "tag": "section",
+      "top": 1688,
+      "height": 844,
+      "words": 43,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Bad aim, good putt",
+       "size": 35,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 33,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#now.now.wrap",
+      "tag": "section",
+      "top": 2532,
+      "height": 844,
+      "words": 61,
+      "media": 2,
+      "middle": 0,
+      "heading": {
+       "text": "An apple",
+       "size": 53,
+       "tag": "h2"
+      },
+      "left": 14,
+      "right": 16,
+      "textLeft": 14,
+      "textRight": 23,
+      "fullBleed": true,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#all.all.section",
+      "tag": "section",
+      "top": 3376,
+      "height": 844,
+      "words": 66,
+      "media": 1,
+      "middle": 8,
+      "heading": {
+       "text": "All 41 videos, in order",
+       "size": 22,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 16,
+      "textLeft": 88,
+      "textRight": 30,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#drawers.drawers.section",
+      "tag": "section",
+      "top": 4220,
+      "height": 844,
+      "words": 42,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Parts drawers",
+       "size": 40,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 29,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#method.method.section",
+      "tag": "section",
+      "top": 5064,
+      "height": 844,
+      "words": 36,
+      "media": 2,
+      "middle": 0,
+      "heading": null,
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 28,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#numbers.numbers.section",
+      "tag": "section",
+      "top": 5908,
+      "height": 844,
+      "words": 51,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Nameplate",
+       "size": 26,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 32,
+      "textRight": 39,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section#about.about",
+      "tag": "section",
+      "top": 6752,
+      "height": 844,
+      "words": 120,
+      "media": 1,
+      "middle": 0,
+      "heading": null,
+      "left": 16,
+      "right": 21,
+      "textLeft": 16,
+      "textRight": 21,
+      "fullBleed": true,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "a#watch.watch",
+      "tag": "a",
+      "top": 7596,
+      "height": 388,
+      "words": 12,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Watch",
+       "size": 98,
+       "tag": "p"
+      },
+      "left": 16,
+      "right": 49,
+      "textLeft": 16,
+      "textRight": 49,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "footer#foot.foot",
+      "tag": "footer",
+      "top": 7984,
+      "height": 471,
+      "words": 70,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 16,
+      "right": 37,
+      "textLeft": 16,
+      "textRight": 37,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [
+     {
+      "top": 4156,
+      "height": 272
+     }
+    ],
+    "h1s": [
+     {
+      "text": "STUFF MADE HERE",
+      "size": 88,
+      "top": 117,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [
+     {
+      "text": "Won’t let",
+      "side": "left",
+      "px": 14
+     },
+     {
+      "text": "you miss",
+      "side": "left",
+      "px": 14
+     }
+    ],
+    "edges": [
+     {
+      "x": 13,
+      "n": 18
+     },
+     {
+      "x": 32,
+      "n": 1
+     },
+     {
+      "x": 88,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 20,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "statement-length",
+   "width": 1440,
+   "message": "1 large-set statement(s) run past 3 lines at 1440px: \"Shane Wighton is an engineer who used to…\" → 8 lines at 30.2px",
+   "fix": "A statement set large is about 30 words. Cut it, or set the rest as ordinary body text."
+  },
+  {
+   "level": "FAIL",
+   "id": "eyebrow",
+   "width": 1440,
+   "message": "1 eyebrow/kicker label(s) above headings: \"Moving hoop won’t let you miss\" above \"PARTS DRAWERS\"",
+   "fix": "Delete them. If the label carried real information, fold it into the headline or the supporting sentence.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "17 different font sizes (13, 14, 15, 16, 17, 19, 20, 22, 26, 30, 49, 68, 74, 88, 99, 225, 382).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "dev-server",
+   "width": 1440,
+   "message": "This page is served by a development server (Vite, webpack or Next in dev mode).",
+   "fix": "Run the last gate on the production build too (vite build && vite preview, next build && next start, or the built index.html): minifiers and bundlers change the CSS a visitor receives.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "blank-gap",
+   "width": 1440,
+   "message": "A 396px stretch at 6116px holds nothing.",
+   "fix": "Check that it is a deliberate rest (once per page at most); otherwise close it to the normal section gap."
+  },
+  {
+   "level": "WARN",
+   "id": "untitled-section",
+   "width": 1440,
+   "message": "A section carries text but no heading: section#miss.miss at 900px.",
+   "fix": "Name it with a short heading unless it is the continuation of the section above.",
+   "alsoAt": [
+    768
+   ]
+  },
+  {
+   "level": "FAIL",
+   "id": "headline-lines",
+   "width": 390,
+   "message": "1 headline(s) wrap past two lines at 390px: \"STUFF MADE HERE\" → 3 lines (3 words, 87.8px)",
+   "fix": "Cut words first (a headline is a title, not a sentence). Then give it a wider measure. Lower the size only as a last resort and never below the scale you chose. A real statement paragraph belongs in a <p> or <blockquote> at 24px or less."
+  },
+  {
+   "level": "FAIL",
+   "id": "small-text",
+   "width": 390,
+   "message": "4 text blocks under 13px.",
+   "fix": "Nothing meant to be read goes below 13px."
+  },
+  {
+   "level": "WARN",
+   "id": "name-only-title",
+   "width": 390,
+   "message": "The h1 is a bare name (\"STUFF MADE HERE\") and nothing else on the first screen says what this is.",
+   "fix": "Keep the name if it leads, and give the line under it (18px or more) the plain words: what it is, for whom, where or when. In the study of 97 Sites of the Day, first screens that named nothing lost usability and content points."
+  },
+  {
+   "level": "WARN",
+   "id": "edge-text",
+   "width": 390,
+   "message": "2 text block(s) sit 12–15px from the phone's edge: \"Won’t let\" (14px); \"you miss\" (14px)",
+   "fix": "The page margin is 16–20px on a phone; the header and the corner labels sit on it too."
+  },
+  {
+   "level": "FAIL",
+   "id": "reduced-hidden",
+   "width": 1440,
+   "message": "With reduced motion requested, 14 text block(s) on the first screen stay invisible: \"Home\", \"Won’t let you miss\", \"Bad aim, good putt\", \"Building now\"",
+   "fix": "Put every hidden starting state inside @media (prefers-reduced-motion: no-preference); the reduced page is the finished page (references/motion.md §8)."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\desktop-fold.jpg",
+   "pages": [
+    "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\desktop-page-01.jpg",
+    "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\desktop-page-02.jpg",
+    "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\desktop-page-03.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\tablet-fold.jpg",
+   "pages": [
+    "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\tablet-page-01.jpg",
+    "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\mobile-fold.jpg",
+   "pages": [
+    "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\mobile-page-01.jpg",
+    "D:\\workstation\\stuffmadehere\\.taste-skill\\inspect-home\\mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}
