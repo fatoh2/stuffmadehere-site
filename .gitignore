@@ -5,3 +5,5 @@ dist
 
 .vercel
 .impeccable/hook.cache.json
+
+.taste-skill/inspect*/
