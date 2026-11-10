@@ -1,4 +1,4 @@
-/** Mechanism 3: the camshaft drum. The 41 rows sit on a roll inside a fixed-height window; one cam per
+/** Mechanism 3: the camshaft drum. The rows sit on a roll inside a fixed-height window; one cam per
  *  video runs down the left, lobe height is the view count, phase runs in upload order. Turning the shaft
  *  sweeps a wave of lobes down the list and the window follows the lifted row, so the whole archive is
  *  read by turning one shaft. Left alone it idles.
@@ -276,7 +276,7 @@ export function mountCamshaft(o: CamshaftOptions): void {
 
   // keyboard: the list takes focus; arrows turn the shaft a row at a time, Enter opens the lifted video
   o.ledger.tabIndex = 0;
-  o.ledger.setAttribute('aria-label', 'All 41 videos on the camshaft. Arrow keys turn the shaft, Enter opens the lifted video.');
+  o.ledger.setAttribute('aria-label', 'All 42 videos on the camshaft. Arrow keys turn the shaft, Enter opens the lifted video.');
   o.ledger.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
       e.preventDefault();

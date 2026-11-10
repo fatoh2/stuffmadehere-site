@@ -1,4 +1,4 @@
-/** The sorting line. Forty-one videos come down a belt in the order he made them, and a row of diverter
+/** The sorting line. The videos come down a belt in the order he made them, and a row of diverter
  *  gates drops each one into its bin: can't miss, toolpath, explosive, locks, assembly, the rest. The bins
  *  fill with the real thumbnails, which stay links. Pull the lever to run the line again. New. */
 import { axis, stepAxis, type Axis } from '../lib/motor';

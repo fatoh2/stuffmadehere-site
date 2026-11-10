@@ -41,7 +41,7 @@ src/ideas.ts               mounts the prototypes page's
 src/log.ts                 mounts the projector
 src/lib/sound.ts           the synthesised sound cues and the switch
 src/data/portrait.ts       the halftone dots the painting robot sprays (from a thumbnail of his)
-src/data/videos.ts         the 41 videos (id, title, date, views, family); regenerate when he uploads
+src/data/videos.ts         the 42 videos (id, title, date, views, family); regenerate when he uploads
 src/mechanisms/            one module per mechanism, each `mount(...)`; parts are asked for with `near()` so they load as the section approaches
 src/lib/                   motor axis, PID, spring, pointer velocity, canvas and visibility helpers
 src/styles/tokens.css      palette and type roles
@@ -63,8 +63,8 @@ docs/superpowers/specs/    the approved design document
 | Everywhere | Servo scroll with detents: the wheel sets a target, a PID loop drives the page, and the top of every section is a notch the page indexes into; a flick carries you one section, leaving takes a push, and the page strains against the stop before it gives. Touch screens get a snap stop per section instead | New |
 | Building now | Pick-and-place: a gantry picks the section’s parts off a conveyor and places them | Puzzle machine (2022) |
 | Building now | Gimbal-stabilised player: the frame stays level against scroll, cursor shoves, drags and tilt | New |
-| All 41 | Camshaft drum: one cam per video on a shaft beside a fixed-height window; turning it sweeps the list and the window follows | New |
-| All 41 | Auto-aim launcher: solves a ballistic shot for a random video and throws its card into the preview. The first shot of a visit is 10% under charge: it hits the front of the slot, the miss is read off in pixels, and the second shot is corrected | Bow, pool cue, guided launcher; every build’s first test |
+| All 42 | Camshaft drum: one cam per video on a shaft beside a fixed-height window; turning it sweeps the list and the window follows | New |
+| All 42 | Auto-aim launcher: solves a ballistic shot for a random video and throws its card into the preview. The first shot of a visit is 10% under charge: it hits the front of the slot, the miss is read off in pixels, and the second shot is corrected | Bow, pool cue, guided launcher; every build’s first test |
 | How a build goes | The egg cracker: the heading is inside an egg held by two gripper fingers; a blade comes down and cracks it round the waist, the grippers pull the halves apart and the words fall out letter by letter onto the line, each a ballistic drop with a bounce, the yolk landing as the full stop | Egg-cracking robot (2022, 413 eggs) and why the task is so hard for machines (2025) |
 | How a build goes | Geneva drive feeds the slip one stage per index, with the real dwell | New |
 | How a build goes | Pen plotter writes each stage’s note in single-stroke lettering with pen lifts | Handwriting forgeries (2023) |
@@ -83,7 +83,7 @@ Nothing on the site is a stock block. The numbers are a nameplate with odometer 
 | --- | --- | --- |
 | Portrait | The painting robot: a carriage on a rail sweeps row by row and sprays his portrait as a halftone, one colour per pass (blue, red, black), 2,449 dots | Wall-painting robot (2021), pumpkin halftones |
 | The shop | Eight motion-capture pan heads on the walls follow your pointer, or tour the tools when nobody moves; each head is on its own speed- and acceleration-limited motor, and when all eight agree the point locks and the nearest tool lights up | The eight OptiTrack cameras that aimed the bow |
-| What he builds | The sorting line: the 41 videos ride a belt in upload order and diverter gates drop each into its bin (can't miss, toolpaths, explosive, locks, assembly, the rest); every card stays a link | New |
+| What he builds | The sorting line: the 42 videos ride a belt in upload order and diverter gates drop each into its bin (can't miss, toolpaths, explosive, locks, assembly, the rest); every card stays a link | New |
 | The hardest jigsaw | Twenty-four blank pieces cut with real tab shapes. A gantry head picks one, reads its four edges (tab or blank, size, offset), compares them with every open slot it knows something about (the border, and the facing edges of placed neighbours), and places it only when exactly one slot fits; a piece with nothing to compare against goes back. Solved face down; the board flips to the picture at the end | All-white jigsaw machine (2022) |
 | Powder charge, exit speed | A blank cartridge swings the bat; hold to load the charge. The collision is worked out properly (effective bat mass, ball mass, restitution 0.5) and shown at one eighth speed with exit speed, carry and the load on the handle; past the handle’s limit the bat fails and is rebuilt. The machine demonstrates full charge first, which fails, then a charge that holds | Explosive bat (2020) |
 | Aimed by cameras | Two cameras each see a noisy bearing to a flying target; the rays cross at the fix with its error ellipse. A least-squares tracker fits the path under gravity, solves the lead, and the pan motor turns there under its limits and fires when settled. The first target of a visit is missed because one camera is 2.5° out of calibration; the miss is measured and the bearing corrected | Auto-aiming bow (2021) |
@@ -122,4 +122,4 @@ Sound is off until the visitor switches it on (the lock menu on phones, the pane
 
 ## Updating the videos
 
-`src/data/videos.ts` was generated from the channel’s Videos tab on 2026-10-24. The ledger rows in `index.html` are generated from that file; when it changes, regenerate the rows (the block between the `ledger__year` markers) or re-run the generator in your tooling.
+`src/data/videos.ts` was generated from the channel’s Videos tab on 2026-10-24; video 42 was added by hand on 2026-11-10 in all four copies of the list (that file, the ledger rows and the “Everything else” drawer in `index.html`, the sorter cards in `about.html`), together with every sentence that states the total and the latest-video section. The ledger rows in `index.html` are generated from that file; when it changes, regenerate the rows (the block between the `ledger__year` markers) or re-run the generator in your tooling.

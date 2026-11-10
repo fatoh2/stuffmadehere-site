@@ -1,4 +1,5 @@
-// Generated 2026-10-24 from the channel's Videos tab (IDs, current titles, view counts)
+// Generated 2026-10-24 from the channel's Videos tab (IDs, current titles, view counts);
+// video 42 added by hand on 2026-11-10 from its watch page (date as the API gives it, in UTC)
 // and upload dates from the research notes. Views are approximate; the page says "about".
 export type Family = 'cant-miss' | 'explosive' | 'toolpath' | 'lock' | 'assembly' | 'other';
 
@@ -63,6 +64,7 @@ export const videos: Video[] = [
   { id: 'JQB8aNKyeao', title: "Making an autocorrect mini golf club (part 1)", date: '2026-01-01', views: 2300000, family: 'cant-miss' },
   { id: '2OfjZ3ORJfc', title: "Robot golf vs holes that keep getting harder", date: '2026-04-15', views: 5400000, family: 'cant-miss' },
   { id: 'RpslsMqPFWA', title: "I made an apple peel itself", date: '2026-08-05', views: 3700000, family: 'toolpath' },
+  { id: 'BuRyQYf03xA', title: "My dog won't stay out of mud so I made this...", date: '2026-11-01', views: 2000000, family: 'other' },
 ];
 
 export const latest = videos[videos.length - 1];

@@ -56,7 +56,7 @@ mountLock(
     { id: 'miss', label: 'Won’t let you miss' },
     { id: 'putt', label: 'Bad aim, good putt' },
     { id: 'now', label: 'Building now' },
-    { id: 'all', label: 'All 41' },
+    { id: 'all', label: 'All 42' },
     { id: 'drawers', label: 'Parts drawers' },
     { id: 'method', label: 'How a build goes' },
     { id: 'numbers', label: 'The numbers' },
@@ -115,7 +115,7 @@ mathsToggle('puttMaths', (on) => putter.maths(on));
 /* ---------- building now: assembled by the gantry ---------- */
 const assembly = mountPickPlace($('#now'));
 
-/* ---------- all 41: the camshaft and the launcher ---------- */
+/* ---------- all the videos: the camshaft and the launcher ---------- */
 mountCamshaft({
   ledger: $('#ledger'),
   shaftEl: $('#camshaft'),

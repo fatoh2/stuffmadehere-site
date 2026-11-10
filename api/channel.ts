@@ -13,11 +13,11 @@ interface Reply {
 
 const BUILT: Reply = {
   live: false,
-  asOf: '2026-10-24',
-  subscribers: 4800000,
-  views: 352000000,
-  videos: 41,
-  latest: { id: 'RpslsMqPFWA', title: 'I made an apple peel itself', date: '2026-08-05' },
+  asOf: '2026-11-10',
+  subscribers: 4760000,
+  views: 355000000,
+  videos: 42,
+  latest: { id: 'BuRyQYf03xA', title: "My dog won't stay out of mud so I made this...", date: '2026-11-01' },
 };
 
 const HANDLE = 'stuffmadehere';
