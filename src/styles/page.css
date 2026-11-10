@@ -646,7 +646,10 @@ html:not(.js) .lock__list a { font-size: var(--step-small); font-family: var(--f
   .miss__tag { display: none; }
   .tag { padding: 0.36rem 1.3rem; }
   .putt__tag { left: 0.8rem; bottom: 0.8rem; }
-  .cabinet__tag { right: 1.75rem; top: 0.5rem; }
+  /* on the cabinet's top edge: inside it, the placard covered the first drawer's count */
+  .cabinet__tag { right: 1rem; top: -0.85rem; }
+  /* nothing set at the top of a page may run under the fixed key */
+  .wordmark { max-width: calc(100vw - 9.5rem); }
 }
 /* the controller toggles: on a phone the hoop's bottom block has no room for one more line */
 .miss__maths { margin-top: 0.5rem; }

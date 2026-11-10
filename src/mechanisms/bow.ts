@@ -418,9 +418,14 @@ export function mountBow(cv: HTMLCanvasElement, stat: HTMLElement | null): BowHa
     ctx.font = fontFor(12, 700);
     ctx.textBaseline = 'top';
     ctx.fillStyle = P.muted;
-    ctx.fillText(`cameras at 120 Hz, noise ±${(NOISE * DEG).toFixed(1)}° · arrow ${ARROW_V} px/s · pan ${bow.pan.vmax} rad/s`, 58, 8);
+    // drop figures from the end until the line fits between the two cameras
+    const fitLine = (parts: string[]): string => {
+      while (parts.length > 1 && ctx.measureText(parts.join(' · ')).width > W - 120) parts.pop();
+      return parts.join(' · ');
+    };
+    ctx.fillText(fitLine([`cameras at 120 Hz, noise ±${(NOISE * DEG).toFixed(1)}°`, `arrow ${ARROW_V} px/s`, `pan ${bow.pan.vmax} rad/s`]), 58, 8);
     ctx.fillStyle = P.ink;
-    const line = lead && target && !target.hit ? `fix ±${fix ? Math.round(fix.err) : 0} px · lead ${lead.tau.toFixed(2)} s · pan ${(bow.pan.p * DEG).toFixed(0)}° → ${(lead.aim * DEG).toFixed(0)}°` : lastMiss != null ? `last miss ${lastMiss} px` : '';
+    const line = lead && target && !target.hit ? fitLine([`fix ±${fix ? Math.round(fix.err) : 0} px`, `lead ${lead.tau.toFixed(2)} s`, `pan ${(bow.pan.p * DEG).toFixed(0)}° → ${(lead.aim * DEG).toFixed(0)}°`]) : lastMiss != null ? `last miss ${lastMiss} px` : '';
     if (line) ctx.fillText(line, 58, 24);
     if (ghost) drawGhost(ctx, ghost, P.ink);
   }

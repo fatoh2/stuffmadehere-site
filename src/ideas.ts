@@ -61,6 +61,18 @@ void fetchLive().then((live) => {
     sinceLink.href = watchUrl(live.latest.id);
     sinceLink.textContent = live.latest.title;
   }
+  // the picture and caption under the count follow the same video
+  const rel = document.querySelector<HTMLElement>('#since .idea__rel');
+  if (rel) {
+    rel.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => (link.href = watchUrl(live.latest.id)));
+    const img = rel.querySelector('img');
+    if (img) {
+      img.src = `https://i.ytimg.com/vi/${live.latest.id}/hqdefault.jpg`;
+      img.alt = `Thumbnail of the video “${live.latest.title}”`;
+    }
+    const cap = rel.querySelector<HTMLAnchorElement>('figcaption a');
+    if (cap) cap.textContent = live.latest.title;
+  }
 });
 mountTally($$('button.tally'), document.getElementById('resetVotes') as HTMLButtonElement | null, (live) => {
   const note = document.getElementById('voteNote');

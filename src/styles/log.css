@@ -52,6 +52,8 @@
   .projector__hint { display: none; }
   .reel { grid-template-columns: 1fr; gap: 1rem; }
   .frames { padding-block: 4svh; }
+  /* the heading lands under the fixed key when the section snaps to the top */
+  .frames__head { max-width: calc(100% - 7.5rem); }
 }
 
 .projector__tag { left: 1rem; bottom: 1rem; }

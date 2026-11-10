@@ -7,3 +7,4 @@ dist
 .impeccable/hook.cache.json
 
 .taste-skill/inspect*/
+.claude/scheduled_tasks.lock
